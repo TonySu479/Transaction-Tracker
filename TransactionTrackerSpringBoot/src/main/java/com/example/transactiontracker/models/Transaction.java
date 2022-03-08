@@ -8,11 +8,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "transactions")
-public class Transaction {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+public class Transaction extends BaseEntity{
 
     @Column(name = "title")
     private String title;

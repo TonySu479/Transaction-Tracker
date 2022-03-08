@@ -1,26 +1,23 @@
 package com.example.transactiontracker.models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 @Data
 @Entity
 @Table(name = "roles")
-public class Role {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+@NoArgsConstructor
+public class Role extends BaseEntity implements GrantedAuthority {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
-    private ERole name;
+    private RoleType name;
 
-    public Role() {
-    }
-
-    public Role(ERole name) {
-        this.name = name;
+    @Override
+    public String getAuthority() {
+        return name.toString();
     }
 }
