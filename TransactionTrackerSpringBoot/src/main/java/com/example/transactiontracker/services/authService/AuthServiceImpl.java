@@ -1,4 +1,4 @@
-package com.example.transactiontracker.services.authService;
+package com.example.transactiontracker.services.authservice;
 
 import com.example.transactiontracker.models.Role;
 import com.example.transactiontracker.models.RoleType;
@@ -8,8 +8,8 @@ import com.example.transactiontracker.payload.dto.SignupRequest;
 import com.example.transactiontracker.payload.response.JwtResponse;
 import com.example.transactiontracker.payload.response.MessageResponse;
 import com.example.transactiontracker.security.jwt.JwtUtils;
-import com.example.transactiontracker.services.roleService.RoleService;
-import com.example.transactiontracker.services.userService.UserService;
+import com.example.transactiontracker.services.roleservice.RoleService;
+import com.example.transactiontracker.services.userservice.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

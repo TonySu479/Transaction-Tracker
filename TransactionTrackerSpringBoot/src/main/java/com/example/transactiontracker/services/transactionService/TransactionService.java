@@ -1,4 +1,4 @@
-package com.example.transactiontracker.services.transactionService;
+package com.example.transactiontracker.services.transactionservice;
 
 import com.example.transactiontracker.models.Transaction;
 

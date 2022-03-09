@@ -1,4 +1,4 @@
-package com.example.transactiontracker.services.authService;
+package com.example.transactiontracker.services.authservice;
 
 import com.example.transactiontracker.payload.dto.LoginRequest;
 import com.example.transactiontracker.payload.dto.SignupRequest;
