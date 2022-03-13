@@ -1,6 +1,5 @@
 package com.example.transactiontracker.models;
 
-
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -21,4 +20,13 @@ public class Product extends BaseEntity {
     @Column(name = "amount")
     private int amount;
 
+    public Product(String name, String unit, int amount) {
+        this.name = name;
+        this.unit = unit;
+        this.amount = amount;
+    }
+
+    public Product() {
+
+    }
 }

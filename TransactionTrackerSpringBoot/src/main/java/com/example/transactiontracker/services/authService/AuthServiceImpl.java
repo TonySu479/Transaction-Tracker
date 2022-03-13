@@ -1,4 +1,4 @@
-package com.example.transactiontracker.services.authservice;
+package com.example.transactiontracker.services.authService;
 
 import com.example.transactiontracker.models.Role;
 import com.example.transactiontracker.models.RoleType;
@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,7 @@ public class AuthServiceImpl implements AuthService{
 
         User userDetails = (User) authentication.getPrincipal();
         List<String> roles = userDetails.getRoles().stream()
-                .map(item -> item.getAuthority())
+                .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
