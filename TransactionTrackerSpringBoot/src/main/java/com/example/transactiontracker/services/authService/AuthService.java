@@ -9,5 +9,5 @@ import javax.validation.Valid;
 
 public interface AuthService {
     ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest);
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest);
+    ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest);
 }

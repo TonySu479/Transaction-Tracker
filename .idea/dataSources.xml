@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="transaction@localhost" uuid="722c8e0c-4453-434c-92a2-37e2a77507aa">
+    <data-source source="LOCAL" name="transaction@localhost" uuid="76fce4df-5187-4bee-aeda-dd530ec2dff1">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5431/transaction</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="transaction@localhost [2]" uuid="d9e30263-7456-4ec5-9493-38ecbf1e1eed">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5431/transaction</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/transaction</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

@@ -5,25 +5,16 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-    <changeSet id="create_roles_table" author="Me">
-        <createTable tableName="roles">
+    <changeSet id="create_products_table" author="Me">
+        <createTable tableName="products">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="VARCHAR(255)"/>
+            <column name="unit" type="VARCHAR(255)"/>
+            <column name="amount" type="INT"/>
         </createTable>
     </changeSet>
 
-    <changeSet id="add_roles" author="Me">
-        <insert tableName="roles">
-            <column name="name" value="ROLE_ADMIN"/>
-        </insert>
-        <insert tableName="roles">
-            <column name="name" value="ROLE_SUPERVISOR"/>
-        </insert>
-        <insert tableName="roles">
-            <column name="name" value="ROLE_USER"/>
-        </insert>
-    </changeSet>
 
 </databaseChangeLog>

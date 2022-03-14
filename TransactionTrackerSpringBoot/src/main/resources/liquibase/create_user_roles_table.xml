@@ -2,7 +2,7 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
-    <changeSet author="tony.su" id="create_user_roles_join_table">
+    <changeSet author="Me" id="create_user_roles_join_table">
         <createTable tableName="user_roles">
             <column name="user_id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -26,6 +26,14 @@
                                  referencedTableName="roles"
                                  referencedColumnNames="id"/>
     </changeSet>
+
+<!--    <changeSet id="add_user_roles" author="Me">-->
+<!--        <insert tableName="user_roles">-->
+<!--            <column name="user_id" value="1"/>-->
+<!--            <column name="role_id" value="1"/>-->
+<!--        </insert>-->
+<!--    </changeSet>-->
+
 
 
 </databaseChangeLog>

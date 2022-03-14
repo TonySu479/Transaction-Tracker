@@ -53,6 +53,7 @@ public class User extends BaseEntity implements UserDetails {
         this.email = email;
         this.password = password;
     }
+
     public User(Long id, String username, String email, String password,
                            Collection<? extends GrantedAuthority> authorities) {
         setId(id);
@@ -79,6 +80,7 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        System.out.println(roles);
         return roles;
     }
 
