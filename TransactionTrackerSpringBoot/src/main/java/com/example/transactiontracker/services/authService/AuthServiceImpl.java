@@ -54,11 +54,13 @@ public class AuthServiceImpl implements AuthService{
 
     @Override
     public ResponseEntity<?> registerUser(SignupRequest signUpRequest) {
+
         if (userService.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Username is already taken!"));
         }
+
         if (userService.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()

@@ -60,6 +60,7 @@ public class User extends BaseEntity implements UserDetails {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.roles = new HashSet<>((Collection<? extends Role>) authorities);
     }
 
     public static User build(User user) {
@@ -80,7 +81,7 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        System.out.println(roles);
+        System.out.println("roles: " + roles);
         return roles;
     }
 

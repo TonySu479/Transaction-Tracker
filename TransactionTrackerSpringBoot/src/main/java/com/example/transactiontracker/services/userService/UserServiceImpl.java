@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(String name, String password, RoleType roleType) {
-        User user = new User(name, name + "@gmail.com", encoder.encode(password));
+        User user = new User(name, name + "@email.com", encoder.encode(password));
         HashSet<Role> roles = new HashSet<>();
         Role userRole = roleService.findByName(roleType)
                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
