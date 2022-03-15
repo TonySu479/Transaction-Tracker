@@ -11,22 +11,38 @@ import javax.persistence.Table;
 @Table(name = "products")
 public class Product extends BaseEntity {
 
+    @Column(name = "code")
+    private String code;
+
     @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "price")
+    private int price;
+
+    @Column(name = "quantity")
+    private int quantity;
 
     @Column(name = "unit")
     private String unit;
 
-    @Column(name = "amount")
-    private int amount;
-
-    public Product(String name, String unit, int amount) {
-        this.name = name;
-        this.unit = unit;
-        this.amount = amount;
-    }
+    @Column(name = "image")
+    private String image;
 
     public Product() {
 
+    }
+
+    public Product(String code, String name, String description, int price, int quantity, String unit, String image) {
+        this.code = code;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.unit = unit;
+        this.image = image;
     }
 }

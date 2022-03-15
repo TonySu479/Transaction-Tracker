@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4201")
@@ -30,7 +32,7 @@ public class ProductController {
     public ResponseEntity<Product> createProduct(@RequestBody ProductDto product) {
         try {
             Product productEntity = productService
-                    .save(new Product(product.getName(), product.getUnit(), product.getAmount()));
+                    .save(new Product(product.getCode(), product.getName(), product.getDescription(), product.getPrice(), product.getQuantity(), product.getUnit(), product.getImage()));
             return new ResponseEntity<>(productEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -43,9 +45,13 @@ public class ProductController {
         Optional<Product> productData = productService.findById(id);
         if (productData.isPresent()) {
             Product productEntity = productData.get();
+            productEntity.setCode(product.getCode());
             productEntity.setName(product.getName());
+            productEntity.setDescription(product.getDescription());
+            productEntity.setPrice(product.getPrice());
+            productEntity.setQuantity(product.getQuantity());
             productEntity.setUnit(product.getUnit());
-            productEntity.setAmount(product.getAmount());
+            productEntity.setImage(product.getImage());
             return new ResponseEntity<>(productService.save(productEntity), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -60,6 +66,24 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/products")
+    public ResponseEntity<List<Product>> getAllProducts(@RequestParam(required = false) String name) {
+        try {
+            List<Product> products = new ArrayList<>();
+            if (name == null)
+                products.addAll(productService.findAll());
+            else{
+                products.addAll(productService.findByNameContaining(name));
+            }
+            if (products.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(products, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

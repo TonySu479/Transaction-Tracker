@@ -45,7 +45,7 @@ public class TransactionController {
         Optional<Transaction> transactionData = transactionService.findById(id);
         if (transactionData.isPresent()) {
             Transaction transactionEntity = transactionData.get();
-            transactionEntity.setTitle(transaction.getTitle());
+            transactionEntity.setName(transaction.getTitle());
             transactionEntity.setDescription(transaction.getDescription());
             return new ResponseEntity<>(transactionService.save(transactionEntity), HttpStatus.OK);
         } else {
@@ -65,13 +65,13 @@ public class TransactionController {
     }
 
     @GetMapping("/transactions")
-    public ResponseEntity<List<Transaction>> getAllTransactions(@RequestParam(required = false) String title) {
+    public ResponseEntity<List<Transaction>> getAllTransactions(@RequestParam(required = false) String name) {
         try {
             List<Transaction> transactions = new ArrayList<>();
-            if (title == null)
+            if (name == null)
                 transactions.addAll(transactionService.findAll());
             else{
-                transactions.addAll(transactionService.findByTitleContaining(title));
+                transactions.addAll(transactionService.findByNameContaining(name));
             }
             if (transactions.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

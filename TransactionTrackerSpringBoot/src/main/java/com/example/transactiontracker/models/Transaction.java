@@ -10,15 +10,15 @@ import javax.persistence.*;
 @Table(name = "transactions")
 public class Transaction extends BaseEntity{
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "description")
     private String description;
 
 
-    public Transaction(String title, String description) {
-        this.title = title;
+    public Transaction(String name, String description) {
+        this.name = name;
         this.description = description;
     }
 

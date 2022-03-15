@@ -17,8 +17,8 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> findByTitleContaining(String title) {
-        return transactionRepository.findByTitleContaining(title);
+    public List<Transaction> findByNameContaining(String name) {
+        return transactionRepository.findByNameContaining(name);
     }
 
     @Override

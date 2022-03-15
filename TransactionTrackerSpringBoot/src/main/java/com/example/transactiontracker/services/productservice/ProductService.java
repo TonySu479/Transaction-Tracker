@@ -11,5 +11,6 @@ public interface ProductService {
     void deleteAll();
     void deleteById(long id);
     Optional<Product> findById(long id);
+    List<Product> findByNameContaining(String name);
     List<Product> findAll();
 }

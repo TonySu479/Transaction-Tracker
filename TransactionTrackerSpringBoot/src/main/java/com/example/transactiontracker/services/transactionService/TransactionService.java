@@ -10,6 +10,6 @@ public interface TransactionService {
     void deleteAll();
     void deleteById(long id);
     Optional<Transaction> findById(long id);
-    List<Transaction> findByTitleContaining(String title);
+    List<Transaction> findByNameContaining(String name);
     List<Transaction> findAll();
 }

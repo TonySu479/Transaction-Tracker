@@ -1,6 +1,7 @@
 package com.example.transactiontracker.services.productservice;
 
 import com.example.transactiontracker.models.Product;
+import com.example.transactiontracker.models.Transaction;
 import com.example.transactiontracker.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,18 +19,13 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public List<Product> findByNameContaining(String name) {
+        return productRepository.findByNameContaining(name);
+    }
+
+    @Override
     public Product save(Product product) {
         return productRepository.save(product);
-    }
-
-    @Override
-    public void deleteAll() {
-        productRepository.deleteAll();
-    }
-
-    @Override
-    public void deleteById(long id) {
-        productRepository.deleteById(id);
     }
 
     @Override
@@ -38,7 +34,17 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public void deleteAll() {
+        productRepository.deleteAll();
+    }
+
+    @Override
     public List<Product> findAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(long id) {
+        productRepository.deleteById(id);
     }
 }
