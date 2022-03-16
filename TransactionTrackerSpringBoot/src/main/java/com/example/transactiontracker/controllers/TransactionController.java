@@ -1,7 +1,6 @@
 package com.example.transactiontracker.controllers;
 
 import com.example.transactiontracker.models.Transaction;
-import com.example.transactiontracker.payload.dto.TransactionDto;
 import com.example.transactiontracker.services.transactionService.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,10 +27,10 @@ public class TransactionController {
 
     @PostMapping("/transactions")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Transaction> createTransaction(@RequestBody TransactionDto transaction) {
+    public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
         try {
             Transaction transactionEntity = transactionService
-                    .save(new Transaction(transaction.getTitle(), transaction.getDescription()));
+                    .save(new Transaction(transaction.getName(), transaction.getDescription()));
             return new ResponseEntity<>(transactionEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -40,11 +39,11 @@ public class TransactionController {
 
     @PutMapping("/transactions/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Transaction> updateTransaction(@PathVariable("id") long id, @RequestBody TransactionDto transaction) {
+    public ResponseEntity<Transaction> updateTransaction(@PathVariable("id") long id, @RequestBody Transaction transaction) {
         Optional<Transaction> transactionData = transactionService.findById(id);
         if (transactionData.isPresent()) {
             Transaction transactionEntity = transactionData.get();
-            transactionEntity.setName(transaction.getTitle());
+            transactionEntity.setName(transaction.getName());
             transactionEntity.setDescription(transaction.getDescription());
             return new ResponseEntity<>(transactionService.save(transactionEntity), HttpStatus.OK);
         } else {

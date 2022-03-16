@@ -1,7 +1,6 @@
 package com.example.transactiontracker.controllers;
 
 import com.example.transactiontracker.models.Product;
-import com.example.transactiontracker.payload.dto.ProductDto;
 import com.example.transactiontracker.services.productservice.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,7 +27,7 @@ public class ProductController {
 
     @PostMapping("/products")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Product> createProduct(@RequestBody ProductDto product) {
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         try {
             Product productEntity = productService
                     .save(new Product(product.getCode(), product.getName(), product.getDescription(), product.getPrice(), product.getQuantity(), product.getUnit(), product.getImage()));
