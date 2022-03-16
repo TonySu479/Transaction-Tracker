@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:4201")
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor

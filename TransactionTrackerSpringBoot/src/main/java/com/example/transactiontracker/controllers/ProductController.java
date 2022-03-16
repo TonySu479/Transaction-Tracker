@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:4201")
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -79,7 +78,7 @@ public class ProductController {
                 products.addAll(productService.findByNameContaining(name));
             }
             if (products.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<>(products, HttpStatus.OK);
         } catch (Exception e) {
