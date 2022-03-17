@@ -1,0 +1,42 @@
+<div class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="grid justify-content-center p-2 lg:p-0" style="min-width:80%">
+        <div class="col-12 mt-5 xl:mt-0 text-center">
+            <img src="assets/layout/images/{{config.dark ? 'logo-white' : 'logo-dark'}}.svg" alt="Sakai logo"
+                 class="mb-5" style="width:81px; height:60px;">
+        </div>
+        <div class="col-12 xl:col-6"
+             style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+            <div class="h-full w-full m-0 py-7 px-4"
+                 style="border-radius:53px; background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));">
+                <div class="text-center mb-5">
+                    <img src="assets/layout/images/avatar.png" alt="Image" height="50" class="mb-3">
+                    <div class="text-900 text-3xl font-medium mb-3">Welcome, Isabel!</div>
+                    <span class="text-600 font-medium">Sign in to continue</span>
+                </div>
+
+                <div class="w-full md:w-10 mx-auto">
+                    <form [formGroup]="loginForm" (submit)="submit()">
+                        <label for="username" class="block text-900 text-xl font-medium mb-2">Username</label>
+                        <input id="username" type="text" placeholder="Username" pInputText class="w-full mb-2"
+                               style="padding:1rem;" formControlName="username">
+                        <div class="mb-3">
+                            <small class="ng-dirty ng-invalid" *ngIf="username?.errors?.required && (username.dirty || username.touched)">Username is
+                                required.</small>
+                        </div>
+
+                        <label for="password" class="block text-900 font-medium text-xl mb-2">Password</label>
+                        <div class="password-input">
+                            <input type="password" style="padding:14px" id="password" formControlName="password" placeholder="Password" class="w-full mb-2" autocomplete="off" pPassword>
+                        </div>
+                        <div>
+                            <small class="ng-dirty ng-invalid" *ngIf="password?.errors?.required && (password.dirty || password.touched)">Password is
+                                required.</small>
+                        </div>
+
+                        <button pButton pRipple label="Sign Up" type="submit" class="w-full p-3 text-xl mt-5"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

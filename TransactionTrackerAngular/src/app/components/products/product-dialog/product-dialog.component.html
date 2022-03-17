@@ -1,0 +1,95 @@
+<form [formGroup]="productForm" (submit)="submit()">
+
+    <div class="field">
+        <h5>
+            <label for="code">Code </label>
+        </h5>
+        <input type="text" id="code" name="code" formControlName="code" pInputText>
+        <div>
+            <small class="ng-dirty ng-invalid" *ngIf="code?.errors?.required && (code.dirty || code.touched)">Code is
+                required.</small>
+            <small class="ng-dirty ng-invalid" *ngIf="code?.errors?.maxlength && (code.dirty || code.touched)">max length
+                is {{code?.errors.maxlength.requiredLength}}</small>
+        </div>
+
+    </div>
+
+    <div class="field">
+        <h5>
+            <label for="name">Name </label>
+        </h5>
+        <input type="text" id="name" name="name" formControlName="name" pInputText>
+        <div>
+            <small class="ng-dirty ng-invalid" *ngIf="name?.errors?.required && (name.dirty || name.touched)">Name is
+                required.</small>
+            <small class="ng-dirty ng-invalid" *ngIf="name?.errors?.maxlength && (name.dirty || name.touched)">max length
+                is {{name?.errors.maxlength.requiredLength}}</small>
+        </div>
+    </div>
+
+    <div class="field">
+        <h5>
+            <label for="description">Description </label>
+        </h5>
+        <textarea pInputTextarea id="description" name="description" formControlName="description"></textarea>
+        <div>
+            <small class="ng-dirty ng-invalid"
+                   *ngIf="description?.errors?.required && (description.dirty || description.touched)">Description is
+                required.</small>
+            <small class="ng-dirty ng-invalid"
+                   *ngIf="description?.errors?.maxlength && (description || description.touched)">max length
+                is {{description?.errors.maxlength.requiredLength}}</small>
+        </div>
+    </div>
+
+    <div class="field">
+        <h5>
+            <label for="description">Price </label>
+        </h5>
+        <input type="number" id="price" name="price" formControlName="price" pInputText>
+        <div>
+            <small class="ng-dirty ng-invalid" *ngIf="price?.errors?.required && (price.dirty || price.touched)">Price is
+                required.</small>
+            <small class="ng-dirty ng-invalid" *ngIf="price?.errors?.min && (price.dirty || price.touched)">Price has to be
+                >= {{price?.errors?.min.min}}.</small>
+        </div>
+    </div>
+
+    <div class="field">
+        <h5>
+            <label for="description">Quantity </label>
+        </h5>
+        <input type="number" id="quantity" name="quantity" formControlName="quantity" pInputText>
+        <div>
+            <small class="ng-dirty ng-invalid" *ngIf="quantity?.errors?.required && (quantity.dirty || price.touched)">Quantity
+                is required.</small>
+            <small class="ng-dirty ng-invalid" *ngIf="quantity?.errors?.min && (quantity.dirty || quantity.touched)">Quantity
+                has to be >= {{quantity?.errors?.min.min}}.</small>
+        </div>
+    </div>
+
+    <div class="field">
+        <h5>
+            <label for="unit">Unit </label>
+        </h5>
+        <input type="text" id="unit" name="unit" formControlName="unit" pInputText>
+        <div>
+            <small class="ng-dirty ng-invalid" *ngIf="unit?.errors?.required && (unit.dirty || unit.touched)">Unit is
+                required.</small>
+            <small class="ng-dirty ng-invalid" *ngIf="unit?.errors?.maxlength && (unit || unit.touched)">max length
+                is {{unit?.errors.maxlength.requiredLength}}</small>
+        </div>
+    </div>
+
+    <div class="field">
+        <h5>
+            <label for="image">Image </label>
+        </h5>
+        <input type="text" id="image" name="image" formControlName="image" pInputText>
+    </div>
+
+    <div class="field">
+        <button pButton type="submit">Submit</button>
+    </div>
+
+</form>

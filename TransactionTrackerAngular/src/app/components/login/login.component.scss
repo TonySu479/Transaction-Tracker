@@ -1,0 +1,14 @@
+.password-input {
+    position: relative;
+
+    .password-visibility-toggle {
+        position: absolute;
+        right: 15px;
+        top: 14px;
+        font-size: 1.4rem;
+        &:hover{
+            color: #6366F1;
+        }
+    }
+}
+
