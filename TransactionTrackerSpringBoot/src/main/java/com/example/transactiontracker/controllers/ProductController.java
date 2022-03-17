@@ -41,6 +41,7 @@ public class ProductController {
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
         Optional<Product> productData = productService.findById(id);
+        System.out.println(productData);
         if (productData.isPresent()) {
             Product productEntity = productData.get();
             productEntity.setCode(product.getCode());
@@ -77,11 +78,23 @@ public class ProductController {
                 products.addAll(productService.findByNameContaining(name));
             }
             if (products.isEmpty()) {
-                return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
             }
             return new ResponseEntity<>(products, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/products/delete-products")
+    public ResponseEntity<HttpStatus> deleteProducts(@RequestBody List<String> listOfIds){
+        try {
+            for(String id : listOfIds){
+                productService.deleteById(Long.parseLong(id));
+            }
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
