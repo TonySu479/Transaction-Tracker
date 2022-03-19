@@ -47,4 +47,17 @@ public class ProductServiceImpl implements ProductService{
     public void deleteById(long id) {
         productRepository.deleteById(id);
     }
+
+    @Override
+    public Product getProduct(Product product, Optional<Product> productData) {
+        Product productEntity = productData.get();
+        productEntity.setCode(product.getCode());
+        productEntity.setName(product.getName());
+        productEntity.setDescription(product.getDescription());
+        productEntity.setPrice(product.getPrice());
+        productEntity.setQuantity(product.getQuantity());
+        productEntity.setUnit(product.getUnit());
+        productEntity.setImage(product.getImage());
+        return productEntity;
+    }
 }

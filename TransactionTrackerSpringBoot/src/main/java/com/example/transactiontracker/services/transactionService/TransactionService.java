@@ -12,4 +12,5 @@ public interface TransactionService {
     Optional<Transaction> findById(long id);
     List<Transaction> findByNameContaining(String name);
     List<Transaction> findAll();
+    Transaction getTransaction(Transaction transaction, Optional<Transaction> transactionData);
 }

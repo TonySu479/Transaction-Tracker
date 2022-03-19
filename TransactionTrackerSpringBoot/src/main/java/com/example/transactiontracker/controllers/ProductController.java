@@ -43,14 +43,7 @@ public class ProductController {
         Optional<Product> productData = productService.findById(id);
         System.out.println(productData);
         if (productData.isPresent()) {
-            Product productEntity = productData.get();
-            productEntity.setCode(product.getCode());
-            productEntity.setName(product.getName());
-            productEntity.setDescription(product.getDescription());
-            productEntity.setPrice(product.getPrice());
-            productEntity.setQuantity(product.getQuantity());
-            productEntity.setUnit(product.getUnit());
-            productEntity.setImage(product.getImage());
+            Product productEntity = productService.getProduct(product, productData);
             return new ResponseEntity<>(productService.save(productEntity), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

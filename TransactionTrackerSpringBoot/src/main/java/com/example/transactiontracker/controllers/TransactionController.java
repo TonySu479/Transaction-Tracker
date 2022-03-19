@@ -42,9 +42,7 @@ public class TransactionController {
     public ResponseEntity<Transaction> updateTransaction(@PathVariable("id") long id, @RequestBody Transaction transaction) {
         Optional<Transaction> transactionData = transactionService.findById(id);
         if (transactionData.isPresent()) {
-            Transaction transactionEntity = transactionData.get();
-            transactionEntity.setName(transaction.getName());
-            transactionEntity.setDescription(transaction.getDescription());
+            Transaction transactionEntity = transactionService.getTransaction(transaction, transactionData);
             return new ResponseEntity<>(transactionService.save(transactionEntity), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
