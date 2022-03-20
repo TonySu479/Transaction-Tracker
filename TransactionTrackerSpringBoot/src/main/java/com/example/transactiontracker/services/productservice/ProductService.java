@@ -1,6 +1,7 @@
 package com.example.transactiontracker.services.productservice;
 
 import com.example.transactiontracker.models.Product;
+import com.example.transactiontracker.models.ProductCategory;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,4 +14,6 @@ public interface ProductService {
     List<Product> findByNameContaining(String name);
     List<Product> findAll();
     Product getProduct(Product product, Optional<Product> productData);
+    void creatInitialProducts();
+    void createProduct(String code, String name, ProductCategory category, int price, int quantity, String unit, String image);
 }

@@ -88,4 +88,9 @@ export class LoginComponent implements OnInit, OnDestroy {
             }
         );
     }
+
+    register(): void {
+        this.router.navigate(["/register"]);
+    }
+
 }

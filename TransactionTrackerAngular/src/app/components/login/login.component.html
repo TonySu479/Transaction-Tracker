@@ -9,6 +9,9 @@
             <div class="h-full w-full m-0 py-7 px-4"
                  style="border-radius:53px; background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));">
 
+                <div class="text-center mb-5">
+                    <button pButton type="button" label="Register here" class="p-button-link" (click)="register()"></button>
+                </div>
 
                 <div class="w-full md:w-10 mx-auto">
                     <form [formGroup]="loginForm" (submit)="submit()">
@@ -31,6 +34,7 @@
 
                         <button pButton pRipple label="Sign Up" type="submit" class="w-full p-3 text-xl mt-5"></button>
                     </form>
+
                 </div>
             </div>
         </div>

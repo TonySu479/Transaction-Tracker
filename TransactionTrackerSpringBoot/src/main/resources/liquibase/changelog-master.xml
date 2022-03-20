@@ -9,6 +9,7 @@
     <include file="liquibase/create_roles_table.xml"/>
     <include file="liquibase/create_users_table.xml"/>
     <include file="liquibase/create_user_roles_table.xml"/>
+    <include file="liquibase/create_categories_table.xml"/>
     <include file="liquibase/create_products_table.xml"/>
 
 </databaseChangeLog>

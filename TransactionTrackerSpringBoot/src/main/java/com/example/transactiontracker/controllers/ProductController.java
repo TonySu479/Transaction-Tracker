@@ -30,7 +30,7 @@ public class ProductController {
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         try {
             Product productEntity = productService
-                    .save(new Product(product.getCode(), product.getName(), product.getDescription(), product.getPrice(), product.getQuantity(), product.getUnit(), product.getImage()));
+                    .save(new Product(product.getCode(), product.getName(), product.getCategory(), product.getPrice(), product.getQuantity(), product.getUnit(), product.getImage()));
             return new ResponseEntity<>(productEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

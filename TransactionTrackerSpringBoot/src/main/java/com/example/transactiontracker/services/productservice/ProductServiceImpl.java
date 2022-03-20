@@ -1,9 +1,9 @@
 package com.example.transactiontracker.services.productservice;
 
 import com.example.transactiontracker.models.Product;
-import com.example.transactiontracker.models.Transaction;
+import com.example.transactiontracker.models.ProductCategory;
+import com.example.transactiontracker.repositories.CategoryRepository;
 import com.example.transactiontracker.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,9 +13,11 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService{
 
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
 
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -53,11 +55,24 @@ public class ProductServiceImpl implements ProductService{
         Product productEntity = productData.get();
         productEntity.setCode(product.getCode());
         productEntity.setName(product.getName());
-        productEntity.setDescription(product.getDescription());
+        productEntity.setCategory(product.getCategory());
         productEntity.setPrice(product.getPrice());
         productEntity.setQuantity(product.getQuantity());
         productEntity.setUnit(product.getUnit());
         productEntity.setImage(product.getImage());
         return productEntity;
+    }
+
+    @Override
+    public void creatInitialProducts() {
+        createProduct("1234", "Water", categoryRepository.getById(Long.parseLong("1")), 250, 3, "bottle", "water.image");
+        createProduct("2345", "Coke", categoryRepository.getById(Long.parseLong("1")), 300, 4,"bottle", "coke.image");
+        createProduct("9999", "Nachos", categoryRepository.getById(Long.parseLong("2")), 500, 9,"box", "nachos.image");
+    }
+
+    @Override
+    public void createProduct(String code, String name, ProductCategory category, int price, int quantity, String unit, String image) {
+        Product product = new Product(code, name, category, price, quantity, unit, image);
+        productRepository.save(product);
     }
 }

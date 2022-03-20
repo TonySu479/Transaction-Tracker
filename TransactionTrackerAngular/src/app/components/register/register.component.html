@@ -30,7 +30,7 @@
 
                         <label for="password" class="block text-900 font-medium text-xl mb-2">Password</label>
                         <div class="password-input">
-                            <input style="padding:14px" [type]="showPassword === false ? 'password' : 'text'" id="password" formControlName="password" placeholder="Password" class="w-full mb-2" autocomplete="off" pPassword>
+                            <input style="padding:14px" [type]="showPassword === false ? 'password' : 'text'" id="password" formControlName="password" placeholder="Password" class="w-full mb-2" autocomplete="off" pInputText>
                             <i class="pi password-visibility-toggle" [ngClass]="{'pi-eye' : showPassword === true, 'pi-eye-slash' : showPassword === false}" (click)="togglePasswordVisibility()"></i>
                         </div>
                         <div>

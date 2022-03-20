@@ -2,9 +2,7 @@ package com.example.transactiontracker.models;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -17,8 +15,8 @@ public class Product extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ProductCategory category;
 
     @Column(name = "price")
     private int price;
@@ -36,10 +34,10 @@ public class Product extends BaseEntity {
 
     }
 
-    public Product(String code, String name, String description, int price, int quantity, String unit, String image) {
+    public Product(String code, String name, ProductCategory category, int price, int quantity, String unit, String image) {
         this.code = code;
         this.name = name;
-        this.description = description;
+        this.category = category;
         this.price = price;
         this.quantity = quantity;
         this.unit = unit;
