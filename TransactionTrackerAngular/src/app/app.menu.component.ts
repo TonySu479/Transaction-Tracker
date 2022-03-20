@@ -35,26 +35,13 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'UI Components',
                 items: [
-                    {label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table']},
-                    {label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel']},
-                    {label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay']},
-                    {label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media']},
-                    {label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu'], preventExact: true},
-                    {label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message']},
-                    {label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']},
-                    {label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc']},
                     {label: 'Products', icon: 'pi pi-fw pi-circle', routerLink: ['/products']}
                 ]
             },
             {
                 label: 'Pages',
                 items: [
-                    {label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/pages/timeline']},
-                    {label: 'Landing', icon: 'pi pi-fw pi-globe', routerLink: ['pages/landing']},
-                    {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['pages/login']},
-                    {label: 'Error', icon: 'pi pi-fw pi-times-circle', routerLink: ['pages/error']},
-                    {label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['pages/notfound']},
-                    {label: 'Access Denied', icon: 'pi pi-fw pi-lock', routerLink: ['pages/access']},
+                    {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login']},
                     {label: 'Empty', icon: 'pi pi-fw pi-circle', routerLink: ['/pages/empty']}
                 ]
             },

@@ -16,7 +16,7 @@ export class AppTopBarComponent {
     logout() {
         window.sessionStorage.clear();
         setTimeout(() => {
-            this.router.navigate(['/pages/login']);
+            this.router.navigate(['/login']);
         }, 100);
 
     }
