@@ -1,7 +1,6 @@
 package com.example.transactiontracker;
 
 import com.example.transactiontracker.services.userService.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

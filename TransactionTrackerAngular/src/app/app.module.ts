@@ -106,7 +106,6 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { MiscComponent } from './components/misc/misc.component';
 import { EmptyComponent } from './components/empty/empty.component';
 import { FileComponent } from './components/file/file.component';
-import { CrudComponent } from './components/crud/crud.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { PaymentComponent} from './components/menus/payment.component';
 import { ConfirmationComponent } from './components/menus/confirmation.component';
@@ -242,7 +241,6 @@ import { RegisterComponent } from './components/register/register.component';
         MiscComponent,
         EmptyComponent,
         FileComponent,
-        CrudComponent,
         TimelineComponent,
         BlockViewer,
         MediaComponent,

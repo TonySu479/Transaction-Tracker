@@ -42,7 +42,8 @@ export class ProductsComponent implements OnInit {
             header: 'Create a new product',
             data: {
                 type: "new"
-            }
+            },
+            width: "600px"
         });
 
         ref.onClose.subscribe(value => {

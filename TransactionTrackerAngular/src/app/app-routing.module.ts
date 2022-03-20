@@ -10,7 +10,6 @@ import { EmptyComponent } from './components/empty/empty.component';
 import { FileComponent } from './components/file/file.component';
 import { AppMainComponent } from './app.main.component';
 import { TableComponent } from './components/table/table.component';
-import { CrudComponent } from './components/crud/crud.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
@@ -34,7 +33,6 @@ import {RegisterComponent} from "./components/register/register.component";
                     {path: 'uikit/message', component: MessagesComponent},
                     {path: 'uikit/misc', component: MiscComponent},
                     {path: 'uikit/file', component: FileComponent},
-                    {path: 'pages/crud', component: CrudComponent},
                     {path: 'pages/timeline', component: TimelineComponent},
                     {path: 'pages/empty', component: EmptyComponent},
                     {path: 'products', component: ProductsComponent}
