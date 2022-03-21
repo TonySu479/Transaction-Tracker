@@ -2,6 +2,7 @@ package com.example.transactiontracker.services.productservice;
 
 import com.example.transactiontracker.models.Product;
 import com.example.transactiontracker.models.ProductCategory;
+import com.example.transactiontracker.payload.dto.ProductDTO;
 import com.example.transactiontracker.repositories.CategoryRepository;
 import com.example.transactiontracker.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -51,11 +52,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product getProduct(Product product, Optional<Product> productData) {
+    public Product getProduct(ProductDTO product, Optional<Product> productData) {
         Product productEntity = productData.get();
         productEntity.setCode(product.getCode());
         productEntity.setName(product.getName());
-        productEntity.setCategory(product.getCategory());
+        productEntity.setCategory(getCategoryFromId(product.getCategory()));
         productEntity.setPrice(product.getPrice());
         productEntity.setQuantity(product.getQuantity());
         productEntity.setUnit(product.getUnit());
@@ -65,14 +66,19 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public void creatInitialProducts() {
-        createProduct("1234", "Water", categoryRepository.getById(Long.parseLong("1")), 250, 3, "bottle", "water.image");
-        createProduct("2345", "Coke", categoryRepository.getById(Long.parseLong("1")), 300, 4,"bottle", "coke.image");
-        createProduct("9999", "Nachos", categoryRepository.getById(Long.parseLong("2")), 500, 9,"box", "nachos.image");
+        createProduct("1234", "Water", getCategoryFromId("1"), 250, 3, "bottle", "water.image");
+        createProduct("2345", "Coke", getCategoryFromId("1"), 300, 4,"bottle", "coke.image");
+        createProduct("9999", "Nachos", getCategoryFromId("2"), 500, 9,"box", "nachos.image");
     }
 
     @Override
     public void createProduct(String code, String name, ProductCategory category, int price, int quantity, String unit, String image) {
         Product product = new Product(code, name, category, price, quantity, unit, image);
-        productRepository.save(product);
+        save(product);
+    }
+
+    @Override
+    public ProductCategory getCategoryFromId(String id) {
+        return categoryRepository.getById(Long.parseLong(id));
     }
 }

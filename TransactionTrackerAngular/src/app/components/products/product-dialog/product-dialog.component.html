@@ -29,22 +29,22 @@
 
     <div class="field">
         <h5>
-            <label for="description">Description </label>
+            <label for="category">Category </label>
         </h5>
-        <textarea pInputTextarea id="description" name="description" formControlName="description"></textarea>
+        <input pInputTextarea id="category" name="category" formControlName="category" />
         <div>
             <small class="ng-dirty ng-invalid"
-                   *ngIf="description?.errors?.required && (description.dirty || description.touched)">Description is
+                   *ngIf="category?.errors?.required && (category.dirty || category.touched)">category is
                 required.</small>
             <small class="ng-dirty ng-invalid"
-                   *ngIf="description?.errors?.maxlength && (description || description.touched)">max length
-                is {{description?.errors.maxlength.requiredLength}}</small>
+                   *ngIf="category?.errors?.maxlength && (category || category.touched)">max length
+                is {{category?.errors.maxlength.requiredLength}}</small>
         </div>
     </div>
 
     <div class="field">
         <h5>
-            <label for="description">Price </label>
+            <label for="category">Price </label>
         </h5>
         <input type="number" id="price" name="price" formControlName="price" pInputText>
         <div>
@@ -57,7 +57,7 @@
 
     <div class="field">
         <h5>
-            <label for="description">Quantity </label>
+            <label for="category">Quantity </label>
         </h5>
         <input type="number" id="quantity" name="quantity" formControlName="quantity" pInputText>
         <div>

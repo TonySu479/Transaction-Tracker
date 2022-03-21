@@ -24,8 +24,8 @@ export class ProductDialogComponent implements OnInit {
         return this.productForm.controls.name;
     }
 
-    get description() {
-        return this.productForm.controls.description;
+    get category() {
+        return this.productForm.controls.category;
     }
 
     get price() {
@@ -50,7 +50,7 @@ export class ProductDialogComponent implements OnInit {
                 [Validators.maxLength(10), Validators.required]),
             name: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.name,
                 [Validators.maxLength(50), Validators.required]),
-            description: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.description,
+            category: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.category.name,
                 [Validators.maxLength(200), Validators.required]),
             price: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.price,
                 [Validators.min(0), Validators.required]),

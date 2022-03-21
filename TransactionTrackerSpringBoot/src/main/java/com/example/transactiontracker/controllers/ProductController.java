@@ -1,6 +1,7 @@
 package com.example.transactiontracker.controllers;
 
 import com.example.transactiontracker.models.Product;
+import com.example.transactiontracker.payload.dto.ProductDTO;
 import com.example.transactiontracker.services.productservice.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,10 +28,11 @@ public class ProductController {
 
     @PostMapping("/products")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+    public ResponseEntity<Product> createProduct(@RequestBody ProductDTO product) {
         try {
+            System.out.println(new Product(product.getCode(), product.getName(), productService.getCategoryFromId(product.getCategory()), product.getPrice(), product.getQuantity(), product.getUnit(), product.getImage()));
             Product productEntity = productService
-                    .save(new Product(product.getCode(), product.getName(), product.getCategory(), product.getPrice(), product.getQuantity(), product.getUnit(), product.getImage()));
+                    .save(new Product(product.getCode(), product.getName(), productService.getCategoryFromId(product.getCategory()), product.getPrice(), product.getQuantity(), product.getUnit(), product.getImage()));
             return new ResponseEntity<>(productEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -39,9 +41,8 @@ public class ProductController {
 
     @PutMapping("/products/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
+    public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody ProductDTO product) {
         Optional<Product> productData = productService.findById(id);
-        System.out.println(productData);
         if (productData.isPresent()) {
             Product productEntity = productService.getProduct(product, productData);
             return new ResponseEntity<>(productService.save(productEntity), HttpStatus.OK);
