@@ -11,7 +11,13 @@ import java.util.Set;
 public class BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name="sequence",
+            sequenceName = "sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+                    generator = "sequence")
     private Long id;
 
 }

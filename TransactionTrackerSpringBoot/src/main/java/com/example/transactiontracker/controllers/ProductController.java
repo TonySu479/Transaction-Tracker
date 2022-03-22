@@ -28,13 +28,13 @@ public class ProductController {
 
     @PostMapping("/products")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<String> createProduct(@RequestBody ProductDTO product) {
+    public ResponseEntity<Product> createProduct(@RequestBody ProductDTO product) {
         try {
             System.out.println(new Product(product.getCode(), product.getName(), productService.getCategoryFromId(product.getCategory()), product.getPrice(), product.getQuantity(), product.getUnit(), product.getImage()));
             Product productEntity = productService
                     .save(new Product(product.getCode(), product.getName(), productService.getCategoryFromId(product.getCategory()), product.getPrice(), product.getQuantity(), product.getUnit(), product.getImage()));
-
-            return new ResponseEntity<>(productEntity.getId().toString(), HttpStatus.CREATED);
+            System.out.println(productEntity);
+            return new ResponseEntity<>(productEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
