@@ -1,5 +1,6 @@
 package com.example.transactiontracker.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "products")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class Product extends BaseEntity {
 
     @Column(name = "code")
@@ -16,6 +18,10 @@ public class Product extends BaseEntity {
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+            name = "category_id",
+            referencedColumnName = "id"
+    )
     private ProductCategory category;
 
     @Column(name = "price")
