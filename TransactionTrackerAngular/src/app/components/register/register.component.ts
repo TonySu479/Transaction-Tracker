@@ -69,12 +69,20 @@ export class RegisterComponent implements OnInit {
         }
         this.authService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password).subscribe(() => {
             this.router.navigate(["/login"]);
-            this.messageService.add({severity:"success", summary:"user registered", detail:`You have successfully registered`})
+            this.messageService.add({
+                severity: "success",
+                summary: "user registered",
+                detail: `You have successfully registered`
+            })
         });
     }
 
-    togglePasswordVisibility(){
+    togglePasswordVisibility() {
         this.showPassword = !this.showPassword;
+    }
+
+    login() {
+        this.router.navigate(["/login"]);
     }
 
 

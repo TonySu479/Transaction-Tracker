@@ -9,6 +9,10 @@
             <div class="h-full w-full m-0 py-7 px-4"
                  style="border-radius:53px; background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));">
 
+                <div class="text-center mb-5">
+                    <button pButton type="button" label="Login here" class="p-button-link" (click)="login()"></button>
+                </div>
+
                 <div class="w-full md:w-10 mx-auto">
                     <form [formGroup]="registerForm" (submit)="submit()">
                         <label for="username" class="block text-900 text-xl font-medium mb-2">Username</label>
