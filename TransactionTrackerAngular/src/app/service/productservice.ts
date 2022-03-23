@@ -21,7 +21,7 @@ export class ProductService {
     }
 
     create(product: Product){
-        return this.http.post<Product>("http://localhost:8080/api/products", product);
+        return this.http.post<Product>(this.baseUrl, product);
     }
 
     delete(product: Product){

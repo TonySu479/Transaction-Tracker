@@ -2,6 +2,7 @@ package com.example.transactiontracker.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -10,6 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "categories")
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
+@NoArgsConstructor
 public class ProductCategory extends BaseEntity {
     @Column(length = 20)
     private String name;
@@ -17,7 +19,8 @@ public class ProductCategory extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY)
     private Set<Product> products;
 
-    public ProductCategory() {
-
+    public ProductCategory(String name){
+        this.name = name;
     }
+
 }

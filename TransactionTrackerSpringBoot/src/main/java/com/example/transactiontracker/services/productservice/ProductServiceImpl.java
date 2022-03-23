@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product getProduct(ProductDTO product, Optional<Product> productData) {
+    public Product getProductAndSetAttributes(ProductDTO product, Optional<Product> productData) {
         Product productEntity = productData.get();
         productEntity.setCode(product.getCode());
         productEntity.setName(product.getName());

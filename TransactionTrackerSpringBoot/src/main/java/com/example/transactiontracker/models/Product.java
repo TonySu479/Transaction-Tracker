@@ -2,6 +2,7 @@ package com.example.transactiontracker.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "products")
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
+@NoArgsConstructor
 public class Product extends BaseEntity {
 
     @Column(name = "code")
@@ -35,10 +37,6 @@ public class Product extends BaseEntity {
 
     @Column(name = "image")
     private String image;
-
-    public Product() {
-
-    }
 
     public Product(String code, String name, ProductCategory category, int price, int quantity, String unit, String image) {
         this.code = code;

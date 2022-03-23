@@ -38,4 +38,16 @@ public class ProductCategoryServiceImpl implements ProductCategoryService{
     public Optional<ProductCategory> findById(long id) {
         return productCategoryRepository.findById(id);
     }
+
+    @Override
+    public List<ProductCategory> findByNameContaining(String name) {
+        return productCategoryRepository.findByNameContaining(name);
+    }
+
+    @Override
+    public ProductCategory getProductCategoryAndSetAttributes(ProductCategory productCategory, Optional<ProductCategory> productCategoryData) {
+        ProductCategory productCategoryEntity = productCategoryData.get();
+        productCategoryEntity.setName(productCategory.getName());
+        return productCategoryEntity;
+    }
 }

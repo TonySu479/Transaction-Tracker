@@ -45,7 +45,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Transaction getTransaction(Transaction transaction, Optional<Transaction> transactionData) {
+    public Transaction getTransactionAndSetAttributes(Transaction transaction, Optional<Transaction> transactionData) {
         Transaction transactionEntity = transactionData.get();
         transactionEntity.setName(transaction.getName());
         transactionEntity.setDescription(transaction.getDescription());
