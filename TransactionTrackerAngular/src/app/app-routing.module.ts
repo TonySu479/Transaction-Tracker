@@ -9,6 +9,7 @@ import {RegisterComponent} from "./components/register/register.component";
 import {
     AuthGuardService as AuthGuard
 } from './service/auth-guard.service';
+import {ProductCategoryComponent} from "./components/product-category/product-category.component";
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import {
                 children: [
                     {path: '', component: DashboardComponent},
                     {path: 'pages/empty', component: EmptyComponent},
-                    {path: 'products', component: ProductsComponent}
+                    {path: 'products', component: ProductsComponent},
+                    {path: 'product-categories', component: ProductCategoryComponent}
                 ],
             },
             {path: 'login', component: LoginComponent},

@@ -12,6 +12,6 @@ public interface ProductCategoryService {
     void deleteAll();
     void deleteById(long id);
     Optional<ProductCategory> findById(long id);
-    List<ProductCategory> findByNameContaining(String name);
+    List<ProductCategory> findByNameContainingIgnoreCase(String name);
     ProductCategory getProductCategoryAndSetAttributes(ProductCategory productCategory, Optional<ProductCategory> productCategoryData);
 }

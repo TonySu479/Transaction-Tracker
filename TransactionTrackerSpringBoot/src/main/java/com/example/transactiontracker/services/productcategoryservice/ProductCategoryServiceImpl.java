@@ -40,8 +40,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService{
     }
 
     @Override
-    public List<ProductCategory> findByNameContaining(String name) {
-        return productCategoryRepository.findByNameContaining(name);
+    public List<ProductCategory> findByNameContainingIgnoreCase(String name) {
+        return productCategoryRepository.findByNameContainingIgnoreCase(name);
     }
 
     @Override

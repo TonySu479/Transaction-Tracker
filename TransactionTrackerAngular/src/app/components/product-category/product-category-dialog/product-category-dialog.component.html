@@ -1,0 +1,27 @@
+<form [formGroup]="productCategoryForm" (submit)="submit()">
+
+    <div class="field">
+        <h5>
+            <label for="name">Name </label>
+        </h5>
+        <input type="text" id="name" name="name" formControlName="name" pInputText>
+        <div>
+            <small class="ng-dirty ng-invalid" *ngIf="name?.errors?.required && (name.dirty || name.touched)">Name is
+                required.</small>
+            <small class="ng-dirty ng-invalid" *ngIf="name?.errors?.maxlength && (name.dirty || name.touched)">max length
+                is {{name?.errors.maxlength.requiredLength}}</small>
+        </div>
+    </div>
+
+    <div class="field">
+        <h5>
+            <label for="image">Image </label>
+        </h5>
+        <input type="text" id="image" name="image" formControlName="image" pInputText>
+    </div>
+
+    <div class="field submit-button">
+        <button pButton type="submit">Submit</button>
+    </div>
+
+</form>

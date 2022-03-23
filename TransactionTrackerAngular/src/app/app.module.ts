@@ -114,6 +114,9 @@ import {ProductDialogComponent} from './components/products/product-dialog/produ
 import {DynamicDialogModule} from "primeng/dynamicdialog";
 import {RegisterComponent} from './components/register/register.component';
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
+import { ProductCategoryComponent } from './components/product-category/product-category.component';
+import { ProductCategoryDialogComponent } from './components/product-category/product-category-dialog/product-category-dialog.component';
+import {ProductCategoryService} from "./service/product-category.service";
 
 @NgModule({
     imports: [
@@ -222,12 +225,14 @@ import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
         ProductsComponent,
         ProductDialogComponent,
         RegisterComponent,
+        ProductCategoryComponent,
+        ProductCategoryDialogComponent,
     ],
     providers: [
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService, JwtHelperService, authInterceptorProviders
+        PhotoService, ProductService, MenuService, ConfigService, JwtHelperService, authInterceptorProviders, ProductCategoryService
     ],
     bootstrap: [AppComponent]
 })

@@ -70,7 +70,7 @@ public class ProductCategoryController {
             if (name == null)
                 products.addAll(productCategoryService.findAll());
             else{
-                products.addAll(productCategoryService.findByNameContaining(name));
+                products.addAll(productCategoryService.findByNameContainingIgnoreCase(name));
             }
             if (products.isEmpty()) {
                 return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
