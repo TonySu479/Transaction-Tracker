@@ -1,8 +1,9 @@
-package com.example.transactiontracker.services.authService;
+package com.example.transactiontracker.services.authservice;
 
 import com.example.transactiontracker.payload.dto.LoginRequest;
 import com.example.transactiontracker.payload.dto.SignupRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;

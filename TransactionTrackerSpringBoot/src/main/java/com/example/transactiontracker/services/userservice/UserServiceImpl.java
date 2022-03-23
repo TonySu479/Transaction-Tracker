@@ -1,10 +1,11 @@
-package com.example.transactiontracker.services.userService;
+package com.example.transactiontracker.services.userservice;
 
 import com.example.transactiontracker.models.Role;
 import com.example.transactiontracker.models.RoleType;
 import com.example.transactiontracker.models.User;
 import com.example.transactiontracker.repositories.UserRepository;
-import com.example.transactiontracker.services.roleService.RoleService;
+import com.example.transactiontracker.services.roleservice.RoleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,17 +13,12 @@ import java.util.HashSet;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleService roleService;
-    final private PasswordEncoder encoder;
-
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService, PasswordEncoder encoder) {
-        this.userRepository = userRepository;
-        this.roleService = roleService;
-        this.encoder = encoder;
-    }
+    private final PasswordEncoder encoder;
 
     @Override
     public Optional<User> findByUsername(String username) {

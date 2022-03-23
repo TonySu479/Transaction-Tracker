@@ -3,23 +3,21 @@ package com.example.transactiontracker.services.productservice;
 import com.example.transactiontracker.models.Product;
 import com.example.transactiontracker.models.ProductCategory;
 import com.example.transactiontracker.payload.dto.ProductDTO;
-import com.example.transactiontracker.repositories.CategoryRepository;
+import com.example.transactiontracker.repositories.ProductCategoryRepository;
 import com.example.transactiontracker.repositories.ProductRepository;
+import com.example.transactiontracker.services.productcategoryservice.ProductCategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService{
 
     private final ProductRepository productRepository;
-    private final CategoryRepository categoryRepository;
-
-    public ProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository) {
-        this.productRepository = productRepository;
-        this.categoryRepository = categoryRepository;
-    }
+    private final ProductCategoryService productCategoryService;
 
     @Override
     public List<Product> findByNameContaining(String name) {
@@ -79,6 +77,6 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductCategory getCategoryFromId(String id) {
-        return categoryRepository.getById(Long.parseLong(id));
+        return productCategoryService.findById(Long.parseLong(id)).orElse(null);
     }
 }

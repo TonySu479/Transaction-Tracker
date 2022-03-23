@@ -3,6 +3,7 @@ package com.example.transactiontracker.services.productservice;
 import com.example.transactiontracker.models.Product;
 import com.example.transactiontracker.models.ProductCategory;
 import com.example.transactiontracker.payload.dto.ProductDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;

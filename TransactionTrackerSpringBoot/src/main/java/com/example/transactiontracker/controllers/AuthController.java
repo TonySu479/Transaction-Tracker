@@ -2,7 +2,7 @@ package com.example.transactiontracker.controllers;
 
 import com.example.transactiontracker.payload.dto.LoginRequest;
 import com.example.transactiontracker.payload.dto.SignupRequest;
-import com.example.transactiontracker.services.authService.AuthService;
+import com.example.transactiontracker.services.authservice.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import javax.validation.Valid;
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    final private AuthService authService;
+    private final AuthService authService;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
