@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms'
+import {ProductCategoryService} from "../../../service/product-category.service";
+import {ProductCategory} from "../../../api/product-category";
 
 @Component({
     selector: 'app-product-dialog',
@@ -9,11 +11,14 @@ import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms'
 })
 export class ProductDialogComponent implements OnInit {
 
+    results: ProductCategory[];
+
     productForm: FormGroup;
 
     constructor(private ref: DynamicDialogRef,
                 private config: DynamicDialogConfig,
-                private formBuilder: FormBuilder) {
+                private formBuilder: FormBuilder,
+                private productCategoryService: ProductCategoryService) {
     }
 
     get code() {
@@ -42,6 +47,12 @@ export class ProductDialogComponent implements OnInit {
 
     get image() {
         return this.productForm.controls.image;
+    }
+
+    search(event) {
+            this.productCategoryService.getProductCategories(event.query).subscribe(data => {
+                this.results = data;
+            });
     }
 
     ngOnInit(): void {

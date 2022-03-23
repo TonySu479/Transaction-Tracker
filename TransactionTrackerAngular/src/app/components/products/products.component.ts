@@ -82,7 +82,8 @@ export class ProductsComponent implements OnInit {
             data: {
                 type: "edit",
                 product: product
-            }
+            },
+            width: "600px"
         });
 
         ref.onClose.subscribe(value => {
@@ -113,34 +114,6 @@ export class ProductsComponent implements OnInit {
         });
     }
 
-    // confirmDeleteSelected() {
-    //     this.deleteProductsDialog = false;
-    //     this.products = this.products.filter(
-    //         (val) => !this.selectedProducts.includes(val)
-    //     );
-    //     this.messageService.add({
-    //         severity: 'success',
-    //         summary: 'Successful',
-    //         detail: 'Products Deleted',
-    //         life: 3000,
-    //     });
-    //     this.selectedProducts = null;
-    // }
-
-    // confirmDelete() {
-    //     this.deleteProductDialog = false;
-    //     this.products = this.products.filter(
-    //         (val) => val.id !== this.product.id
-    //     );
-    //     this.messageService.add({
-    //         severity: 'success',
-    //         summary: 'Successful',
-    //         detail: 'Product Deleted',
-    //         life: 3000,
-    //     });
-    //     this.product = {};
-    // }
-
     hideDialog() {
 
     }
@@ -161,13 +134,4 @@ export class ProductsComponent implements OnInit {
         return index;
     }
 
-    createId(): string {
-        let id = '';
-        const chars =
-            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for (let i = 0; i < 5; i++) {
-            id += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        return id;
-    }
 }
