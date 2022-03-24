@@ -32,16 +32,6 @@
             <label>Category </label>
         </h5>
         <p-autoComplete formControlName="category" [suggestions]="results" (completeMethod)="search($event)" field="name"></p-autoComplete>
-
-        <!--        <input pInputTextarea id="category" name="category" formControlName="category" />-->
-<!--        <div>-->
-<!--            <small class="ng-dirty ng-invalid"-->
-<!--                   *ngIf="category?.errors?.required && (category.dirty || category.touched)">category is-->
-<!--                required.</small>-->
-<!--            <small class="ng-dirty ng-invalid"-->
-<!--                   *ngIf="category?.errors?.maxlength && (category || category.touched)">max length-->
-<!--                is {{category?.errors.maxlength.requiredLength}}</small>-->
-<!--        </div>-->
     </div>
 
     <div class="field">

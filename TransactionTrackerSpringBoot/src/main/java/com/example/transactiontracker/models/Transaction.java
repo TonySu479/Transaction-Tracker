@@ -17,8 +17,7 @@ public class Transaction extends BaseEntity{
 
     @Column(name = "description")
     private String description;
-
-
+    
     public Transaction(String name, String description) {
         this.name = name;
         this.description = description;

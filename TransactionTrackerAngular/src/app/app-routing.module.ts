@@ -10,6 +10,7 @@ import {
     AuthGuardService as AuthGuard
 } from './service/auth-guard.service';
 import {ProductCategoryComponent} from "./components/product-category/product-category.component";
+import {TransactionsComponent} from "./components/transactions/transactions.component";
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import {ProductCategoryComponent} from "./components/product-category/product-ca
                     {path: '', component: DashboardComponent},
                     {path: 'pages/empty', component: EmptyComponent},
                     {path: 'products', component: ProductsComponent},
-                    {path: 'product-categories', component: ProductCategoryComponent}
+                    {path: 'product-categories', component: ProductCategoryComponent},
+                    {path: 'transactions', component: TransactionsComponent}
                 ],
             },
             {path: 'login', component: LoginComponent},

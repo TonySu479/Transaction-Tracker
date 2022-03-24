@@ -8,15 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class ProductCategoryController {
-
     private final ProductCategoryService productCategoryService;
 
     @GetMapping("/product-categories/{id}")

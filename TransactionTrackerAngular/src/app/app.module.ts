@@ -117,6 +117,9 @@ import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
 import { ProductCategoryDialogComponent } from './components/product-category/product-category-dialog/product-category-dialog.component';
 import {ProductCategoryService} from "./service/product-category.service";
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import {TransactionService} from "./service/transactionservice";
+import { TransactionDialogComponent } from './components/transactions/transaction-dialog/transaction-dialog.component';
 
 @NgModule({
     imports: [
@@ -227,12 +230,14 @@ import {ProductCategoryService} from "./service/product-category.service";
         RegisterComponent,
         ProductCategoryComponent,
         ProductCategoryDialogComponent,
+        TransactionsComponent,
+        TransactionDialogComponent,
     ],
     providers: [
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService, JwtHelperService, authInterceptorProviders, ProductCategoryService
+        PhotoService, ProductService, MenuService, ConfigService, JwtHelperService, authInterceptorProviders, ProductCategoryService, TransactionService
     ],
     bootstrap: [AppComponent]
 })
