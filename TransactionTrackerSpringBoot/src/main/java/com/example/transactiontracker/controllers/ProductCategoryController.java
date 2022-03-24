@@ -1,10 +1,7 @@
 package com.example.transactiontracker.controllers;
 
-import com.example.transactiontracker.models.Product;
 import com.example.transactiontracker.models.ProductCategory;
-import com.example.transactiontracker.payload.dto.ProductDTO;
 import com.example.transactiontracker.services.productcategoryservice.ProductCategoryService;
-import com.example.transactiontracker.services.productservice.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
