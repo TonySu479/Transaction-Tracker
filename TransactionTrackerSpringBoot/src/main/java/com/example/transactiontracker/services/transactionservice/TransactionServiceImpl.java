@@ -48,7 +48,7 @@ public class TransactionServiceImpl implements TransactionService {
     public Transaction getTransactionAndSetAttributes(Transaction transaction, Optional<Transaction> transactionData) {
         Transaction transactionEntity = transactionData.get();
         transactionEntity.setName(transaction.getName());
-        transactionEntity.setDescription(transaction.getDescription());
+        transactionEntity.setCreatedAt(transaction.getCreatedAt());
         return transactionEntity;
     }
 }

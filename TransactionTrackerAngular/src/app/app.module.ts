@@ -120,6 +120,7 @@ import {ProductCategoryService} from "./service/product-category.service";
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import {TransactionService} from "./service/transactionservice";
 import { TransactionDialogComponent } from './components/transactions/transaction-dialog/transaction-dialog.component';
+import { TransactionDetailsComponent } from './components/transactions/transaction-details/transaction-details.component';
 
 @NgModule({
     imports: [
@@ -232,6 +233,7 @@ import { TransactionDialogComponent } from './components/transactions/transactio
         ProductCategoryDialogComponent,
         TransactionsComponent,
         TransactionDialogComponent,
+        TransactionDetailsComponent,
     ],
     providers: [
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},

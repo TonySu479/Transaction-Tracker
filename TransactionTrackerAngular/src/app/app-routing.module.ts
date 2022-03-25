@@ -11,6 +11,7 @@ import {
 } from './service/auth-guard.service';
 import {ProductCategoryComponent} from "./components/product-category/product-category.component";
 import {TransactionsComponent} from "./components/transactions/transactions.component";
+import {TransactionDetailsComponent} from "./components/transactions/transaction-details/transaction-details.component";
 
 @NgModule({
     imports: [
@@ -22,7 +23,9 @@ import {TransactionsComponent} from "./components/transactions/transactions.comp
                     {path: 'pages/empty', component: EmptyComponent},
                     {path: 'products', component: ProductsComponent},
                     {path: 'product-categories', component: ProductCategoryComponent},
-                    {path: 'transactions', component: TransactionsComponent}
+                    {path: 'transactions', component: TransactionsComponent},
+                    {path: 'transaction-details', component: TransactionDetailsComponent},
+                    {path: 'transaction-details/:id', component: TransactionDetailsComponent}
                 ],
             },
             {path: 'login', component: LoginComponent},

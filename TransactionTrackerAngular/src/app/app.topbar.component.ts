@@ -18,6 +18,5 @@ export class AppTopBarComponent {
         setTimeout(() => {
             this.router.navigate(['/login']);
         }, 100);
-
     }
 }

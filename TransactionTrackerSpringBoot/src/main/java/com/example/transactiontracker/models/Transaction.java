@@ -1,10 +1,11 @@
 package com.example.transactiontracker.models;
 
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Calendar;
+import java.util.Set;
 
 @Data
 @Entity
@@ -15,12 +16,15 @@ public class Transaction extends BaseEntity{
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "created_at")
+    private Calendar createdAt;
 
-    public Transaction(String name, String description) {
+    @OneToMany(fetch = FetchType.LAZY)
+    Set<Product> products;
+
+    public Transaction(String name, Calendar createdAt) {
         this.name = name;
-        this.description = description;
+        this.createdAt = createdAt;
     }
 
 }
