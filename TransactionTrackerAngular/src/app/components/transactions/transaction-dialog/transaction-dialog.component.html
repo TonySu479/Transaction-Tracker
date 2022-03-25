@@ -25,6 +25,11 @@
         </div>
     </div>
 
+    <div class="field col-12 md:col-4">
+        <label for="time">Date</label>
+        <p-calendar [showTime]="true" inputId="time" formControlName="createdAt"></p-calendar>
+    </div>
+
 
     <div class="field submit-button">
         <button pButton type="submit">Submit</button>

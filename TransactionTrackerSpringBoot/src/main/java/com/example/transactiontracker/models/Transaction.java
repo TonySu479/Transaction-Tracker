@@ -1,5 +1,6 @@
 package com.example.transactiontracker.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "transactions")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Transaction extends BaseEntity{
 
     @Column(name = "name")
@@ -21,10 +23,5 @@ public class Transaction extends BaseEntity{
 
     @OneToMany(fetch = FetchType.LAZY)
     Set<Product> products;
-
-    public Transaction(String name, Calendar createdAt) {
-        this.name = name;
-        this.createdAt = createdAt;
-    }
-
+    
 }

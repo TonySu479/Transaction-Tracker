@@ -63,6 +63,7 @@ export class TransactionDetailsComponent implements OnInit {
             if (!value) {
                 return;
             }
+            console.log(value);
             this.transactionService.update({...value, id: transaction.id})
                 .subscribe((data: Transaction) => {
                     this.messageService.add({

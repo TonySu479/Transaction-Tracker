@@ -33,7 +33,8 @@ export class TransactionDialogComponent implements OnInit {
             name: new FormControl(this.config.data.type === "new" ? "" : this.config.data.transaction.name,
                 [Validators.maxLength(20), Validators.required]),
             description: new FormControl(this.config.data.type === "new" ? "" : this.config.data.transaction.description,
-                [Validators.maxLength(400), Validators.required])
+                [Validators.maxLength(400), Validators.required]),
+            createdAt: new FormControl(new Date())
         });
     }
 
