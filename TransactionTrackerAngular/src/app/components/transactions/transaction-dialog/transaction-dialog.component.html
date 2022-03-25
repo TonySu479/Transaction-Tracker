@@ -1,1 +1,33 @@
-<p>transaction-dialog works!</p>
+<form [formGroup]="transactionForm" (submit)="submit()">
+
+    <div class="field">
+        <h5>
+            <label for="name">Name </label>
+        </h5>
+        <input type="text" id="name" name="name" formControlName="name" pInputText>
+        <div>
+            <small class="ng-dirty ng-invalid" *ngIf="name?.errors?.required && (name.dirty || name.touched)">Name is
+                required.</small>
+            <small class="ng-dirty ng-invalid" *ngIf="name?.errors?.maxlength && (name.dirty || name.touched)">max length
+                is {{name?.errors.maxlength.requiredLength}}</small>
+        </div>
+    </div>
+
+    <div class="field">
+        <textarea pInputTextarea id="description" name="description" formControlName="description"></textarea>
+        <div>
+            <small class="ng-dirty ng-invalid"
+                   *ngIf="description?.errors?.required && (description.dirty || description.touched)">description is
+                required.</small>
+            <small class="ng-dirty ng-invalid"
+                   *ngIf="description?.errors?.maxlength && (description || description.touched)">max length
+                is {{description?.errors.maxlength.requiredLength}}</small>
+        </div>
+    </div>
+
+
+    <div class="field submit-button">
+        <button pButton type="submit">Submit</button>
+    </div>
+
+</form>
