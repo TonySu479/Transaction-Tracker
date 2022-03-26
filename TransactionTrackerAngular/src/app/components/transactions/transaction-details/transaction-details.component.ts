@@ -65,6 +65,7 @@ export class TransactionDetailsComponent implements OnInit {
             if(!value){
                 return;
             }
+            console.log(value);
             // this.transactionService.create(value)
             //     .subscribe(data => {
             //         console.log(this.products);

@@ -9,7 +9,6 @@ export class AuthGuardService {
 
   constructor(private auth: AuthService,
               private router: Router) {
-      console.log("test")
   }
 
     canActivate(): boolean {

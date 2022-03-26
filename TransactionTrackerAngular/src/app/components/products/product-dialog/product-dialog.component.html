@@ -49,19 +49,6 @@
 
     <div class="field">
         <h5>
-            <label for="quantity">Quantity </label>
-        </h5>
-        <input type="number" id="quantity" name="quantity" formControlName="quantity" pInputText>
-        <div>
-            <small class="ng-dirty ng-invalid" *ngIf="quantity?.errors?.required && (quantity.dirty || price.touched)">Quantity
-                is required.</small>
-            <small class="ng-dirty ng-invalid" *ngIf="quantity?.errors?.min && (quantity.dirty || quantity.touched)">Quantity
-                has to be >= {{quantity?.errors?.min.min}}.</small>
-        </div>
-    </div>
-
-    <div class="field">
-        <h5>
             <label for="unit">Unit </label>
         </h5>
         <input type="text" id="unit" name="unit" formControlName="unit" pInputText>

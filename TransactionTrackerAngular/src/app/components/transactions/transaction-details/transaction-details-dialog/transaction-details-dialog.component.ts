@@ -13,7 +13,6 @@ import {ProductService} from "../../../../service/productservice";
 export class TransactionDetailsDialogComponent implements OnInit {
 
     transactionDetailsForm: FormGroup;
-    product: Product;
     selectedProduct: Product;
     results: Product[];
 
@@ -33,22 +32,37 @@ export class TransactionDetailsDialogComponent implements OnInit {
         return this.transactionDetailsForm.controls.description;
     }
 
+    get product() {
+        return this.transactionDetailsForm.controls.product;
+    }
+
+    get price() {
+        return this.transactionDetailsForm.controls.price;
+    }
+
+    get quantity() {
+        return this.transactionDetailsForm.controls.quantity;
+    }
+
     search(event) {
         this.productService.getProducts(event.query).subscribe(data => {
             this.results = data;
         });
     }
 
-    ngOnInit(): void {
-        // this.transactionService.getTransactions().subscribe(data => this.products = data.products);
+    setDefaultValues(event) {
+        if(!!event) {
+            this.price.setValue(event.price);
+        }
+    }
 
+    ngOnInit(): void {
         this.transactionDetailsForm = this.formBuilder.group({
-            product: new FormControl()
-            // name: new FormControl(this.config.data.type === "new" ? "" : this.config.data.transaction.name,
-            //     [Validators.maxLength(20), Validators.required]),
-            // description: new FormControl(this.config.data.type === "new" ? "" : this.config.data.transaction.description,
-            //     [Validators.maxLength(400), Validators.required]),
-            // createdAt: new FormControl(new Date())
+            product: new FormControl(null, [Validators.required]),
+            price: new FormControl(null,
+                [Validators.min(0), Validators.required]),
+            quantity: new FormControl(null,
+                [Validators.min(0), Validators.required])
         });
     }
 
