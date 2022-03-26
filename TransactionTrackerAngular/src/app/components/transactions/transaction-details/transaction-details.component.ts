@@ -5,6 +5,9 @@ import {TransactionService} from "../../../service/transactionservice";
 import {TransactionDialogComponent} from "../transaction-dialog/transaction-dialog.component";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
+import {Product} from "../../../api/product";
+import {ProductDialogComponent} from "../../products/product-dialog/product-dialog.component";
+import {TransactionDetailsDialogComponent} from "./transaction-details-dialog/transaction-details-dialog.component";
 
 @Component({
     selector: 'app-transaction-details',
@@ -14,9 +17,9 @@ import {DialogService} from "primeng/dynamicdialog";
 })
 export class TransactionDetailsComponent implements OnInit {
 
-    transactions: Transaction[];
+    products: Product[];
 
-    selectedTransactions: Transaction[];
+    selectedProducts: Product[];
 
     transactionForm: FormGroup;
 
@@ -35,7 +38,7 @@ export class TransactionDetailsComponent implements OnInit {
         })
     }
 
-    addNew() {
+    addNewTransaction() {
         if (!this.transactionForm.valid) {
             this.transactionForm.markAllAsTouched();
             return;
@@ -47,6 +50,28 @@ export class TransactionDetailsComponent implements OnInit {
                 this.editTransaction(data);
             });
         }
+    }
+
+    addNewProductToTransaction() {
+        const ref = this.dialogService.open(TransactionDetailsDialogComponent, {
+            header: 'Add a new product',
+            data: {
+                type: "new"
+            },
+            width: "600px"
+        });
+
+        ref.onClose.subscribe(value => {
+            if(!value){
+                return;
+            }
+            // this.transactionService.create(value)
+            //     .subscribe(data => {
+            //         console.log(this.products);
+            //         this.products.push(data);
+            //         this.messageService.add({severity:"success", summary:"product created", detail:`${data.name} created`});
+            //     })
+        });
     }
 
     editTransaction(transaction: Transaction) {

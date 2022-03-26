@@ -6,20 +6,19 @@
             <p-calendar [showTime]="true" inputId="time" formControlName="date"></p-calendar>
         </div>
         <p-table #dt
-                 [value]="transactions"
+                 [value]="products"
                  responsiveLayout="scroll"
                  [rows]="10"
-                 [globalFilterFields]="['name','country.name','representative.name','status']"
                  [paginator]="true"
                  [rowsPerPageOptions]="[10,20,30]"
-                 [showCurrentPageReport]="true"
-                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                 [(selection)]="selectedTransactions" selectionMode="multiple"
+                 [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                 [(selection)]="selectedProducts" selectionMode="multiple"
                  [rowHover]="true" dataKey="id">
             <ng-template pTemplate="caption">
                 <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                     <h5 class="m-0">Transaction Details</h5>
-                    <button pButton type="submit" (click)="addNew()">add new</button>
+                    <button pButton (click)="addNewProductToTransaction()">Add New Product</button>
+                    <button pButton type="submit" (click)="addNewTransaction()">Add New Transaction</button>
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
@@ -27,38 +26,53 @@
                     <th style="width: 3rem">
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
-                    <th pSortableColumn="name">Name
-                        <p-sortIcon field="name"></p-sortIcon>
-                    </th>
-                    <th pSortableColumn="description">Description
-                        <p-sortIcon field="description"></p-sortIcon>
-                    </th>
+                    <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
+                    <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th>Image</th>
+                    <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
+                    <th pSortableColumn="unit">Unit <p-sortIcon field="unit"></p-sortIcon></th>
+                    <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
+                    <th pSortableColumn="quantity">Quantity <p-sortIcon field="quantity"></p-sortIcon></th>
                     <th></th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-transaction>
+            <ng-template pTemplate="body" let-product>
                 <tr>
                     <td>
-                        <p-tableCheckbox [value]="transaction"></p-tableCheckbox>
+                        <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                    </td>
+                    <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
+                        {{product.code || product.id}}
                     </td>
                     <td style="width:14%; min-width:10rem;">
                         <span class="p-column-title">Name</span>
-                        {{ transaction.name }}
+                        {{product.name}}
+                    </td>
+                    <td style="width:14%; min-width:10rem;"><span class="p-column-title">Image</span>
+                        <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" />
+                    </td>
+                    <td style="width:14%; min-width:8rem;">
+                        <span class="p-column-title">Price</span>
+                        {{product.price | currency:'USD'}}
                     </td>
                     <td style="width:14%; min-width:10rem;">
-                        <span class="p-column-title">Description</span>
-                        {{transaction.description }}
+                        <span class="p-column-title">Unit</span>
+                        {{product.unit}}
+                    </td>
+                    <td style="width:14%; min-width:10rem;">
+                        <span class="p-column-title">Category</span>
+                        {{product.category.name}}
+                    </td>
+                    <td style="width:14%; min-width:10rem;">
+                        <span class="p-column-title">Quantity</span>
+                        {{product.quantity}}
                     </td>
                     <td>
                         <div class="flex">
-                            <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"
-                                    (click)="editTransaction(transaction)"></button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                                    (click)="deleteTransaction(transaction)"></button>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
                         </div>
                     </td>
-
                 </tr>
             </ng-template>
         </p-table>

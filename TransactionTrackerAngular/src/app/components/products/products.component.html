@@ -10,17 +10,12 @@
                     </div>
                 </ng-template>
 
-<!--                <ng-template pTemplate="right">-->
-<!--                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>-->
-<!--                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>-->
-<!--                </ng-template>-->
             </p-toolbar>
 
             <p-table #dt
                      [value]="products"
                      responsiveLayout="scroll"
                      [rows]="10"
-                     [globalFilterFields]="['name','country.name','representative.name','status']"
                      [paginator]="true"
                      [rowsPerPageOptions]="[10,20,30]"
                      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"

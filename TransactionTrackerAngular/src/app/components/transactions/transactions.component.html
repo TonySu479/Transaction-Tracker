@@ -22,7 +22,6 @@
                      [value]="transactions"
                      responsiveLayout="scroll"
                      [rows]="10"
-                     [globalFilterFields]="['name','country.name','representative.name','status']"
                      [paginator]="true"
                      [rowsPerPageOptions]="[10,20,30]"
                      [showCurrentPageReport]="true"
@@ -47,7 +46,7 @@
                         <th pSortableColumn="name">Name
                             <p-sortIcon field="name"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="description">Description
+                        <th pSortableColumn="description">CreatedAt
                             <p-sortIcon field="description"></p-sortIcon>
                         </th>
                         <th></th>

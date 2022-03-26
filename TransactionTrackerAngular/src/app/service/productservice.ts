@@ -16,8 +16,12 @@ export class ProductService {
         .then(data => data);
     }
 
-    getProducts() {
-        return this.http.get<any>(this.baseUrl)
+    getProducts(name= "") {
+        if(name != ""){
+            return this.http.get<any>(this.baseUrl + `?name=${name}`);
+        }
+        return this.http.get<any>(this.baseUrl);
+
     }
 
     create(product: Product){
