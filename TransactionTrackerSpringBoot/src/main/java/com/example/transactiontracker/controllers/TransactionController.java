@@ -30,7 +30,7 @@ public class TransactionController {
     public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
         try {
             Transaction transactionEntity = transactionService
-                    .save(new Transaction(transaction.getName(), transaction.getCreatedAt(), transaction.getProducts()));
+                    .save(new Transaction(transaction.getName(), transaction.getCreatedAt()));
             return new ResponseEntity<>(transactionEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

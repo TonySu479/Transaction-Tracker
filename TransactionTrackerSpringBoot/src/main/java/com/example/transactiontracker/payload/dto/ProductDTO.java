@@ -20,9 +20,6 @@ public class ProductDTO {
     private int price;
 
     @NotBlank
-    private int quantity;
-
-    @NotBlank
     private String unit;
 
     @NotBlank

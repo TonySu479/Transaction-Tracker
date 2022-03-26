@@ -13,7 +13,6 @@
             <column name="code" type="VARCHAR(255)"/>
             <column name="name" type="VARCHAR(255)"/>
             <column name="price" type="INT"/>
-            <column name="quantity" type="INT"/>
             <column name="unit" type="VARCHAR(255)"/>
             <column name="image" type="VARCHAR(255)"/>
             <column name="category_id" type="BIGINT"/>

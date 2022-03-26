@@ -16,6 +16,6 @@ public interface ProductService {
     List<Product> findAll();
     Product getProductAndSetAttributes(ProductDTO product, Optional<Product> productData);
     void creatInitialProducts();
-    void createProduct(String code, String name, ProductCategory category, int price, int quantity, String unit, String image);
+    void createProduct(String code, String name, ProductCategory category, int price, String unit, String image);
     ProductCategory getCategoryFromId(String id);
 }

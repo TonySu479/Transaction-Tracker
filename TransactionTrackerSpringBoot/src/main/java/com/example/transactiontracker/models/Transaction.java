@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Calendar;
-import java.util.Set;
 
 @Data
 @Entity
@@ -20,8 +19,5 @@ public class Transaction extends BaseEntity{
 
     @Column(name = "created_at")
     private Calendar createdAt;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    Set<Product> products;
     
 }
