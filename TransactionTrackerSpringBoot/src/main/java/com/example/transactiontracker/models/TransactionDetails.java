@@ -1,5 +1,6 @@
 package com.example.transactiontracker.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "transaction_details")
 @NoArgsConstructor
+@AllArgsConstructor
 public class TransactionDetails extends BaseEntity {
 
     @ManyToOne

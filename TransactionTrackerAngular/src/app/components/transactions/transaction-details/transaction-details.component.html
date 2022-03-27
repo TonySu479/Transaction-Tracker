@@ -1,12 +1,16 @@
 <div class="card">
     <h5>Transaction</h5>
     <form [formGroup]="transactionForm" (submit)="submit()">
-        <div class="field col-12 md:col-4">
-            <label for="time">Date</label>
-            <p-calendar [showTime]="true" inputId="time" formControlName="date"></p-calendar>
+        <div class="field">
+            <div class="field col-12 md:col-4">
+                <h5>
+                    <label for="name">Creation date </label>
+                </h5>
+                <p-calendar [showTime]="true" inputId="time" formControlName="createdAt"></p-calendar>
+            </div>
         </div>
         <p-table #dt
-                 [value]="products"
+                 [value]="transactionDetails"
                  responsiveLayout="scroll"
                  [rows]="10"
                  [paginator]="true"
@@ -17,8 +21,7 @@
             <ng-template pTemplate="caption">
                 <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                     <h5 class="m-0">Transaction Details</h5>
-                    <button pButton (click)="addNewProductToTransaction()">Add New Product</button>
-                    <button pButton type="submit" (click)="addNewTransaction()">Add New Transaction</button>
+                    <button pButton (click)="addProductToTransaction()">Add New Product</button>
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
@@ -36,36 +39,36 @@
                     <th></th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-product>
+            <ng-template pTemplate="body" let-transactionDetail>
                 <tr>
                     <td>
-                        <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                        <p-tableCheckbox [value]="transactionDetail"></p-tableCheckbox>
                     </td>
                     <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
-                        {{product.code || product.id}}
+                        {{transactionDetail.product.code || transactionDetail.product.id}}
                     </td>
                     <td style="width:14%; min-width:10rem;">
                         <span class="p-column-title">Name</span>
-                        {{product.name}}
+                        {{transactionDetail.product.name}}
                     </td>
                     <td style="width:14%; min-width:10rem;"><span class="p-column-title">Image</span>
-                        <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" />
+                        <img [src]="'assets/demo/images/product/' + transactionDetail.product.image" [alt]="transactionDetail.product.name" width="100" class="shadow-4" />
                     </td>
                     <td style="width:14%; min-width:8rem;">
                         <span class="p-column-title">Price</span>
-                        {{product.price | currency:'USD'}}
+                        {{transactionDetail.product.price | currency:'USD'}}
                     </td>
                     <td style="width:14%; min-width:10rem;">
                         <span class="p-column-title">Unit</span>
-                        {{product.unit}}
+                        {{transactionDetail.product.unit}}
                     </td>
                     <td style="width:14%; min-width:10rem;">
                         <span class="p-column-title">Category</span>
-                        {{product.category.name}}
+                        {{transactionDetail.product.category.name}}
                     </td>
                     <td style="width:14%; min-width:10rem;">
                         <span class="p-column-title">Quantity</span>
-                        {{product.quantity}}
+                        {{transactionDetail.quantity}}
                     </td>
                     <td>
                         <div class="flex">

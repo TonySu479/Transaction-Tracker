@@ -13,18 +13,6 @@
         </div>
     </div>
 
-    <div class="field">
-        <textarea pInputTextarea id="description" name="description" formControlName="description"></textarea>
-        <div>
-            <small class="ng-dirty ng-invalid"
-                   *ngIf="description?.errors?.required && (description.dirty || description.touched)">description is
-                required.</small>
-            <small class="ng-dirty ng-invalid"
-                   *ngIf="description?.errors?.maxlength && (description || description.touched)">max length
-                is {{description?.errors.maxlength.requiredLength}}</small>
-        </div>
-    </div>
-
     <div class="field col-12 md:col-4">
         <label for="time">Date</label>
         <p-calendar [showTime]="true" inputId="time" formControlName="createdAt"></p-calendar>

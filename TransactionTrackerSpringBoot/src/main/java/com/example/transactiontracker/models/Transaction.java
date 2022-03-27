@@ -14,9 +14,6 @@ import java.util.Calendar;
 @AllArgsConstructor
 public class Transaction extends BaseEntity{
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "created_at")
     private Calendar createdAt;
     

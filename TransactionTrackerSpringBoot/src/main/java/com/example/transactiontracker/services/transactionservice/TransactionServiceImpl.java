@@ -15,11 +15,6 @@ public class TransactionServiceImpl implements TransactionService {
     private final TransactionRepository transactionRepository;
 
     @Override
-    public List<Transaction> findByNameContaining(String name) {
-        return transactionRepository.findByNameContaining(name);
-    }
-
-    @Override
     public Transaction save(Transaction transaction) {
         return transactionRepository.save(transaction);
     }
@@ -47,7 +42,6 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Transaction getTransactionAndSetAttributes(Transaction transaction, Optional<Transaction> transactionData) {
         Transaction transactionEntity = transactionData.get();
-        transactionEntity.setName(transaction.getName());
         transactionEntity.setCreatedAt(transaction.getCreatedAt());
         return transactionEntity;
     }

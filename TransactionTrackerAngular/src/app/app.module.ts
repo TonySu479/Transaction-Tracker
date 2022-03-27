@@ -122,6 +122,7 @@ import {TransactionService} from "./service/transactionservice";
 import { TransactionDialogComponent } from './components/transactions/transaction-dialog/transaction-dialog.component';
 import { TransactionDetailsComponent } from './components/transactions/transaction-details/transaction-details.component';
 import { TransactionDetailsDialogComponent } from './components/transactions/transaction-details/transaction-details-dialog/transaction-details-dialog.component';
+import {TransactionDetailsService} from "./service/transaction-detailsservice";
 
 @NgModule({
     imports: [
@@ -241,7 +242,7 @@ import { TransactionDetailsDialogComponent } from './components/transactions/tra
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService, JwtHelperService, authInterceptorProviders, ProductCategoryService, TransactionService
+        PhotoService, ProductService, MenuService, ConfigService, JwtHelperService, authInterceptorProviders, ProductCategoryService, TransactionService, TransactionDetailsService
     ],
     bootstrap: [AppComponent]
 })

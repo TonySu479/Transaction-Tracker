@@ -30,7 +30,7 @@ public class TransactionController {
     public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
         try {
             Transaction transactionEntity = transactionService
-                    .save(new Transaction(transaction.getName(), transaction.getCreatedAt()));
+                    .save(new Transaction(transaction.getCreatedAt()));
             return new ResponseEntity<>(transactionEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -61,14 +61,10 @@ public class TransactionController {
     }
 
     @GetMapping("/transactions")
-    public ResponseEntity<List<Transaction>> getAllTransactions(@RequestParam(required = false) String name) {
+    public ResponseEntity<List<Transaction>> getAllTransactions() {
         try {
             List<Transaction> transactions = new ArrayList<>();
-            if (name == null)
-                transactions.addAll(transactionService.findAll());
-            else{
-                transactions.addAll(transactionService.findByNameContaining(name));
-            }
+            transactions.addAll(transactionService.findAll());
             if (transactions.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -78,15 +74,15 @@ public class TransactionController {
         }
     }
 
-    @DeleteMapping("/transactions")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<HttpStatus> deleteAllTransactions() {
+    @PostMapping("/transactions/delete-transactions")
+    public ResponseEntity<HttpStatus> deleteTransactions(@RequestBody List<String> listOfIds){
         try {
-            transactionService.deleteAll();
+            for(String id : listOfIds){
+                transactionService.deleteById(Long.parseLong(id));
+            }
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }

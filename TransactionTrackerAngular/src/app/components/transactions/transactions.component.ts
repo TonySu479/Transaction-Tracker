@@ -54,7 +54,7 @@ export class TransactionsComponent implements OnInit {
                     this.messageService.add({
                         severity: "success",
                         summary: "transaction deleted",
-                        detail: `Selected transactions have been deleted`
+                        detail: "Selected transactions have been deleted"
                     });
                 })
             }
@@ -82,7 +82,7 @@ export class TransactionsComponent implements OnInit {
                     this.messageService.add({
                         severity: "success",
                         summary: "transaction edited",
-                        detail: `${data.name} edited`
+                        detail: "transaction edited"
                     });
                 })
         })
@@ -90,7 +90,7 @@ export class TransactionsComponent implements OnInit {
 
     deleteTransaction(transaction: Transaction) {
         this.confirmationService.confirm({
-            message: `Are you sure you want to delete ${transaction.name}?`,
+            message: "Are you sure you want to delete this transaction?",
             header: 'Confirmation',
             icon: 'fa fa-question-circle',
             accept: () => {
@@ -99,7 +99,7 @@ export class TransactionsComponent implements OnInit {
                     this.messageService.add({
                         severity: "success",
                         summary: "transaction deleted",
-                        detail: `${transaction.name} has been deleted`
+                        detail: "transaction has been deleted"
                     });
                 })
             }

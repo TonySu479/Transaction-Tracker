@@ -1,15 +1,15 @@
 package com.example.transactiontracker.controllers;
 
-import com.example.transactiontracker.models.Product;
 import com.example.transactiontracker.models.TransactionDetails;
+import com.example.transactiontracker.payload.dto.TransactionDetailsDTO;
+import com.example.transactiontracker.services.productservice.ProductService;
 import com.example.transactiontracker.services.transactiondetailsservice.TransactionDetailsService;
+import com.example.transactiontracker.services.transactionservice.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,21 @@ import java.util.List;
 public class TransactionDetailsController {
 
     private final TransactionDetailsService transactionDetailsService;
+    private final TransactionService transactionService;
+    private final ProductService productService;
+
+    @PostMapping("/transaction-details")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<TransactionDetails> createTransactionDetails(@RequestBody TransactionDetailsDTO transactionDetails) {
+        try {
+            TransactionDetails transactionDetailsEntity = transactionDetailsService
+                    .save(new TransactionDetails(transactionService.findById(transactionDetails.getTransactionId()).orElse(null), productService.findById(transactionDetails.getProductId()).orElse(null),
+                            transactionDetails.getQuantity(), transactionDetails.getPrice()));
+            return new ResponseEntity<>(transactionDetailsEntity, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping("/transaction-details")
     public ResponseEntity<List<TransactionDetails>> getAllTransactionDetails() {
@@ -35,4 +50,6 @@ public class TransactionDetailsController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

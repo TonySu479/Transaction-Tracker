@@ -9,12 +9,8 @@ export class TransactionService {
 
     constructor(private http: HttpClient) { }
 
-    getTransactions(name= "") {
-        if(name != ""){
-            return this.http.get<any>(this.baseUrl + `?name=${name}`);
-        }
+    getTransactions() {
         return this.http.get<any>(this.baseUrl);
-
     }
 
     create(transaction: Transaction){
@@ -30,7 +26,7 @@ export class TransactionService {
     }
 
     deleteTransactions(listOfIds : String[]) {
-        return this.http.post<Transaction>(`${this.baseUrl}/delete-products`, listOfIds);
+        return this.http.post<Transaction>(`${this.baseUrl}/delete-transactions`, listOfIds);
     }
 
 }

@@ -29,12 +29,12 @@ export class TransactionDialogComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        console.log(this.config.data.type);
         this.transactionForm = this.formBuilder.group({
             name: new FormControl(this.config.data.type === "new" ? "" : this.config.data.transaction.name,
                 [Validators.maxLength(20), Validators.required]),
-            description: new FormControl(this.config.data.type === "new" ? "" : this.config.data.transaction.description,
-                [Validators.maxLength(400), Validators.required]),
-            createdAt: new FormControl(new Date())
+            createdAt: new FormControl(this.config.data.transaction.createdAt,
+                [Validators.required]),
         });
     }
 
