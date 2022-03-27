@@ -2,8 +2,6 @@ package com.example.transactiontracker.services.productservice;
 
 import com.example.transactiontracker.models.Product;
 import com.example.transactiontracker.models.ProductCategory;
-import com.example.transactiontracker.payload.dto.ProductDTO;
-import com.example.transactiontracker.repositories.ProductCategoryRepository;
 import com.example.transactiontracker.repositories.ProductRepository;
 import com.example.transactiontracker.services.productcategoryservice.ProductCategoryService;
 import lombok.RequiredArgsConstructor;
@@ -50,11 +48,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductAndSetAttributes(ProductDTO product, Optional<Product> productData) {
+    public Product getProductAndSetAttributes(Product product, Optional<Product> productData) {
         Product productEntity = productData.get();
         productEntity.setCode(product.getCode());
         productEntity.setName(product.getName());
-        productEntity.setCategory(getCategoryFromId(product.getCategory()));
+        productEntity.setCategory(product.getCategory());
         productEntity.setPrice(product.getPrice());
         productEntity.setUnit(product.getUnit());
         productEntity.setImage(product.getImage());

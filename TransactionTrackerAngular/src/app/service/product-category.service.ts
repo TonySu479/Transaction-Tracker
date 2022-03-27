@@ -13,7 +13,6 @@ export class ProductCategoryService {
             return this.http.get<any>(this.baseUrl + `?name=${name}`);
         }
         return this.http.get<any>(this.baseUrl);
-
     }
 
     create(productCategory: ProductCategory){
