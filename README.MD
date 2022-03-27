@@ -1,8 +1,7 @@
 Transaction Tracker
 
-A short project to practice fullstack. First Register a user and then login
-through the login page to access the transactions page. After logging in you
-can add, delete, and update transactions.
+A Project for commerce where businesses will be able to keep track of their transactions
+ as well as their inventory.
 
 Technologies: Angular, Springboot, Docker, Liquibase, Spring Security, Postgres
 
