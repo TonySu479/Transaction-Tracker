@@ -4,6 +4,7 @@ A Project for commerce where businesses will be able to keep track of their tran
  as well as their inventory.
 
 Technologies: Angular, Springboot, Docker, Liquibase, Spring Security, Postgres
+using PrimeNG's free template: Sakai
 
 How to run:
 Navigate to the Project Base "TransactionTracker" and run: Docker-Compose up --build
