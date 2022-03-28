@@ -1,7 +1,10 @@
 package com.example.transactiontracker.controllers;
 
+import com.example.transactiontracker.models.Product;
 import com.example.transactiontracker.models.TransactionDetails;
 import com.example.transactiontracker.payload.dto.TransactionDetailsDTO;
+import com.example.transactiontracker.repositories.TransactionDetailsRepository;
+import com.example.transactiontracker.repositories.TransactionRepository;
 import com.example.transactiontracker.services.productservice.ProductService;
 import com.example.transactiontracker.services.transactiondetailsservice.TransactionDetailsService;
 import com.example.transactiontracker.services.transactionservice.TransactionService;
@@ -23,6 +26,7 @@ public class TransactionDetailsController {
     private final TransactionDetailsService transactionDetailsService;
     private final TransactionService transactionService;
     private final ProductService productService;
+    private final TransactionDetailsRepository transactionDetailsRepository;
 
     @PostMapping("/transaction-details")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
@@ -61,16 +65,17 @@ public class TransactionDetailsController {
     }
 
     @GetMapping("/transaction-details")
-    public ResponseEntity<List<TransactionDetails>> getAllTransactionDetails() {
+    public ResponseEntity<List<TransactionDetails>> getTransactionDetailsByTransactionId(@RequestParam Long id) {
         try {
-            List<TransactionDetails> transactionDetails = new ArrayList<>(transactionDetailsService.findAll());
+            List<TransactionDetails> transactionDetails = new ArrayList<>(transactionDetailsRepository.findAllByTransaction_Id(id));
             if (transactionDetails.isEmpty()) {
-                return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<>(transactionDetails, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }
+
+

@@ -48,6 +48,11 @@ public class TransactionDetailsImpl implements TransactionDetailsService{
         transactionDetailsEntity.setQuantity(transactionDetailsDTO.getQuantity());
         return transactionDetailsEntity;
     }
+
+    @Override
+    public List<TransactionDetails> findAllByTransaction_Id(long id) {
+        return transactionDetailsRepository.findAllByTransaction_Id(id);
+    }
 }
 
 
