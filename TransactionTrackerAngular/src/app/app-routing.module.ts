@@ -12,6 +12,7 @@ import {
 import {ProductCategoryComponent} from "./components/product-category/product-category.component";
 import {TransactionsComponent} from "./components/transactions/transactions.component";
 import {TransactionDetailsComponent} from "./components/transactions/transaction-details/transaction-details.component";
+import {TransactionResolver} from "./components/transactions/transaction.resolver";
 
 @NgModule({
     imports: [
@@ -25,7 +26,7 @@ import {TransactionDetailsComponent} from "./components/transactions/transaction
                     {path: 'product-categories', component: ProductCategoryComponent},
                     {path: 'transactions', component: TransactionsComponent},
                     {path: 'transaction-details', component: TransactionDetailsComponent},
-                    {path: 'transaction-details/:id', component: TransactionDetailsComponent}
+                    {path: 'transaction-details/:id', component: TransactionDetailsComponent, resolve: {transactionDetail: TransactionResolver }}
                 ],
             },
             {path: 'login', component: LoginComponent},

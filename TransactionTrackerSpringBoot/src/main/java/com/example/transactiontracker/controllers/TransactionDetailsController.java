@@ -26,7 +26,7 @@ public class TransactionDetailsController {
 
     @PostMapping("/transaction-details")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<TransactionDetails> createTransactionDetails(@RequestBody TransactionDetailsDTO transactionDetails) {
+    public ResponseEntity<TransactionDetails> createTransactionDetail(@RequestBody TransactionDetailsDTO transactionDetails) {
         try {
             TransactionDetails transactionDetailsEntity = transactionDetailsService
                     .save(new TransactionDetails(transactionService.findById(transactionDetails.getTransactionId()).orElse(null), productService.findById(transactionDetails.getProductId()).orElse(null),
@@ -39,13 +39,24 @@ public class TransactionDetailsController {
 
     @PutMapping("/transaction-details/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<TransactionDetails> updateTransactionDetails(@PathVariable("id") long id, @RequestBody TransactionDetailsDTO transactionDetailsDTO) {
+    public ResponseEntity<TransactionDetails> updateTransactionDetail(@PathVariable("id") long id, @RequestBody TransactionDetailsDTO transactionDetailsDTO) {
         Optional<TransactionDetails> TransactionDetailsData = transactionDetailsService.findById(id);
         if (TransactionDetailsData.isPresent()) {
             TransactionDetails transactionDetailsEntity = transactionDetailsService.setTransactionDetailsAttributesAndReturnNewEntity(transactionDetailsDTO, TransactionDetailsData);
             return new ResponseEntity<>(transactionDetailsService.save(transactionDetailsEntity), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/transaction-details/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<HttpStatus> deleteTransactionDetail(@PathVariable("id") long id) {
+        try {
+            transactionDetailsService.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
