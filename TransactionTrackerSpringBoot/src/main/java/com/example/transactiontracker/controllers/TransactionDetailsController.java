@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -36,12 +37,22 @@ public class TransactionDetailsController {
         }
     }
 
+    @PutMapping("/transaction-details/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<TransactionDetails> updateTransactionDetails(@PathVariable("id") long id, @RequestBody TransactionDetailsDTO transactionDetailsDTO) {
+        Optional<TransactionDetails> TransactionDetailsData = transactionDetailsService.findById(id);
+        if (TransactionDetailsData.isPresent()) {
+            TransactionDetails transactionDetailsEntity = transactionDetailsService.setTransactionDetailsAttributesAndReturnNewEntity(transactionDetailsDTO, TransactionDetailsData);
+            return new ResponseEntity<>(transactionDetailsService.save(transactionDetailsEntity), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/transaction-details")
     public ResponseEntity<List<TransactionDetails>> getAllTransactionDetails() {
         try {
-            List<TransactionDetails> transactionDetails = new ArrayList<>();
-            transactionDetails.addAll(transactionDetailsService.findAll());
-
+            List<TransactionDetails> transactionDetails = new ArrayList<>(transactionDetailsService.findAll());
             if (transactionDetails.isEmpty()) {
                 return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
             }
@@ -50,6 +61,5 @@ public class TransactionDetailsController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 
 }

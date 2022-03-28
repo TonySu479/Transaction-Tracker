@@ -21,11 +21,13 @@ export class TransactionDetailsComponent implements OnInit {
 
     transactionDetails: TransactionDetails[];
 
-    selectedProducts: Product[];
+    selectedTransactionDetails: TransactionDetails[];
 
     transactionForm: FormGroup;
 
     transaction: Transaction;
+
+    transactionDetail: TransactionDetails;
 
     constructor(private formBuilder: FormBuilder,
                 private transactionService: TransactionService,
@@ -98,9 +100,7 @@ export class TransactionDetailsComponent implements OnInit {
                     quantity: value.quantity
                 }).subscribe(data =>
                 {
-                    console.log(data);
                     this.transactionDetails.push(data);
-                    console.log(this.transactionDetails);
                 });
             });
         });
@@ -116,12 +116,12 @@ export class TransactionDetailsComponent implements OnInit {
         });
     }
 
-    editTransaction(transaction: Transaction) {
-        const ref = this.dialogService.open(TransactionDialogComponent, {
-            header: 'Edit a transaction',
+    editTransactionDetail(transactionDetail: TransactionDetails) {
+        const ref = this.dialogService.open(TransactionDetailsDialogComponent, {
+            header: 'Edit a Transaction detail',
             data: {
                 type: "edit",
-                transaction: transaction
+                transactionDetail: transactionDetail
             },
             width: "600px"
         });
@@ -130,13 +130,15 @@ export class TransactionDetailsComponent implements OnInit {
             if (!value) {
                 return;
             }
-            console.log(value);
-            this.transactionService.update({...value, id: transaction.id})
-                .subscribe((data: Transaction) => {
+
+            this.transactionDetailsService.update({...value, id: transactionDetail.id, productId: value.product.id, transactionId: this.transaction.id })
+                .subscribe((data:TransactionDetails) => {
+                    let index = this.transactionDetails.findIndex(transactionDetail => transactionDetail.id === data.id);
+                    this.transactionDetails[index] = data;
                     this.messageService.add({
                         severity: "success",
-                        summary: "transaction edited",
-                        detail: `transaction edited`
+                        summary: "transaction-detail edited",
+                        detail: `transaction-detail edited`
                     });
                 })
         })

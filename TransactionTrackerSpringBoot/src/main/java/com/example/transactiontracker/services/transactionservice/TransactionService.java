@@ -11,5 +11,5 @@ public interface TransactionService {
     void deleteById(long id);
     Optional<Transaction> findById(long id);
     List<Transaction> findAll();
-    Transaction getTransactionAndSetAttributes(Transaction transaction, Optional<Transaction> transactionData);
+    Transaction setTransactionAttributesAndReturnNewEntity(Transaction transaction, Optional<Transaction> transactionData);
 }

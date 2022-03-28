@@ -44,7 +44,7 @@ public class ProductController {
     public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
         Optional<Product> productData = productService.findById(id);
         if (productData.isPresent()) {
-            Product productEntity = productService.getProductAndSetAttributes(product, productData);
+            Product productEntity = productService.setProductAttributesAndReturnNewEntity(product, productData);
             return new ResponseEntity<>(productService.save(productEntity), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

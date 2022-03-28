@@ -58,10 +58,10 @@ export class TransactionDetailsDialogComponent implements OnInit {
 
     ngOnInit(): void {
         this.transactionDetailsForm = this.formBuilder.group({
-            product: new FormControl(null, [Validators.required]),
-            price: new FormControl(null,
+            product: new FormControl(this.config.data.type === "new" ? "" : this.config.data.transactionDetail.product, [Validators.required]),
+            price: new FormControl(this.config.data.type === "new" ? "" : this.config.data.transactionDetail.price,
                 [Validators.min(0), Validators.required]),
-            quantity: new FormControl(null,
+            quantity: new FormControl(this.config.data.type === "new" ? "" : this.config.data.transactionDetail.quantity,
                 [Validators.min(0), Validators.required])
         });
     }
