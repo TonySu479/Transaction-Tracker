@@ -65,7 +65,6 @@ export class TransactionDetailsComponent implements OnInit {
                 return;
             }
             this.createTransactionDetail(value);
-
         });
     }
 
