@@ -17,7 +17,7 @@ import {TransactionDetail} from "../../../api/transaction-detail";
 })
 export class TransactionDetailsComponent implements OnInit {
 
-    transactionDetails: TransactionDetail[];
+    transactionDetails: TransactionDetail[] = [];
 
     selectedTransactionDetails: TransactionDetail[];
 

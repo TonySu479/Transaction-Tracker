@@ -63,31 +63,6 @@ export class TransactionsComponent implements OnInit {
 
     editTransaction(transaction: Transaction) {
         this.router.navigate(['/', 'transaction-details', transaction.id]);
-
-        // const ref = this.dialogService.open(TransactionDialogComponent, {
-        //     header: 'Edit a transaction',
-        //     data: {
-        //         type: "edit",
-        //         transaction: transaction
-        //     },
-        //     width: "600px"
-        // });
-        //
-        // ref.onClose.subscribe(value => {
-        //     if (!value) {
-        //         return;
-        //     }
-        //     this.transactionService.update({...value, id: transaction.id})
-        //         .subscribe((data: Transaction) => {
-        //             let index = this.transactions.findIndex(transaction => transaction.id === data.id);
-        //             this.transactions[index] = data;
-        //             this.messageService.add({
-        //                 severity: "success",
-        //                 summary: "transaction edited",
-        //                 detail: "transaction edited"
-        //             });
-        //         })
-        // })
     }
 
     deleteTransaction(transaction: Transaction) {
