@@ -10,6 +10,5 @@ public interface TransactionDetailsService {
     TransactionDetails save(TransactionDetails transactionDetails);
     void deleteById(long id);
     Optional<TransactionDetails> findById(long id);
-    List<TransactionDetails> findAll();
     TransactionDetails setTransactionDetailsAttributesAndReturnNewEntity(TransactionDetailsDTO transactionDetailsDTO, Optional<TransactionDetails> transactionDetailsData);
 }

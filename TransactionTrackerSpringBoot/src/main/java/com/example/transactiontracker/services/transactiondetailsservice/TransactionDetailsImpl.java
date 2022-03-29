@@ -35,11 +35,6 @@ public class TransactionDetailsImpl implements TransactionDetailsService{
     }
 
     @Override
-    public List<TransactionDetails> findAll() {
-        return transactionDetailsRepository.findAll();
-    }
-
-    @Override
     public TransactionDetails setTransactionDetailsAttributesAndReturnNewEntity(TransactionDetailsDTO transactionDetailsDTO, Optional<TransactionDetails> transactionDetailsData) {
         TransactionDetails transactionDetailsEntity = transactionDetailsData.get();
         transactionDetailsEntity.setTransaction(transactionRepository.findById(transactionDetailsDTO.getTransactionId()).orElse(null));
