@@ -2,14 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {Transaction} from "../../../api/transaction";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TransactionService} from "../../../service/transactionservice";
-import {TransactionDialogComponent} from "../transaction-dialog/transaction-dialog.component";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
-import {Product} from "../../../api/product";
 import {TransactionDetailsDialogComponent} from "./transaction-details-dialog/transaction-details-dialog.component";
 import {Router} from "@angular/router";
-import {TransactionDetailsService} from "../../../service/transaction-detailsservice";
-import {TransactionDetails} from "../../../api/transaction-details";
+import {TransactionDetailService} from "../../../service/transaction-detail.service";
+import {TransactionDetail} from "../../../api/transaction-detail";
 
 @Component({
     selector: 'app-transaction-details',
@@ -19,13 +17,15 @@ import {TransactionDetails} from "../../../api/transaction-details";
 })
 export class TransactionDetailsComponent implements OnInit {
 
-    transactionDetails: TransactionDetails[];
+    transactionDetails: TransactionDetail[];
 
-    selectedProducts: Product[];
+    selectedTransactionDetails: TransactionDetail[];
 
     transactionForm: FormGroup;
 
     transaction: Transaction;
+
+    transactionDetail: TransactionDetail;
 
     constructor(private formBuilder: FormBuilder,
                 private transactionService: TransactionService,
@@ -33,7 +33,7 @@ export class TransactionDetailsComponent implements OnInit {
                 private confirmationService: ConfirmationService,
                 private dialogService: DialogService,
                 private router: Router,
-                private transactionDetailsService: TransactionDetailsService) {
+                private transactionDetailsService: TransactionDetailService) {
     }
 
     ngOnInit(): void {
@@ -44,31 +44,44 @@ export class TransactionDetailsComponent implements OnInit {
     }
 
 
-    addProductToTransaction() {
+    addNewTransactionDetail() {
         if (!this.transactionForm.valid) {
             this.transactionForm.markAllAsTouched();
             return;
         }
 
         if (!this.transaction) {
-            this.addProductNewTransaction();
+            this.addTransactionDetailWithNewTransaction();
         } else {
-            this.addProduct()
+            this.addTransactionDetail()
         }
     }
 
-    addProduct(){
+    addTransactionDetail(){
         const ref = this.openAddNewProductDialog();
 
         ref.onClose.subscribe(value => {
             if(!value){
                 return;
             }
+<<<<<<< HEAD
             this.createTransactionDetail(value);
+=======
+
+            this.transactionDetailsService.create({
+                transactionId: this.transaction.id,
+                productId: value.product.id,
+                price: value.price,
+                quantity: value.quantity
+            }).subscribe(data =>
+            {
+                this.transactionDetails.push(data);
+            });
+>>>>>>> 54ea51fc3b34baaecc67a6bb0ae5e5881a456973
         });
     }
 
-    addProductNewTransaction(){
+    addTransactionDetailWithNewTransaction(){
         const ref = this.openAddNewProductDialog();
 
         ref.onClose.subscribe(value => {
@@ -79,7 +92,20 @@ export class TransactionDetailsComponent implements OnInit {
                 this.transaction = data;
                 value.transactionId = this.transaction.id;
                 value.productId = value.product.id;
+<<<<<<< HEAD
                 this.createTransactionDetail(value);
+=======
+                console.log(value);
+                this.transactionDetailsService.create({
+                    transactionId: this.transaction.id,
+                    productId: value.product.id,
+                    price: value.price,
+                    quantity: value.quantity
+                }).subscribe(data =>
+                {
+                    this.transactionDetails.push(data);
+                });
+>>>>>>> 54ea51fc3b34baaecc67a6bb0ae5e5881a456973
             });
         });
     }
@@ -106,12 +132,12 @@ export class TransactionDetailsComponent implements OnInit {
         });
     }
 
-    editTransaction(transaction: Transaction) {
-        const ref = this.dialogService.open(TransactionDialogComponent, {
-            header: 'Edit a transaction',
+    editTransactionDetail(transactionDetail: TransactionDetail) {
+        const ref = this.dialogService.open(TransactionDetailsDialogComponent, {
+            header: 'Edit a Transaction detail',
             data: {
                 type: "edit",
-                transaction: transaction
+                transactionDetail: transactionDetail
             },
             width: "600px"
         });
@@ -120,16 +146,32 @@ export class TransactionDetailsComponent implements OnInit {
             if (!value) {
                 return;
             }
-            console.log(value);
-            this.transactionService.update({...value, id: transaction.id})
-                .subscribe((data: Transaction) => {
+
+            this.transactionDetailsService.update({...value, id: transactionDetail.id, productId: value.product.id, transactionId: this.transaction.id })
+                .subscribe((data:TransactionDetail) => {
+                    let index = this.transactionDetails.findIndex(transactionDetail => transactionDetail.id === data.id);
+                    this.transactionDetails[index] = data;
                     this.messageService.add({
                         severity: "success",
-                        summary: "transaction edited",
-                        detail: `transaction edited`
+                        summary: "transaction-detail edited",
+                        detail: `transaction-detail edited`
                     });
                 })
         })
+    }
+
+    deleteTransactionDetail(transactionDetail: TransactionDetail) {
+        this.confirmationService.confirm({
+            message: `Are you sure you want to delete ${transactionDetail.product.name}?`,
+            header: 'Confirmation',
+            icon: 'fa fa-question-circle',
+            accept: () => {
+                this.transactionDetailsService.delete(transactionDetail).subscribe(() => {
+                    this.transactionDetails = this.transactionDetails.filter(p => p.id != transactionDetail.id);
+                    this.messageService.add({severity:"success", summary:"product deleted", detail:`${transactionDetail.product.name} has been deleted`});
+                })
+            }
+        });
     }
 
     submit() {

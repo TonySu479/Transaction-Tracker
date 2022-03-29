@@ -39,7 +39,7 @@ public class ProductCategoryController {
     public ResponseEntity<ProductCategory> updateProductCategory(@PathVariable("id") long id, @RequestBody ProductCategory productCategory) {
         Optional<ProductCategory> productCategoryData = productCategoryService.findById(id);
         if (productCategoryData.isPresent()) {
-            ProductCategory productEntity = productCategoryService.getProductCategoryAndSetAttributes(productCategory, productCategoryData);
+            ProductCategory productEntity = productCategoryService.setProductCategoryAttributesAndReturnNewEntity(productCategory, productCategoryData);
             return new ResponseEntity<>(productCategoryService.save(productEntity), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

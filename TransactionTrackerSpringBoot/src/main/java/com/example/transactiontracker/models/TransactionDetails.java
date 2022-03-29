@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class TransactionDetails extends BaseEntity {
 
     @ManyToOne
-    private Transaction Transaction;
+    private Transaction transaction;
 
     @ManyToOne
     private Product product;

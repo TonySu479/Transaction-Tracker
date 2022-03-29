@@ -1,7 +1,7 @@
 import {Transaction} from "./transaction";
 import {Product} from "./product";
 
-export interface TransactionDetails {
+export interface TransactionDetail {
     id?: string;
     transaction?: Transaction;
     transactionId?: string;

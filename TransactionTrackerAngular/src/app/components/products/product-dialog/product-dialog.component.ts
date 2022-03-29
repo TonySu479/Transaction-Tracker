@@ -61,7 +61,7 @@ export class ProductDialogComponent implements OnInit {
                 [Validators.maxLength(10), Validators.required]),
             name: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.name,
                 [Validators.maxLength(50), Validators.required]),
-            category: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.category.name,
+            category: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.category,
                 [Validators.maxLength(200), Validators.required]),
             price: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.price,
                 [Validators.min(0), Validators.required]),

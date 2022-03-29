@@ -97,7 +97,6 @@ export class ProductsComponent implements OnInit {
                     this.messageService.add({severity:"success", summary:"product edited", detail:`${data.name} edited`});
                 })
         })
-
     }
 
     deleteProduct(product: Product) {

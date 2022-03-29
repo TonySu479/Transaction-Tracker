@@ -42,7 +42,7 @@ public class TransactionController {
     public ResponseEntity<Transaction> updateTransaction(@PathVariable("id") long id, @RequestBody Transaction transaction) {
         Optional<Transaction> transactionData = transactionService.findById(id);
         if (transactionData.isPresent()) {
-            Transaction transactionEntity = transactionService.getTransactionAndSetAttributes(transaction, transactionData);
+            Transaction transactionEntity = transactionService.setTransactionAttributesAndReturnNewEntity(transaction, transactionData);
             return new ResponseEntity<>(transactionService.save(transactionEntity), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -63,8 +63,7 @@ public class TransactionController {
     @GetMapping("/transactions")
     public ResponseEntity<List<Transaction>> getAllTransactions() {
         try {
-            List<Transaction> transactions = new ArrayList<>();
-            transactions.addAll(transactionService.findAll());
+            List<Transaction> transactions = new ArrayList<>(transactionService.findAll());
             if (transactions.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
