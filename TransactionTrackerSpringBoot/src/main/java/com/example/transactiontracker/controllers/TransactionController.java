@@ -63,7 +63,8 @@ public class TransactionController {
     @GetMapping("/transactions")
     public ResponseEntity<List<Transaction>> getAllTransactions() {
         try {
-            List<Transaction> transactions = new ArrayList<>(transactionService.findAll());
+            List<Transaction> transactions = new ArrayList<>();
+            transactions.addAll(transactionService.findAll());
             if (transactions.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
