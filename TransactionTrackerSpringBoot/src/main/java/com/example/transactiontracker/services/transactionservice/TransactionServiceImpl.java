@@ -1,6 +1,8 @@
 package com.example.transactiontracker.services.transactionservice;
 
 import com.example.transactiontracker.models.Transaction;
+import com.example.transactiontracker.models.TransactionDetails;
+import com.example.transactiontracker.repositories.TransactionDetailsRepository;
 import com.example.transactiontracker.repositories.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import java.util.Optional;
 public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionRepository transactionRepository;
+    private final TransactionDetailsRepository transactionDetailsRepository;
 
     @Override
     public Transaction save(Transaction transaction) {
@@ -44,5 +47,10 @@ public class TransactionServiceImpl implements TransactionService {
         Transaction transactionEntity = transactionData.get();
         transactionEntity.setCreatedAt(transaction.getCreatedAt());
         return transactionEntity;
+    }
+
+    @Override
+    public List<TransactionDetails> findAllByTransaction_Id(long id) {
+        return transactionDetailsRepository.findAllByTransaction_Id(id);
     }
 }
