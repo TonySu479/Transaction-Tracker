@@ -12,4 +12,5 @@ public interface TransactionDetailsService {
     Optional<TransactionDetails> findById(long id);
     List<TransactionDetails> findAll();
     TransactionDetails setTransactionDetailsAttributesAndReturnNewEntity(TransactionDetailsDTO transactionDetailsDTO, Optional<TransactionDetails> transactionDetailsData);
+    List<TransactionDetails> findAllByTransaction_Id(long id);
 }
