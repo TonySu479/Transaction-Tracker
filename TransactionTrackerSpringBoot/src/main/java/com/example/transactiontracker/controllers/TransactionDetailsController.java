@@ -63,7 +63,7 @@ public class TransactionDetailsController {
     }
 
     @GetMapping("/transaction-details")
-        public ResponseEntity<List<TransactionDetails>> getTransactionDetailsByTransactionId(@RequestParam Long id) {
+        public ResponseEntity<List<TransactionDetails>> getTransactionDetailsByTransactionId(@RequestParam long id) {
             try {
                 List<TransactionDetails> transactionDetails = new ArrayList<>(transactionDetailsRepository.findAllByTransaction_Id(id));
                 if (transactionDetails.isEmpty()) {

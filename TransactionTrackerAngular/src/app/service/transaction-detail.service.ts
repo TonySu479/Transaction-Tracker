@@ -9,8 +9,8 @@ export class TransactionDetailService {
 
     constructor(private http: HttpClient) { }
 
-    getTransactionDetailsByTransactionId(transactionId= "") {
-        return this.http.get<any>(this.baseUrl + `?transactionId=${transactionId}`);
+    getTransactionDetailsByTransactionId(transactionId) {
+        return this.http.get<any>(this.baseUrl + `?id=${transactionId}`);
     }
 
     create(transactionDetails: TransactionDetail){

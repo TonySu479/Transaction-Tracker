@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Transaction} from "../api/transaction";
+import {map} from "rxjs/operators";
 
 
 @Injectable()
@@ -11,6 +12,15 @@ export class TransactionService {
 
     getTransactions() {
         return this.http.get<any>(this.baseUrl);
+    }
+
+    getById(id){
+        return this.http.get<any>(`${this.baseUrl}/${id}`).pipe(map(transaction => {
+            return {
+                ...transaction,
+                createdAt: new Date(transaction.createdAt)
+            }
+        }));
     }
 
     create(transaction: Transaction){

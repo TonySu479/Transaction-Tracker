@@ -26,7 +26,7 @@ import {TransactionResolver} from "./components/transactions/transaction.resolve
                     {path: 'product-categories', component: ProductCategoryComponent},
                     {path: 'transactions', component: TransactionsComponent},
                     {path: 'transaction-details', component: TransactionDetailsComponent},
-                    {path: 'transaction-details/:id', component: TransactionDetailsComponent, resolve: {transactionDetail: TransactionResolver }}
+                    {path: 'transaction-details/:id', component: TransactionDetailsComponent, resolve: {transaction: TransactionResolver }}
                 ],
             },
             {path: 'login', component: LoginComponent},

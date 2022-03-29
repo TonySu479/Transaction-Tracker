@@ -5,7 +5,7 @@ import {TransactionService} from "../../../service/transactionservice";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
 import {TransactionDetailsDialogComponent} from "./transaction-details-dialog/transaction-details-dialog.component";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TransactionDetailService} from "../../../service/transaction-detail.service";
 import {TransactionDetail} from "../../../api/transaction-detail";
 
@@ -33,14 +33,20 @@ export class TransactionDetailsComponent implements OnInit {
                 private confirmationService: ConfirmationService,
                 private dialogService: DialogService,
                 private router: Router,
+                private route: ActivatedRoute,
                 private transactionDetailsService: TransactionDetailService) {
     }
 
     ngOnInit(): void {
+        this.transaction = this.route.snapshot.data.transaction;
         this.transactionForm = this.formBuilder.group({
-            createdAt: new FormControl(new Date())
-        })
-        this.transactionDetails = [];
+            createdAt: new FormControl(this.transaction ? this.transaction.createdAt : new Date())
+        });
+        if(!!this.transaction){
+            this.transactionDetailsService.getTransactionDetailsByTransactionId(this.transaction.id).subscribe(
+                data => this.transactionDetails = data
+            );
+        }
     }
 
 
