@@ -59,20 +59,13 @@ export class TransactionDetailsComponent implements OnInit {
 
     addTransactionDetail(){
         const ref = this.openAddNewProductDialog();
+
         ref.onClose.subscribe(value => {
             if(!value){
                 return;
             }
+            this.createTransactionDetail(value);
 
-            this.transactionDetailsService.create({
-                transactionId: this.transaction.id,
-                productId: value.product.id,
-                price: value.price,
-                quantity: value.quantity
-            }).subscribe(data =>
-            {
-                this.transactionDetails.push(data);
-            });
         });
     }
 
@@ -87,17 +80,20 @@ export class TransactionDetailsComponent implements OnInit {
                 this.transaction = data;
                 value.transactionId = this.transaction.id;
                 value.productId = value.product.id;
-                console.log(value);
-                this.transactionDetailsService.create({
-                    transactionId: this.transaction.id,
-                    productId: value.product.id,
-                    price: value.price,
-                    quantity: value.quantity
-                }).subscribe(data =>
-                {
-                    this.transactionDetails.push(data);
-                });
+                this.createTransactionDetail(value);
             });
+        });
+    }
+
+    createTransactionDetail(value){
+        this.transactionDetailsService.create({
+            transactionId: this.transaction.id,
+            productId: value.product.id,
+            price: value.price,
+            quantity: value.quantity
+        }).subscribe(data =>
+        {
+            this.transactionDetails.push(data);
         });
     }
 
