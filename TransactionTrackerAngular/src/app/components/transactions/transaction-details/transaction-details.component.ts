@@ -64,20 +64,7 @@ export class TransactionDetailsComponent implements OnInit {
             if(!value){
                 return;
             }
-<<<<<<< HEAD
             this.createTransactionDetail(value);
-=======
-
-            this.transactionDetailsService.create({
-                transactionId: this.transaction.id,
-                productId: value.product.id,
-                price: value.price,
-                quantity: value.quantity
-            }).subscribe(data =>
-            {
-                this.transactionDetails.push(data);
-            });
->>>>>>> 54ea51fc3b34baaecc67a6bb0ae5e5881a456973
         });
     }
 
@@ -92,20 +79,7 @@ export class TransactionDetailsComponent implements OnInit {
                 this.transaction = data;
                 value.transactionId = this.transaction.id;
                 value.productId = value.product.id;
-<<<<<<< HEAD
                 this.createTransactionDetail(value);
-=======
-                console.log(value);
-                this.transactionDetailsService.create({
-                    transactionId: this.transaction.id,
-                    productId: value.product.id,
-                    price: value.price,
-                    quantity: value.quantity
-                }).subscribe(data =>
-                {
-                    this.transactionDetails.push(data);
-                });
->>>>>>> 54ea51fc3b34baaecc67a6bb0ae5e5881a456973
             });
         });
     }
