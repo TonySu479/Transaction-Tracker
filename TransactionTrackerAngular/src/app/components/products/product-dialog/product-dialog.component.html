@@ -64,7 +64,7 @@
         <h5>
             <label for="image">Image </label>
         </h5>
-        <input type="text" id="image" name="image" formControlName="image" pInputText>
+        <input type="file" id="image" name="image" (change)="onImageFileChange($event)" accept="image/png, image/jpeg" pInputText>
     </div>
 
     <div class="field submit-button">

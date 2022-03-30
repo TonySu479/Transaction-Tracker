@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Transaction} from "../../../api/transaction";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import {TransactionService} from "../../../service/transactionservice";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
@@ -48,7 +48,6 @@ export class TransactionDetailsComponent implements OnInit {
             );
         }
     }
-
 
     addNewTransactionDetail() {
         if (!this.transactionForm.valid) {

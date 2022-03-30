@@ -80,4 +80,22 @@ export class ProductDialogComponent implements OnInit {
         this.ref.close(this.productForm.value);
     }
 
+    onImageFileChange(event) {
+        console.log(event);
+        let files = event.target.files;
+        let file = files[0];
+
+        if (files && file) {
+            let reader = new FileReader();
+
+            reader.onload =this._handleReaderLoaded.bind(this);
+
+            reader.readAsBinaryString(file);
+        }
+    }
+
+    _handleReaderLoaded(readerEvt) {
+        let binaryString = readerEvt.target.result;
+        this.image.setValue(btoa(binaryString));
+    }
 }
