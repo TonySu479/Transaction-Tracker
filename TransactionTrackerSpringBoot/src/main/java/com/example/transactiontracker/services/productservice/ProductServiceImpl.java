@@ -61,9 +61,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void creatInitialProducts() {
-        createProduct("1234", "Water", getCategoryFromId("1"), 250, "bottle", "water.image");
-        createProduct("2345", "Coke", getCategoryFromId("1"), 300, "bottle", "coke.image");
-        createProduct("9999", "Nachos", getCategoryFromId("2"), 500, "box", "nachos.image");
+        createProduct("1234", "Water", getCategoryFromId("1"), 250, "bottle", "water.jpg");
+        createProduct("2345", "Coke", getCategoryFromId("1"), 300, "bottle", "coke.jpg");
+        createProduct("9999", "Nachos", getCategoryFromId("2"), 500, "box", "nachos.jpg");
     }
 
     @Override

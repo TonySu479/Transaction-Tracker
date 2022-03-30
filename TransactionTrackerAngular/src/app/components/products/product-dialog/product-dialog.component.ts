@@ -84,6 +84,7 @@ export class ProductDialogComponent implements OnInit {
         console.log(event);
         let files = event.target.files;
         let file = files[0];
+        console.log(file);
 
         if (files && file) {
             let reader = new FileReader();

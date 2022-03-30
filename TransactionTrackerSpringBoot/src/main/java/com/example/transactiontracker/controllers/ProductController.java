@@ -1,16 +1,18 @@
 package com.example.transactiontracker.controllers;
 
 import com.example.transactiontracker.models.Product;
+import com.example.transactiontracker.payload.dto.ProductDTO;
 import com.example.transactiontracker.services.productservice.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -18,6 +20,8 @@ import java.util.Optional;
 public class ProductController {
 
     private final ProductService productService;
+    Date date = new Date();
+    Random rand = new Random();
 
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") long id) {
@@ -27,12 +31,15 @@ public class ProductController {
 
     @PostMapping("/products")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        try {
-            System.out.println(new Product(product.getCode(), product.getName(), product.getCategory(), product.getPrice(), product.getUnit(), product.getImage()));
+    public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) {
+        String uniqueImgName = "" + date.getTime() + rand.nextInt(10000) + ".jpg";
+        byte[] img = Base64.decodeBase64(productDTO.getImage());
+        try (OutputStream stream = new FileOutputStream("./TransactionTrackerSpringBoot/static/images/" + uniqueImgName)) {
+            stream.write(img);
             Product productEntity = productService
-                    .save(new Product(product.getCode(), product.getName(), product.getCategory(), product.getPrice(), product.getUnit(), product.getImage()));
-            System.out.println(productEntity);
+                    .save(new Product(productDTO.getCode(), productDTO.getName(), productDTO.getCategory(), productDTO.getPrice(), productDTO.getUnit(), uniqueImgName));
+            productEntity.setImage("//localhost/images/" + uniqueImgName);
+            System.out.println(productEntity.getImage());
             return new ResponseEntity<>(productEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -73,6 +80,9 @@ public class ProductController {
             }
             if (products.isEmpty()) {
                 return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
+            }
+            for(Product product : products){
+                product.setImage("//localhost:8080/images/" + product.getImage());
             }
             return new ResponseEntity<>(products, HttpStatus.OK);
         } catch (Exception e) {
