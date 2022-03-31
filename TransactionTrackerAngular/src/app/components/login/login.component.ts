@@ -6,10 +6,14 @@ import { TokenStorageService } from 'src/app/service/token-storage.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import { MessageService} from "primeng/api";
+import {ToastModule} from 'primeng/toast';
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.scss'],
+    providers: [MessageService]
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
@@ -30,7 +34,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         private authService: AuthService,
         private tokenStorage: TokenStorageService,
         private router: Router,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private messageService: MessageService
     ) {}
 
     get username(){
@@ -72,7 +77,6 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.loginForm.markAllAsTouched();
             return;
         }
-
         this.authService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(
             (data) => {
                 this.tokenStorage.saveToken(data.token);
@@ -83,7 +87,8 @@ export class LoginComponent implements OnInit, OnDestroy {
                 this.router.navigate(["/"]);
             },
             (err) => {
-                this.errorMessage = err.error.message;
+                this.messageService.add({key: 'loginFailToast',severity:'error', summary:'Login error', detail:'invalid username or password'});
+                this.errorMessage = err.error?.message;
                 this.isLoginFailed = true;
             }
         );
