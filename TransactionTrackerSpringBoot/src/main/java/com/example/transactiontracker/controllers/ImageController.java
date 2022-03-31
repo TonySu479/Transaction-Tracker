@@ -1,6 +1,5 @@
 package com.example.transactiontracker.controllers;
 
-import com.example.transactiontracker.models.ProductCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
