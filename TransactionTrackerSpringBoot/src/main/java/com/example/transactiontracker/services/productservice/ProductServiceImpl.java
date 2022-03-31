@@ -2,20 +2,33 @@ package com.example.transactiontracker.services.productservice;
 
 import com.example.transactiontracker.models.Product;
 import com.example.transactiontracker.models.ProductCategory;
+import com.example.transactiontracker.payload.dto.ProductDTO;
 import com.example.transactiontracker.repositories.ProductRepository;
 import com.example.transactiontracker.services.productcategoryservice.ProductCategoryService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Service;
 
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProductCategoryService productCategoryService;
+    private final String imagePath = "./TransactionTrackerSpringBoot/assets/images/";
+    private final String imageBaseUrl = "//localhost:8080/images/";
+
+    Date date = new Date();
+    Random rand = new Random();
 
     @Override
     public List<Product> findByNameContaining(String name) {
@@ -48,14 +61,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product setProductAttributesAndReturnNewEntity(Product product, Optional<Product> productData) {
+    public Product setProductAttributesAndReturnNewEntity(ProductDTO productDTO, Optional<Product> productData) {
+        String uniqueImgName = storeImage(productDTO.getImage());
         Product productEntity = productData.get();
-        productEntity.setCode(product.getCode());
-        productEntity.setName(product.getName());
-        productEntity.setCategory(product.getCategory());
-        productEntity.setPrice(product.getPrice());
-        productEntity.setUnit(product.getUnit());
-        productEntity.setImage(product.getImage());
+        productEntity.setCode(productDTO.getCode());
+        productEntity.setName(productDTO.getName());
+        productEntity.setCategory(productDTO.getCategory());
+        productEntity.setPrice(productDTO.getPrice());
+        productEntity.setUnit(productDTO.getUnit());
+        productEntity.setImage(imageBaseUrl + uniqueImgName);
         return productEntity;
     }
 
@@ -75,5 +89,17 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductCategory getCategoryFromId(String id) {
         return productCategoryService.findById(Long.parseLong(id)).orElse(null);
+    }
+
+    @Override
+    public String storeImage(String image) {
+        String uniqueImgName = "" + date.getTime() + rand.nextInt(10000) + ".jpg";
+        byte[] img = Base64.decodeBase64(image);
+        try (OutputStream stream = new FileOutputStream(imagePath + uniqueImgName)) {
+            stream.write(img);
+        } catch(Exception e){
+            log.error(e.toString());
+        }
+        return uniqueImgName;
     }
 }

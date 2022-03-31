@@ -20,8 +20,6 @@ import java.util.*;
 public class ProductController {
 
     private final ProductService productService;
-    Date date = new Date();
-    Random rand = new Random();
 
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") long id) {
@@ -32,13 +30,10 @@ public class ProductController {
     @PostMapping("/products")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) {
-        String uniqueImgName = "" + date.getTime() + rand.nextInt(10000) + ".jpg";
-        byte[] img = Base64.decodeBase64(productDTO.getImage());
-        try (OutputStream stream = new FileOutputStream("./TransactionTrackerSpringBoot/assets/images/" + uniqueImgName)) {
-            stream.write(img);
+        try {
+            String uniqueImgName = productService.storeImage(productDTO.getImage());
             Product productEntity = productService
-                    .save(new Product(productDTO.getCode(), productDTO.getName(), productDTO.getCategory(), productDTO.getPrice(), productDTO.getUnit(), uniqueImgName));
-            productEntity.setImage("//localhost:8080/images/" + uniqueImgName);
+                    .save(new Product(productDTO.getCode(), productDTO.getName(), productDTO.getCategory(), productDTO.getPrice(), productDTO.getUnit(), "//localhost:8080/images/" + uniqueImgName));
             System.out.println(productEntity.getImage());
             return new ResponseEntity<>(productEntity, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -48,10 +43,10 @@ public class ProductController {
 
     @PutMapping("/products/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
+    public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody ProductDTO productDTO) {
         Optional<Product> productData = productService.findById(id);
         if (productData.isPresent()) {
-            Product productEntity = productService.setProductAttributesAndReturnNewEntity(product, productData);
+            Product productEntity = productService.setProductAttributesAndReturnNewEntity(productDTO, productData);
             return new ResponseEntity<>(productService.save(productEntity), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
