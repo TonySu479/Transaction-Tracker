@@ -34,11 +34,11 @@ public class ProductController {
     public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) {
         String uniqueImgName = "" + date.getTime() + rand.nextInt(10000) + ".jpg";
         byte[] img = Base64.decodeBase64(productDTO.getImage());
-        try (OutputStream stream = new FileOutputStream("./TransactionTrackerSpringBoot/static/images/" + uniqueImgName)) {
+        try (OutputStream stream = new FileOutputStream("./TransactionTrackerSpringBoot/assets/images/" + uniqueImgName)) {
             stream.write(img);
             Product productEntity = productService
                     .save(new Product(productDTO.getCode(), productDTO.getName(), productDTO.getCategory(), productDTO.getPrice(), productDTO.getUnit(), uniqueImgName));
-            productEntity.setImage("//localhost/images/" + uniqueImgName);
+            productEntity.setImage("//localhost:8080/images/" + uniqueImgName);
             System.out.println(productEntity.getImage());
             return new ResponseEntity<>(productEntity, HttpStatus.CREATED);
         } catch (Exception e) {

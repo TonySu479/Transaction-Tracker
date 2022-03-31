@@ -47,6 +47,7 @@ export class ProductsComponent implements OnInit {
         });
 
         ref.onClose.subscribe(value => {
+            console.log("hello");
             if(!value){
                 return;
             }
