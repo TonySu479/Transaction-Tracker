@@ -53,7 +53,7 @@ export class ProductsComponent implements OnInit {
             }
             this.productService.create(value)
                 .subscribe(data => {
-                    console.log(this.products);
+                    data.image = "//localhost:8080/images/" + data.image;
                     this.products.push(data);
                     this.messageService.add({severity:"success", summary:"product created", detail:`${data.name} created`});
                 })

@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductCategoryService productCategoryService;
     private final String imagePath = "./TransactionTrackerSpringBoot/assets/images/";
-    private final String imageBaseUrl = "//localhost:8080/images/";
+
 
     Date date = new Date();
     Random rand = new Random();
@@ -69,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
         productEntity.setCategory(productDTO.getCategory());
         productEntity.setPrice(productDTO.getPrice());
         productEntity.setUnit(productDTO.getUnit());
-        productEntity.setImage(imageBaseUrl + uniqueImgName);
+        productEntity.setImage(uniqueImgName);
         return productEntity;
     }
 

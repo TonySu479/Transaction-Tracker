@@ -20,6 +20,7 @@ import java.util.*;
 public class ProductController {
 
     private final ProductService productService;
+    private final String imageBaseURL = "//localhost:8080/images/";
 
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") long id) {
@@ -33,7 +34,7 @@ public class ProductController {
         try {
             String uniqueImgName = productService.storeImage(productDTO.getImage());
             Product productEntity = productService
-                    .save(new Product(productDTO.getCode(), productDTO.getName(), productDTO.getCategory(), productDTO.getPrice(), productDTO.getUnit(), "//localhost:8080/images/" + uniqueImgName));
+                    .save(new Product(productDTO.getCode(), productDTO.getName(), productDTO.getCategory(), productDTO.getPrice(), productDTO.getUnit(), uniqueImgName));
             System.out.println(productEntity.getImage());
             return new ResponseEntity<>(productEntity, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -77,7 +78,7 @@ public class ProductController {
                 return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
             }
             for(Product product : products){
-                product.setImage("//localhost:8080/images/" + product.getImage());
+                product.setImage(imageBaseURL + product.getImage());
             }
             return new ResponseEntity<>(products, HttpStatus.OK);
         } catch (Exception e) {
