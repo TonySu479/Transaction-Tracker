@@ -12,12 +12,12 @@ public class BaseEntity {
 
     @Id
     @SequenceGenerator(
-            name="sequence",
+            name = "sequence",
             sequenceName = "sequence",
             allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
-                    generator = "sequence")
+            generator = "sequence")
     private Long id;
 
 }

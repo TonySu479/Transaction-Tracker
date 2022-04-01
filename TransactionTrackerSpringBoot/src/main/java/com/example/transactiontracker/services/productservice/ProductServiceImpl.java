@@ -97,7 +97,7 @@ public class ProductServiceImpl implements ProductService {
         byte[] img = Base64.decodeBase64(image);
         try (OutputStream stream = new FileOutputStream(imagePath + uniqueImgName)) {
             stream.write(img);
-        } catch(Exception e){
+        } catch (Exception e) {
             log.error(e.toString());
         }
         return uniqueImgName;

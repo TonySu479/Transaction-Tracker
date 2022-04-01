@@ -4,14 +4,11 @@ import com.example.transactiontracker.models.Product;
 import com.example.transactiontracker.payload.dto.ProductDTO;
 import com.example.transactiontracker.services.productservice.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.util.*;
 
 @RestController
@@ -35,7 +32,6 @@ public class ProductController {
             String uniqueImgName = productService.storeImage(productDTO.getImage());
             Product productEntity = productService
                     .save(new Product(productDTO.getCode(), productDTO.getName(), productDTO.getCategory(), productDTO.getPrice(), productDTO.getUnit(), uniqueImgName));
-            System.out.println(productEntity.getImage());
             return new ResponseEntity<>(productEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -71,13 +67,13 @@ public class ProductController {
             List<Product> products = new ArrayList<>();
             if (name == null)
                 products.addAll(productService.findAll());
-            else{
+            else {
                 products.addAll(productService.findByNameContaining(name));
             }
             if (products.isEmpty()) {
                 return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
             }
-            for(Product product : products){
+            for (Product product : products) {
                 product.setImage(imageBaseURL + product.getImage());
             }
             return new ResponseEntity<>(products, HttpStatus.OK);
@@ -87,9 +83,9 @@ public class ProductController {
     }
 
     @PostMapping("/products/delete-products")
-    public ResponseEntity<HttpStatus> deleteProducts(@RequestBody List<String> listOfIds){
+    public ResponseEntity<HttpStatus> deleteProducts(@RequestBody List<String> listOfIds) {
         try {
-            for(String id : listOfIds){
+            for (String id : listOfIds) {
                 productService.deleteById(Long.parseLong(id));
             }
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

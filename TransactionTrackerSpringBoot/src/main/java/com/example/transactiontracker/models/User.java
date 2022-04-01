@@ -53,7 +53,7 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     public User(Long id, String username, String email, String password,
-                           Collection<? extends GrantedAuthority> authorities) {
+                Collection<? extends GrantedAuthority> authorities) {
         setId(id);
         this.username = username;
         this.email = email;
@@ -87,18 +87,22 @@ public class User extends BaseEntity implements UserDetails {
     public boolean isAccountNonExpired() {
         return true;
     }
+
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
+
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
+
     @Override
     public boolean isEnabled() {
         return true;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

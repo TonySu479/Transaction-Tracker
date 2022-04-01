@@ -63,8 +63,7 @@ public class TransactionController {
     @GetMapping("/transactions")
     public ResponseEntity<List<Transaction>> getAllTransactions() {
         try {
-            List<Transaction> transactions = new ArrayList<>();
-            transactions.addAll(transactionService.findAll());
+            List<Transaction> transactions = new ArrayList<>(transactionService.findAll());
             if (transactions.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -75,9 +74,9 @@ public class TransactionController {
     }
 
     @PostMapping("/transactions/delete-transactions")
-    public ResponseEntity<HttpStatus> deleteTransactions(@RequestBody List<String> listOfIds){
+    public ResponseEntity<HttpStatus> deleteTransactions(@RequestBody List<String> listOfIds) {
         try {
-            for(String id : listOfIds){
+            for (String id : listOfIds) {
                 transactionService.deleteById(Long.parseLong(id));
             }
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

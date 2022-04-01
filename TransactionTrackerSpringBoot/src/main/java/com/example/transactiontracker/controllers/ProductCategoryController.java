@@ -63,7 +63,7 @@ public class ProductCategoryController {
             List<ProductCategory> products = new ArrayList<>();
             if (name == null)
                 products.addAll(productCategoryService.findAll());
-            else{
+            else {
                 products.addAll(productCategoryService.findByNameContainingIgnoreCase(name));
             }
             if (products.isEmpty()) {
@@ -76,9 +76,9 @@ public class ProductCategoryController {
     }
 
     @PostMapping("/product-categories/delete-product-categories")
-    public ResponseEntity<HttpStatus> deleteProductCategories(@RequestBody List<String> listOfIds){
+    public ResponseEntity<HttpStatus> deleteProductCategories(@RequestBody List<String> listOfIds) {
         try {
-            for(String id : listOfIds){
+            for (String id : listOfIds) {
                 productCategoryService.deleteById(Long.parseLong(id));
             }
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -12,7 +12,7 @@ import java.util.Calendar;
 @Table(name = "transactions")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Transaction extends BaseEntity{
+public class Transaction extends BaseEntity {
 
     @Column(name = "created_at")
     private Calendar createdAt;
