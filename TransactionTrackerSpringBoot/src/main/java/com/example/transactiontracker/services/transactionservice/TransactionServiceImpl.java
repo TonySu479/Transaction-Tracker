@@ -1,7 +1,7 @@
 package com.example.transactiontracker.services.transactionservice;
 
 import com.example.transactiontracker.models.transaction.Transaction;
-import com.example.transactiontracker.models.transaction.TransactionDetails;
+import com.example.transactiontracker.models.transaction.TransactionDetail;
 import com.example.transactiontracker.repositories.TransactionDetailsRepository;
 import com.example.transactiontracker.repositories.TransactionRepository;
 import lombok.RequiredArgsConstructor;
@@ -50,7 +50,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<TransactionDetails> findAllByTransaction_Id(long id) {
+    public List<TransactionDetail> findAllByTransaction_Id(long id) {
         return transactionDetailsRepository.findAllByTransaction_Id(id);
     }
 }

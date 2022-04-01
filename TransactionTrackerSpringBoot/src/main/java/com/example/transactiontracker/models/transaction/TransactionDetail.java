@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "transaction_details")
 @NoArgsConstructor
 @AllArgsConstructor
-public class TransactionDetails extends BaseEntity {
+public class TransactionDetail extends BaseEntity {
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)

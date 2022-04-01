@@ -1,6 +1,6 @@
 package com.example.transactiontracker.services.transactiondetailsservice;
 
-import com.example.transactiontracker.models.transaction.TransactionDetails;
+import com.example.transactiontracker.models.transaction.TransactionDetail;
 import com.example.transactiontracker.payload.dto.TransactionDetailsDTO;
 import com.example.transactiontracker.repositories.ProductRepository;
 import com.example.transactiontracker.repositories.TransactionDetailsRepository;
@@ -17,10 +17,11 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     private final TransactionDetailsRepository transactionDetailsRepository;
     private final TransactionRepository transactionRepository;
     private final ProductRepository productRepository;
+    private final String imageBaseURL = "//localhost:8080/images/";
 
     @Override
-    public TransactionDetails save(TransactionDetails transactionDetails) {
-        return transactionDetailsRepository.save(transactionDetails);
+    public TransactionDetail save(TransactionDetail transactionDetail) {
+        return transactionDetailsRepository.save(transactionDetail);
     }
 
     @Override
@@ -29,18 +30,24 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     }
 
     @Override
-    public Optional<TransactionDetails> findById(long id) {
+    public Optional<TransactionDetail> findById(long id) {
         return transactionDetailsRepository.findById(id);
     }
 
     @Override
-    public TransactionDetails setTransactionDetailsAttributesAndReturnNewEntity(TransactionDetailsDTO transactionDetailsDTO, Optional<TransactionDetails> transactionDetailsData) {
-        TransactionDetails transactionDetailsEntity = transactionDetailsData.get();
-        transactionDetailsEntity.setTransaction(transactionRepository.findById(transactionDetailsDTO.getTransactionId()).orElse(null));
-        transactionDetailsEntity.setProduct(productRepository.findById(transactionDetailsDTO.getProductId()).orElse(null));
-        transactionDetailsEntity.setPrice(transactionDetailsDTO.getPrice());
-        transactionDetailsEntity.setQuantity(transactionDetailsDTO.getQuantity());
-        return transactionDetailsEntity;
+    public TransactionDetail setTransactionDetailsAttributesAndReturnNewEntity(TransactionDetailsDTO transactionDetailsDTO, Optional<TransactionDetail> transactionDetailsData) {
+        TransactionDetail transactionDetailEntity = transactionDetailsData.get();
+        transactionDetailEntity.setTransaction(transactionRepository.findById(transactionDetailsDTO.getTransactionId()).orElse(null));
+        transactionDetailEntity.setProduct(productRepository.findById(transactionDetailsDTO.getProductId()).orElse(null));
+        transactionDetailEntity.setPrice(transactionDetailsDTO.getPrice());
+        transactionDetailEntity.setQuantity(transactionDetailsDTO.getQuantity());
+        return transactionDetailEntity;
+    }
+
+    @Override
+    public TransactionDetail generateImageUrl(TransactionDetail transactionDetail) {
+        transactionDetail.getProduct().setImage(imageBaseURL + transactionDetail.getProduct().getImage());
+        return transactionDetail;
     }
 }
 

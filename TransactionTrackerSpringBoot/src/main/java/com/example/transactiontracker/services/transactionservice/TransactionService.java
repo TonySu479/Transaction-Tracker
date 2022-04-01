@@ -1,7 +1,7 @@
 package com.example.transactiontracker.services.transactionservice;
 
 import com.example.transactiontracker.models.transaction.Transaction;
-import com.example.transactiontracker.models.transaction.TransactionDetails;
+import com.example.transactiontracker.models.transaction.TransactionDetail;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,5 +19,5 @@ public interface TransactionService {
 
     Transaction setTransactionAttributesAndReturnNewEntity(Transaction transaction, Optional<Transaction> transactionData);
 
-    List<TransactionDetails> findAllByTransaction_Id(long id);
+    List<TransactionDetail> findAllByTransaction_Id(long id);
 }

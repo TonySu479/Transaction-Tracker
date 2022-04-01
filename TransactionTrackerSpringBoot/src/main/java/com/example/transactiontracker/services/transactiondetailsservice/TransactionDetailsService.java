@@ -1,16 +1,19 @@
 package com.example.transactiontracker.services.transactiondetailsservice;
 
-import com.example.transactiontracker.models.transaction.TransactionDetails;
+import com.example.transactiontracker.models.transaction.TransactionDetail;
 import com.example.transactiontracker.payload.dto.TransactionDetailsDTO;
 
 import java.util.Optional;
 
 public interface TransactionDetailsService {
-    TransactionDetails save(TransactionDetails transactionDetails);
+    TransactionDetail save(TransactionDetail transactionDetail);
 
     void deleteById(long id);
 
-    Optional<TransactionDetails> findById(long id);
+    Optional<TransactionDetail> findById(long id);
 
-    TransactionDetails setTransactionDetailsAttributesAndReturnNewEntity(TransactionDetailsDTO transactionDetailsDTO, Optional<TransactionDetails> transactionDetailsData);
+    TransactionDetail setTransactionDetailsAttributesAndReturnNewEntity(TransactionDetailsDTO transactionDetailsDTO, Optional<TransactionDetail> transactionDetailsData);
+
+    TransactionDetail generateImageUrl(TransactionDetail transactionDetail);
+
 }

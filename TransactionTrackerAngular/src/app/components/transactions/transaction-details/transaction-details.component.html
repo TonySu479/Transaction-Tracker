@@ -4,9 +4,12 @@
         <div class="field">
             <div class="field col-12 md:col-4">
                 <h5>
-                    <label for="name">Creation date </label>
+                    <label>Creation date </label>
                 </h5>
                 <p-calendar [showTime]="true" inputId="time" formControlName="createdAt"></p-calendar>
+                <p-dropdown [options]="transactionTypes" formControlName="transactionType" placeholder="Select a transaction type" optionDisabled="inactive"></p-dropdown>
+                <small class="ng-dirty ng-invalid" *ngIf="transactionType?.errors?.required && (transactionType.dirty || transactionType.touched)">Transaction is
+                    required.</small>
             </div>
         </div>
         <p-table #dt
@@ -52,7 +55,7 @@
                         {{transactionDetail.product.name}}
                     </td>
                     <td style="width:14%; min-width:10rem;"><span class="p-column-title">Image</span>
-                        <img [src]="'assets/demo/images/product/' + transactionDetail.product.image" [alt]="transactionDetail.product.name" width="100" class="shadow-4" />
+                        <img [src]="transactionDetail.product.image" [alt]="transactionDetail.product.name" width="100" class="shadow-4" />
                     </td>
                     <td style="width:14%; min-width:8rem;">
                         <span class="p-column-title">Price</span>

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Transaction} from "../../../api/transaction";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TransactionService} from "../../../service/transactionservice";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
@@ -8,6 +8,7 @@ import {TransactionDetailsDialogComponent} from "./transaction-details-dialog/tr
 import {ActivatedRoute, Router} from "@angular/router";
 import {TransactionDetailService} from "../../../service/transaction-detail.service";
 import {TransactionDetail} from "../../../api/transaction-detail";
+import {TransactionType} from "../../../api/transaction-type.enum";
 
 @Component({
     selector: 'app-transaction-details',
@@ -20,6 +21,8 @@ export class TransactionDetailsComponent implements OnInit {
     transactionDetails: TransactionDetail[] = [];
 
     selectedTransactionDetails: TransactionDetail[];
+
+    transactionTypes = [TransactionType.SALE, TransactionType.RECEIVE];
 
     transactionForm: FormGroup;
 
@@ -37,10 +40,15 @@ export class TransactionDetailsComponent implements OnInit {
                 private transactionDetailsService: TransactionDetailService) {
     }
 
+    get transactionType() {
+        return this.transactionForm.controls.transactionType;
+    }
+
     ngOnInit(): void {
         this.transaction = this.route.snapshot.data.transaction;
         this.transactionForm = this.formBuilder.group({
-            createdAt: new FormControl(this.transaction ? this.transaction.createdAt : new Date())
+            createdAt: new FormControl(this.transaction ? this.transaction.createdAt : new Date()),
+            transactionType: new FormControl("", [Validators.required])
         });
         if (!!this.transaction) {
             this.transactionDetailsService.getTransactionDetailsByTransactionId(this.transaction.id).subscribe(

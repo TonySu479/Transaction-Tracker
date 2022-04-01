@@ -1,6 +1,6 @@
 package com.example.transactiontracker.controllers;
 
-import com.example.transactiontracker.models.transaction.TransactionDetails;
+import com.example.transactiontracker.models.transaction.TransactionDetail;
 import com.example.transactiontracker.payload.dto.TransactionDetailsDTO;
 import com.example.transactiontracker.repositories.TransactionDetailsRepository;
 import com.example.transactiontracker.services.productservice.ProductService;
@@ -26,14 +26,16 @@ public class TransactionDetailsController {
     private final ProductService productService;
     private final TransactionDetailsRepository transactionDetailsRepository;
 
+
     @PostMapping("/transaction-details")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<TransactionDetails> createTransactionDetail(@RequestBody TransactionDetailsDTO transactionDetails) {
+    public ResponseEntity<TransactionDetail> createTransactionDetail(@RequestBody TransactionDetailsDTO transactionDetails) {
         try {
-            TransactionDetails transactionDetailsEntity = transactionDetailsService
-                    .save(new TransactionDetails(transactionService.findById(transactionDetails.getTransactionId()).orElse(null), productService.findById(transactionDetails.getProductId()).orElse(null),
+            TransactionDetail transactionDetailEntity = transactionDetailsService
+                    .save(new TransactionDetail(transactionService.findById(transactionDetails.getTransactionId()).orElse(null), productService.findById(transactionDetails.getProductId()).orElse(null),
                             transactionDetails.getQuantity(), transactionDetails.getPrice()));
-            return new ResponseEntity<>(transactionDetailsEntity, HttpStatus.CREATED);
+            transactionDetailsService.generateImageUrl(transactionDetailEntity);
+            return new ResponseEntity<>(transactionDetailEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -41,11 +43,13 @@ public class TransactionDetailsController {
 
     @PutMapping("/transaction-details/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<TransactionDetails> updateTransactionDetail(@PathVariable("id") long id, @RequestBody TransactionDetailsDTO transactionDetailsDTO) {
-        Optional<TransactionDetails> TransactionDetailsData = transactionDetailsService.findById(id);
+    public ResponseEntity<TransactionDetail> updateTransactionDetail(@PathVariable("id") long id, @RequestBody TransactionDetailsDTO transactionDetailsDTO) {
+        Optional<TransactionDetail> TransactionDetailsData = transactionDetailsService.findById(id);
         if (TransactionDetailsData.isPresent()) {
-            TransactionDetails transactionDetailsEntity = transactionDetailsService.setTransactionDetailsAttributesAndReturnNewEntity(transactionDetailsDTO, TransactionDetailsData);
-            return new ResponseEntity<>(transactionDetailsService.save(transactionDetailsEntity), HttpStatus.OK);
+            TransactionDetail transactionDetailEntity = transactionDetailsService.setTransactionDetailsAttributesAndReturnNewEntity(transactionDetailsDTO, TransactionDetailsData);
+            transactionDetailsService.save(transactionDetailEntity);
+            transactionDetailsService.generateImageUrl(transactionDetailEntity);
+            return new ResponseEntity<>(transactionDetailEntity, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -63,11 +67,14 @@ public class TransactionDetailsController {
     }
 
     @GetMapping("/transaction-details")
-    public ResponseEntity<List<TransactionDetails>> getTransactionDetailsByTransactionId(@RequestParam long id) {
+    public ResponseEntity<List<TransactionDetail>> getTransactionDetailsByTransactionId(@RequestParam long id) {
         try {
-            List<TransactionDetails> transactionDetails = new ArrayList<>(transactionDetailsRepository.findAllByTransaction_Id(id));
+            List<TransactionDetail> transactionDetails = new ArrayList<>(transactionDetailsRepository.findAllByTransaction_Id(id));
             if (transactionDetails.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            for (TransactionDetail transactionDetail : transactionDetails) {
+                transactionDetailsService.generateImageUrl(transactionDetail);
             }
             return new ResponseEntity<>(transactionDetails, HttpStatus.OK);
         } catch (Exception e) {

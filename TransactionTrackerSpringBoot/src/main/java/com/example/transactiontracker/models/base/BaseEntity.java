@@ -3,8 +3,6 @@ package com.example.transactiontracker.models.base;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @MappedSuperclass
 @Data
