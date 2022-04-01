@@ -32,6 +32,7 @@ public class ProductController {
             String uniqueImgName = productService.storeImage(productDTO.getImage());
             Product productEntity = productService
                     .save(new Product(productDTO.getCode(), productDTO.getName(), productDTO.getCategory(), productDTO.getPrice(), productDTO.getUnit(), uniqueImgName));
+            productService.generateImageUrl(productEntity);
             return new ResponseEntity<>(productEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -44,7 +45,9 @@ public class ProductController {
         Optional<Product> productData = productService.findById(id);
         if (productData.isPresent()) {
             Product productEntity = productService.setProductAttributesAndReturnNewEntity(productDTO, productData);
-            return new ResponseEntity<>(productService.save(productEntity), HttpStatus.OK);
+            productService.save(productEntity);
+            productService.generateImageUrl(productEntity);
+            return new ResponseEntity<>(productEntity, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -74,7 +77,7 @@ public class ProductController {
                 return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
             }
             for (Product product : products) {
-                product.setImage(imageBaseURL + product.getImage());
+                productService.generateImageUrl(product);
             }
             return new ResponseEntity<>(products, HttpStatus.OK);
         } catch (Exception e) {

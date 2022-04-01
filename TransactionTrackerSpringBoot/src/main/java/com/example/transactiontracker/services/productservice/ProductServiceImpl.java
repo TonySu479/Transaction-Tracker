@@ -25,6 +25,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductCategoryService productCategoryService;
     private final String imagePath = "./TransactionTrackerSpringBoot/assets/images/";
+    private final String imageBaseURL = "//localhost:8080/images/";
 
 
     Date date = new Date();
@@ -101,5 +102,11 @@ public class ProductServiceImpl implements ProductService {
             log.error(e.toString());
         }
         return uniqueImgName;
+    }
+
+    @Override
+    public Product generateImageUrl(Product product) {
+        product.setImage(imageBaseURL + product.getImage());
+        return product;
     }
 }

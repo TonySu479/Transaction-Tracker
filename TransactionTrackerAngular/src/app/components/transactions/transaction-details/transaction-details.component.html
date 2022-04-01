@@ -1,15 +1,26 @@
 <div class="card">
     <h5>Transaction</h5>
     <form [formGroup]="transactionForm" (submit)="submit()">
-        <div class="field">
-            <div class="field col-12 md:col-4">
+        <div class="grid" style="min-height:120px;">
+            <div class="field col-12 lg:col-6">
                 <h5>
                     <label>Creation date </label>
                 </h5>
-                <p-calendar [showTime]="true" inputId="time" formControlName="createdAt"></p-calendar>
-                <p-dropdown [options]="transactionTypes" formControlName="transactionType" placeholder="Select a transaction type" optionDisabled="inactive"></p-dropdown>
-                <small class="ng-dirty ng-invalid" *ngIf="transactionType?.errors?.required && (transactionType.dirty || transactionType.touched)">Transaction is
-                    required.</small>
+                <p-calendar class="mr-4" [showTime]="true" inputId="time" formControlName="createdAt"></p-calendar>
+            </div>
+
+            <div class="field col-12 lg:col-6">
+                <h5>
+                    <label>Transaction type </label>
+                </h5>
+                <p-dropdown class="transaction-type" [options]="transactionTypes" formControlName="transactionType"
+                            placeholder="Select a transaction type" optionDisabled="inactive"></p-dropdown>
+                <div>
+                    <small class="ng-dirty ng-invalid"
+                           *ngIf="transactionType?.errors?.required && (transactionType.dirty || transactionType.touched)">Transaction
+                        is
+                        required.</small>
+                </div>
             </div>
         </div>
         <p-table #dt
@@ -18,7 +29,8 @@
                  [rows]="10"
                  [paginator]="true"
                  [rowsPerPageOptions]="[10,20,30]"
-                 [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                 [showCurrentPageReport]="true"
+                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                  [(selection)]="selectedTransactionDetails" selectionMode="multiple"
                  [rowHover]="true" dataKey="id">
             <ng-template pTemplate="caption">
@@ -32,13 +44,25 @@
                     <th style="width: 3rem">
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
-                    <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
-                    <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th pSortableColumn="code">Code
+                        <p-sortIcon field="code"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="name">Name
+                        <p-sortIcon field="name"></p-sortIcon>
+                    </th>
                     <th>Image</th>
-                    <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
-                    <th pSortableColumn="unit">Unit <p-sortIcon field="unit"></p-sortIcon></th>
-                    <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
-                    <th pSortableColumn="quantity">Quantity <p-sortIcon field="quantity"></p-sortIcon></th>
+                    <th pSortableColumn="price">Price
+                        <p-sortIcon field="price"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="unit">Unit
+                        <p-sortIcon field="unit"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="category">Category
+                        <p-sortIcon field="category"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="quantity">Quantity
+                        <p-sortIcon field="quantity"></p-sortIcon>
+                    </th>
                     <th></th>
                 </tr>
             </ng-template>
@@ -55,7 +79,8 @@
                         {{transactionDetail.product.name}}
                     </td>
                     <td style="width:14%; min-width:10rem;"><span class="p-column-title">Image</span>
-                        <img [src]="transactionDetail.product.image" [alt]="transactionDetail.product.name" width="100" class="shadow-4" />
+                        <img [src]="transactionDetail.product.image" [alt]="transactionDetail.product.name" width="100"
+                             class="shadow-4"/>
                     </td>
                     <td style="width:14%; min-width:8rem;">
                         <span class="p-column-title">Price</span>
@@ -75,8 +100,10 @@
                     </td>
                     <td>
                         <div class="flex">
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editTransactionDetail(transactionDetail)"></button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteTransactionDetail(transactionDetail)"></button>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                                    (click)="editTransactionDetail(transactionDetail)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                    (click)="deleteTransactionDetail(transactionDetail)"></button>
                         </div>
                     </td>
                 </tr>

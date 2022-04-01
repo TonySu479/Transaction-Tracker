@@ -13,8 +13,6 @@ import {ProductDialogComponent} from "./product-dialog/product-dialog.component"
 })
 export class ProductsComponent implements OnInit {
 
-    baseUrl = "//localhost:8080/images/";
-
     deleteProductDialog: boolean = false;
 
     deleteProductsDialog: boolean = false;
@@ -55,7 +53,6 @@ export class ProductsComponent implements OnInit {
             }
             this.productService.create(value)
                 .subscribe(data => {
-                    data.image = this.baseUrl + data.image;
                     this.products.push(data);
                     this.messageService.add({severity:"success", summary:"product created", detail:`${data.name} created`});
                 })
@@ -96,7 +93,6 @@ export class ProductsComponent implements OnInit {
             this.productService.update({...value, id: product.id})
                 .subscribe((data: Product) => {
                     let index = this.products.findIndex(product => product.id === data.id);
-                    data.image = this.baseUrl + data.image;
                     this.products[index] = data;
                     this.messageService.add({severity:"success", summary:"product edited", detail:`${data.name} edited`});
                 })

@@ -10,3 +10,14 @@ input {
 .submit-button {
     text-align: center;
 }
+
+::ng-deep {
+    .p-inputwrapper,
+    .p-autocomplete {
+        width: 100%;
+
+        input {
+            width: 100%
+        }
+    }
+}

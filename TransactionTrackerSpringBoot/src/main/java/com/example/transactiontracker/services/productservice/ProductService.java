@@ -29,4 +29,6 @@ public interface ProductService {
     ProductCategory getCategoryFromId(String id);
 
     String storeImage(String image);
+
+    Product generateImageUrl(Product product);
 }
