@@ -1,8 +1,8 @@
 package com.example.transactiontracker.services.authservice;
 
-import com.example.transactiontracker.models.Role;
-import com.example.transactiontracker.models.RoleType;
-import com.example.transactiontracker.models.User;
+import com.example.transactiontracker.models.user.role.Role;
+import com.example.transactiontracker.models.user.role.RoleType;
+import com.example.transactiontracker.models.user.User;
 import com.example.transactiontracker.payload.dto.LoginRequest;
 import com.example.transactiontracker.payload.dto.SignupRequest;
 import com.example.transactiontracker.payload.response.JwtResponse;

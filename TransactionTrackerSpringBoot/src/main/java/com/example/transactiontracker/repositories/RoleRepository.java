@@ -1,7 +1,7 @@
 package com.example.transactiontracker.repositories;
 
-import com.example.transactiontracker.models.RoleType;
-import com.example.transactiontracker.models.Role;
+import com.example.transactiontracker.models.user.role.RoleType;
+import com.example.transactiontracker.models.user.role.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

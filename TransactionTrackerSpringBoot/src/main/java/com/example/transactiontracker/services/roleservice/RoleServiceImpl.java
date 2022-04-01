@@ -1,7 +1,7 @@
 package com.example.transactiontracker.services.roleservice;
 
-import com.example.transactiontracker.models.Role;
-import com.example.transactiontracker.models.RoleType;
+import com.example.transactiontracker.models.user.role.Role;
+import com.example.transactiontracker.models.user.role.RoleType;
 import com.example.transactiontracker.repositories.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

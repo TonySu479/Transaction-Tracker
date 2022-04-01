@@ -1,6 +1,6 @@
 package com.example.transactiontracker.controllers;
 
-import com.example.transactiontracker.models.Transaction;
+import com.example.transactiontracker.models.transaction.Transaction;
 import com.example.transactiontracker.services.transactionservice.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,7 @@ public class TransactionController {
     public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
         try {
             Transaction transactionEntity = transactionService
-                    .save(new Transaction(transaction.getCreatedAt()));
+                    .save(new Transaction(transaction.getCreatedAt(), transaction.getTransactionType()));
             return new ResponseEntity<>(transactionEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

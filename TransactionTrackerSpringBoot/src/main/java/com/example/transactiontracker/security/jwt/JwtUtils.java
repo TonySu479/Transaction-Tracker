@@ -1,6 +1,6 @@
 package com.example.transactiontracker.security.jwt;
 
-import com.example.transactiontracker.models.User;
+import com.example.transactiontracker.models.user.User;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,6 @@
 package com.example.transactiontracker.services.productcategoryservice;
 
-import com.example.transactiontracker.models.ProductCategory;
+import com.example.transactiontracker.models.product.ProductCategory;
 import com.example.transactiontracker.repositories.ProductCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

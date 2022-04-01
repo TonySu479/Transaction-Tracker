@@ -1,5 +1,7 @@
-package com.example.transactiontracker.models;
+package com.example.transactiontracker.models.user;
 
+import com.example.transactiontracker.models.base.BaseEntity;
+import com.example.transactiontracker.models.user.role.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -53,12 +55,12 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     public User(Long id, String username, String email, String password,
-                Collection<? extends GrantedAuthority> authorities) {
+                List<GrantedAuthority> authorities) {
         setId(id);
         this.username = username;
         this.email = email;
         this.password = password;
-        this.roles = new HashSet<>((Collection<? extends Role>) authorities);
+        this.roles = new HashSet(authorities);
     }
 
     public static User build(User user) {
@@ -79,7 +81,6 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        System.out.println("roles: " + roles);
         return roles;
     }
 

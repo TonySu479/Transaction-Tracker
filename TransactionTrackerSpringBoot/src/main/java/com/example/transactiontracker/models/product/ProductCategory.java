@@ -1,12 +1,12 @@
-package com.example.transactiontracker.models;
+package com.example.transactiontracker.models.product;
 
+import com.example.transactiontracker.models.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Data
 @Entity
@@ -17,5 +17,4 @@ import java.util.Set;
 public class ProductCategory extends BaseEntity {
     @Column(length = 20)
     private String name;
-
 }

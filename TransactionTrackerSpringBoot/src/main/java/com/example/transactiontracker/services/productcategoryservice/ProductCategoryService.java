@@ -1,6 +1,6 @@
 package com.example.transactiontracker.services.productcategoryservice;
 
-import com.example.transactiontracker.models.ProductCategory;
+import com.example.transactiontracker.models.product.ProductCategory;
 
 import java.util.List;
 import java.util.Optional;

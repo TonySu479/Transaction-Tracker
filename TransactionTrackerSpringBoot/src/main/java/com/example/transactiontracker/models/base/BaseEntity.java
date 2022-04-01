@@ -1,4 +1,4 @@
-package com.example.transactiontracker.models;
+package com.example.transactiontracker.models.base;
 
 import lombok.Data;
 

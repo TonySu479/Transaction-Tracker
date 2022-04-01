@@ -1,6 +1,6 @@
 package com.example.transactiontracker.controllers;
 
-import com.example.transactiontracker.models.Product;
+import com.example.transactiontracker.models.product.Product;
 import com.example.transactiontracker.payload.dto.ProductDTO;
 import com.example.transactiontracker.services.productservice.ProductService;
 import lombok.RequiredArgsConstructor;

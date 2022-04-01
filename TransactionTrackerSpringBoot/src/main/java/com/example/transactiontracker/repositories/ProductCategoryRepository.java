@@ -1,6 +1,6 @@
 package com.example.transactiontracker.repositories;
 
-import com.example.transactiontracker.models.ProductCategory;
+import com.example.transactiontracker.models.product.ProductCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

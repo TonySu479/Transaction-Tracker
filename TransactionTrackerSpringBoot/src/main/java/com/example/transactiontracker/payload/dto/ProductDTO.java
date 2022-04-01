@@ -1,6 +1,6 @@
 package com.example.transactiontracker.payload.dto;
 
-import com.example.transactiontracker.models.ProductCategory;
+import com.example.transactiontracker.models.product.ProductCategory;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;

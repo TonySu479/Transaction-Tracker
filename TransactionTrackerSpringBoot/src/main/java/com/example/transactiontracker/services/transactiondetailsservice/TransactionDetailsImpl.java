@@ -1,6 +1,6 @@
 package com.example.transactiontracker.services.transactiondetailsservice;
 
-import com.example.transactiontracker.models.TransactionDetails;
+import com.example.transactiontracker.models.transaction.TransactionDetails;
 import com.example.transactiontracker.payload.dto.TransactionDetailsDTO;
 import com.example.transactiontracker.repositories.ProductRepository;
 import com.example.transactiontracker.repositories.TransactionDetailsRepository;
@@ -8,7 +8,6 @@ import com.example.transactiontracker.repositories.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

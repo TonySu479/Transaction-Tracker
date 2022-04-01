@@ -1,6 +1,6 @@
 package com.example.transactiontracker.repositories;
 
-import com.example.transactiontracker.models.TransactionDetails;
+import com.example.transactiontracker.models.transaction.TransactionDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

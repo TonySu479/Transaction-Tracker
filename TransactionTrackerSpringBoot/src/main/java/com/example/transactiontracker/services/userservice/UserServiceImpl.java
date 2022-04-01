@@ -1,8 +1,8 @@
 package com.example.transactiontracker.services.userservice;
 
-import com.example.transactiontracker.models.Role;
-import com.example.transactiontracker.models.RoleType;
-import com.example.transactiontracker.models.User;
+import com.example.transactiontracker.models.user.role.Role;
+import com.example.transactiontracker.models.user.role.RoleType;
+import com.example.transactiontracker.models.user.User;
 import com.example.transactiontracker.repositories.UserRepository;
 import com.example.transactiontracker.services.roleservice.RoleService;
 import lombok.RequiredArgsConstructor;

@@ -1,5 +1,7 @@
-package com.example.transactiontracker.models;
+package com.example.transactiontracker.models.transaction;
 
+import com.example.transactiontracker.models.base.BaseEntity;
+import com.example.transactiontracker.models.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

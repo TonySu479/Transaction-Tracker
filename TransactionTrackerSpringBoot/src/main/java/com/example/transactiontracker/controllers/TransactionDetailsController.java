@@ -1,6 +1,6 @@
 package com.example.transactiontracker.controllers;
 
-import com.example.transactiontracker.models.TransactionDetails;
+import com.example.transactiontracker.models.transaction.TransactionDetails;
 import com.example.transactiontracker.payload.dto.TransactionDetailsDTO;
 import com.example.transactiontracker.repositories.TransactionDetailsRepository;
 import com.example.transactiontracker.services.productservice.ProductService;

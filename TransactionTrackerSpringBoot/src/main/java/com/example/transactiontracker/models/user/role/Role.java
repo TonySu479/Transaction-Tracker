@@ -1,5 +1,6 @@
-package com.example.transactiontracker.models;
+package com.example.transactiontracker.models.user.role;
 
+import com.example.transactiontracker.models.base.BaseEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

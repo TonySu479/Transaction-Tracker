@@ -1,7 +1,7 @@
 package com.example.transactiontracker.services.transactionservice;
 
-import com.example.transactiontracker.models.Transaction;
-import com.example.transactiontracker.models.TransactionDetails;
+import com.example.transactiontracker.models.transaction.Transaction;
+import com.example.transactiontracker.models.transaction.TransactionDetails;
 import com.example.transactiontracker.repositories.TransactionDetailsRepository;
 import com.example.transactiontracker.repositories.TransactionRepository;
 import lombok.RequiredArgsConstructor;

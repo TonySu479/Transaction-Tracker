@@ -1,5 +1,6 @@
-package com.example.transactiontracker.models;
+package com.example.transactiontracker.models.product;
 
+import com.example.transactiontracker.models.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;

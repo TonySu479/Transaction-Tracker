@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Transaction} from "../../../api/transaction";
-import {FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {TransactionService} from "../../../service/transactionservice";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
@@ -42,7 +42,7 @@ export class TransactionDetailsComponent implements OnInit {
         this.transactionForm = this.formBuilder.group({
             createdAt: new FormControl(this.transaction ? this.transaction.createdAt : new Date())
         });
-        if(!!this.transaction){
+        if (!!this.transaction) {
             this.transactionDetailsService.getTransactionDetailsByTransactionId(this.transaction.id).subscribe(
                 data => this.transactionDetails = data
             );
@@ -62,10 +62,10 @@ export class TransactionDetailsComponent implements OnInit {
         }
     }
 
-    addTransactionDetail(){
+    addTransactionDetail() {
         const ref = this.openAddNewProductDialog();
         ref.onClose.subscribe(value => {
-            if(!value){
+            if (!value) {
                 return;
             }
 
@@ -73,11 +73,11 @@ export class TransactionDetailsComponent implements OnInit {
         });
     }
 
-    addTransactionDetailWithNewTransaction(){
+    addTransactionDetailWithNewTransaction() {
         const ref = this.openAddNewProductDialog();
 
         ref.onClose.subscribe(value => {
-            if(!value){
+            if (!value) {
                 return;
             }
             this.transactionService.create(this.transactionForm.value).subscribe(data => {
@@ -97,13 +97,12 @@ export class TransactionDetailsComponent implements OnInit {
             productId: value.product.id,
             price: value.price,
             quantity: value.quantity
-        }).subscribe(data =>
-        {
+        }).subscribe(data => {
             this.transactionDetails.push(data);
         });
     }
 
-    openAddNewProductDialog(){
+    openAddNewProductDialog() {
         return this.dialogService.open(TransactionDetailsDialogComponent, {
             header: 'Add a new product',
             data: {
@@ -128,8 +127,13 @@ export class TransactionDetailsComponent implements OnInit {
                 return;
             }
 
-            this.transactionDetailsService.update({...value, id: transactionDetail.id, productId: value.product.id, transactionId: this.transaction.id })
-                .subscribe((data:TransactionDetail) => {
+            this.transactionDetailsService.update({
+                ...value,
+                id: transactionDetail.id,
+                productId: value.product.id,
+                transactionId: this.transaction.id
+            })
+                .subscribe((data: TransactionDetail) => {
                     let index = this.transactionDetails.findIndex(transactionDetail => transactionDetail.id === data.id);
                     this.transactionDetails[index] = data;
                     this.messageService.add({
@@ -149,7 +153,11 @@ export class TransactionDetailsComponent implements OnInit {
             accept: () => {
                 this.transactionDetailsService.delete(transactionDetail).subscribe(() => {
                     this.transactionDetails = this.transactionDetails.filter(p => p.id != transactionDetail.id);
-                    this.messageService.add({severity:"success", summary:"product deleted", detail:`${transactionDetail.product.name} has been deleted`});
+                    this.messageService.add({
+                        severity: "success",
+                        summary: "product deleted",
+                        detail: `${transactionDetail.product.name} has been deleted`
+                    });
                 })
             }
         });

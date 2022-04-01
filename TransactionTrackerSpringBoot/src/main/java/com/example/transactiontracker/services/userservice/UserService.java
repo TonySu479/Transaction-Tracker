@@ -1,8 +1,7 @@
 package com.example.transactiontracker.services.userservice;
 
-import com.example.transactiontracker.models.RoleType;
-import com.example.transactiontracker.models.User;
-import org.springframework.stereotype.Service;
+import com.example.transactiontracker.models.user.role.RoleType;
+import com.example.transactiontracker.models.user.User;
 
 import java.util.Optional;
 
