@@ -5,6 +5,7 @@ import com.example.transactiontracker.models.product.ProductCategory;
 import com.example.transactiontracker.payload.dto.ProductDTO;
 import com.example.transactiontracker.repositories.ProductRepository;
 import com.example.transactiontracker.services.productcategoryservice.ProductCategoryService;
+import liquibase.util.file.FilenameUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -63,14 +64,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product setProductAttributesAndReturnNewEntity(ProductDTO productDTO, Optional<Product> productData) {
-        String uniqueImgName = storeImage(productDTO.getImage());
         Product productEntity = productData.get();
+        if (productDTO.getImage().startsWith("//")) {
+            String url = productDTO.getImage();
+            productEntity.setImage(FilenameUtils.getName(url.substring(url.lastIndexOf('/') + 1)));
+        } else {
+            productEntity.setImage(storeImage(productDTO.getImage()));
+        }
+        
         productEntity.setCode(productDTO.getCode());
         productEntity.setName(productDTO.getName());
         productEntity.setCategory(productDTO.getCategory());
         productEntity.setPrice(productDTO.getPrice());
         productEntity.setUnit(productDTO.getUnit());
-        productEntity.setImage(uniqueImgName);
+
         return productEntity;
     }
 

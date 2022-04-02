@@ -69,7 +69,7 @@ export class ProductDialogComponent implements OnInit {
                 [Validators.min(0), Validators.required]),
             unit: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.unit,
                 [Validators.maxLength(10), Validators.required]),
-            image: new FormControl()
+            image: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.image)
         });
     }
 

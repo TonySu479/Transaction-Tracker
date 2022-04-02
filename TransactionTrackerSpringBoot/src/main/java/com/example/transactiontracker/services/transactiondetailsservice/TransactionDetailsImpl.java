@@ -1,7 +1,11 @@
 package com.example.transactiontracker.services.transactiondetailsservice;
 
+import com.example.transactiontracker.models.product.Product;
+import com.example.transactiontracker.models.transaction.Transaction;
 import com.example.transactiontracker.models.transaction.TransactionDetail;
+import com.example.transactiontracker.models.transaction.TransactionType;
 import com.example.transactiontracker.payload.dto.TransactionDetailsDTO;
+import com.example.transactiontracker.payload.response.TransactionDetailResponse;
 import com.example.transactiontracker.repositories.ProductRepository;
 import com.example.transactiontracker.repositories.TransactionDetailsRepository;
 import com.example.transactiontracker.repositories.TransactionRepository;
@@ -35,21 +39,43 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     }
 
     @Override
-    public TransactionDetail setTransactionDetailsAttributesAndReturnNewEntity(TransactionDetailsDTO transactionDetailsDTO, Optional<TransactionDetail> transactionDetailsData) {
-        TransactionDetail transactionDetailEntity = transactionDetailsData.get();
-        transactionDetailEntity.setTransaction(transactionRepository.findById(transactionDetailsDTO.getTransactionId()).orElse(null));
-        transactionDetailEntity.setProduct(productRepository.findById(transactionDetailsDTO.getProductId()).orElse(null));
-        transactionDetailEntity.setPrice(transactionDetailsDTO.getPrice());
-        transactionDetailEntity.setQuantity(transactionDetailsDTO.getQuantity());
-        return transactionDetailEntity;
+    public TransactionDetail setTransactionDetailsAttributesAndReturnNewEntity(TransactionDetailsDTO transactionDetailsDTO, TransactionDetail transactionDetailsData) {
+        transactionDetailsData.setTransaction(transactionRepository.findById(transactionDetailsDTO.getTransactionId()).orElse(null));
+        transactionDetailsData.setProduct(productRepository.findById(transactionDetailsDTO.getProductId()).orElse(null));
+        transactionDetailsData.setPrice(transactionDetailsDTO.getPrice());
+        transactionDetailsData.setQuantity(transactionDetailsDTO.getQuantity());
+        return transactionDetailsData;
     }
 
     @Override
-    public TransactionDetail generateImageUrl(TransactionDetail transactionDetail) {
-        if(!transactionDetail.getProduct().getImage().startsWith(imageBaseURL)){
-            transactionDetail.getProduct().setImage(imageBaseURL + transactionDetail.getProduct().getImage());
+    public TransactionDetailResponse generateImageUrl(TransactionDetailResponse transactionDetailResponse) {
+        transactionDetailResponse.getProduct().setImage(imageBaseURL + transactionDetailResponse.getProduct().getImage());
+        return transactionDetailResponse;
+    }
+
+    @Override
+    public void updateProductInventory(TransactionDetailsDTO transactionDetailsDTO) {
+        Transaction transaction = transactionRepository.getById(transactionDetailsDTO.getTransactionId());
+        Product product = productRepository.getById(transactionDetailsDTO.getProductId());
+
+        if (transaction.getTransactionType() == TransactionType.SALE) {
+            product.setQuantity(product.getQuantity() - transactionDetailsDTO.getQuantity());
+        } else if (transaction.getTransactionType() == TransactionType.RECEIVE) {
+            product.setQuantity(product.getQuantity() + transactionDetailsDTO.getQuantity());
         }
-        return transactionDetail;
+        productRepository.save(product);
+    }
+
+    @Override
+    public TransactionDetailResponse update(TransactionDetail transactionDetailsData, TransactionDetailsDTO transactionDetailsDTO) {
+        TransactionDetail transactionDetailEntity = setTransactionDetailsAttributesAndReturnNewEntity(transactionDetailsDTO, transactionDetailsData);
+        save(transactionDetailEntity);
+        TransactionDetailResponse response = new TransactionDetailResponse(transactionDetailEntity.getTransaction(),
+                transactionDetailEntity.getProduct(), transactionDetailEntity.getQuantity(),
+                transactionDetailEntity.getPrice());
+        updateProductInventory(transactionDetailsDTO);
+        generateImageUrl(response);
+        return response;
     }
 }
 
