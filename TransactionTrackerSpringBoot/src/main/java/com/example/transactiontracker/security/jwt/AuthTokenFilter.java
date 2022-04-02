@@ -1,6 +1,6 @@
 package com.example.transactiontracker.security.jwt;
 
-import com.example.transactiontracker.services.UserDetailService;
+import com.example.transactiontracker.services.userdetailsservice.UserDetailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

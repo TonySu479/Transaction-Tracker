@@ -1,4 +1,4 @@
-package com.example.transactiontracker.services;
+package com.example.transactiontracker.services.userdetailsservice;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

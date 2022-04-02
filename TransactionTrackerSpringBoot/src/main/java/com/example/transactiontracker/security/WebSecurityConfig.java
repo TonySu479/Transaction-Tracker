@@ -2,7 +2,7 @@ package com.example.transactiontracker.security;
 
 import com.example.transactiontracker.security.jwt.AuthEntryPointJwt;
 import com.example.transactiontracker.security.jwt.AuthTokenFilter;
-import com.example.transactiontracker.services.UserDetailsServiceImpl;
+import com.example.transactiontracker.services.userdetailsservice.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
