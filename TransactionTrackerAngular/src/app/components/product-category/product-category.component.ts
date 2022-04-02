@@ -52,7 +52,6 @@ export class ProductCategoryComponent implements OnInit {
             }
             this.categoryService.create(value)
                 .subscribe(data => {
-                    console.log(this.categories);
                     this.categories.push(data);
                     this.messageService.add({
                         severity: "success",

@@ -29,7 +29,6 @@ export class TransactionDialogComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.config.data.type);
         this.transactionForm = this.formBuilder.group({
             name: new FormControl(this.config.data.type === "new" ? "" : this.config.data.transaction.name,
                 [Validators.maxLength(20), Validators.required]),

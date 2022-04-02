@@ -60,7 +60,7 @@ export class TransactionDetailsComponent implements OnInit {
     }
 
     addNewTransactionDetail() {
-        if (!this.transactionForm.valid) {
+        if (!this.transaction && !this.transactionForm.valid) {
             this.transactionForm.markAllAsTouched();
             return;
         }
@@ -78,7 +78,6 @@ export class TransactionDetailsComponent implements OnInit {
             if (!value) {
                 return;
             }
-
             this.createTransactionDetail(value);
         });
     }
