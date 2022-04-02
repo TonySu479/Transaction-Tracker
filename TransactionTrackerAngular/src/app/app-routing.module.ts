@@ -13,6 +13,7 @@ import {ProductCategoryComponent} from "./components/product-category/product-ca
 import {TransactionsComponent} from "./components/transactions/transactions.component";
 import {TransactionDetailsComponent} from "./components/transactions/transaction-details/transaction-details.component";
 import {TransactionResolver} from "./components/transactions/transaction.resolver";
+import {InventoryComponent} from "./components/inventory/inventory.component";
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import {TransactionResolver} from "./components/transactions/transaction.resolve
                     {path: 'product-categories', component: ProductCategoryComponent},
                     {path: 'transactions', component: TransactionsComponent},
                     {path: 'transaction-details', component: TransactionDetailsComponent},
+                    {path: 'inventory', component: InventoryComponent},
                     {path: 'transaction-details/:id', component: TransactionDetailsComponent, resolve: {transaction: TransactionResolver }}
                 ],
             },
