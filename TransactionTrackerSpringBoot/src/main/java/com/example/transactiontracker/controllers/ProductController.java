@@ -31,7 +31,7 @@ public class ProductController {
         try {
             String uniqueImgName = productService.storeImage(productDTO.getImage());
             Product productEntity = productService
-                    .save(new Product(productDTO.getCode(), productDTO.getName(), productDTO.getCategory(), productDTO.getPrice(), productDTO.getUnit(), uniqueImgName));
+                    .save(new Product(productDTO.getCode(), productDTO.getName(), productDTO.getCategory(), productDTO.getPrice(), productDTO.getUnit(), uniqueImgName, productDTO.getQuantity()));
             productService.generateImageUrl(productEntity);
             return new ResponseEntity<>(productEntity, HttpStatus.CREATED);
         } catch (Exception e) {

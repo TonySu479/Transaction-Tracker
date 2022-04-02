@@ -124,7 +124,6 @@ import { TransactionDetailsComponent } from './components/transactions/transacti
 import { TransactionDetailsDialogComponent } from './components/transactions/transaction-details/transaction-details-dialog/transaction-details-dialog.component';
 import {TransactionDetailService} from "./service/transaction-detail.service";
 import {TransactionResolver} from "./components/transactions/transaction.resolver";
-import { InventoryComponent } from './components/inventory/inventory.component';
 
 @NgModule({
     imports: [
@@ -239,7 +238,6 @@ import { InventoryComponent } from './components/inventory/inventory.component';
         TransactionDialogComponent,
         TransactionDetailsComponent,
         TransactionDetailsDialogComponent,
-        InventoryComponent,
     ],
     providers: [
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},

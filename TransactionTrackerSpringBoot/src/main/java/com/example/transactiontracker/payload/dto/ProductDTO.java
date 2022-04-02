@@ -24,4 +24,7 @@ public class ProductDTO {
 
     @NotBlank
     private String image;
+
+    @NotBlank
+    private int quantity;
 }

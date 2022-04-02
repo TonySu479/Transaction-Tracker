@@ -76,14 +76,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void creatInitialProducts() {
-        createProduct("1234", "Water", getCategoryFromId("1"), 250, "bottle", "water.jpg");
-        createProduct("2345", "Coke", getCategoryFromId("1"), 300, "bottle", "coke.jpg");
-        createProduct("9999", "Nachos", getCategoryFromId("2"), 500, "box", "nachos.jpg");
+        createProduct("1234", "Water", getCategoryFromId("1"), 250, "bottle", "water.jpg", 10);
+        createProduct("2345", "Coke", getCategoryFromId("1"), 300, "bottle", "coke.jpg", 20);
+        createProduct("9999", "Nachos", getCategoryFromId("2"), 500, "box", "nachos.jpg", 30);
     }
 
     @Override
-    public void createProduct(String code, String name, ProductCategory category, int price, String unit, String image) {
-        Product product = new Product(code, name, category, price, unit, image);
+    public void createProduct(String code, String name, ProductCategory category, int price, String unit, String image, int quantity) {
+        Product product = new Product(code, name, category, price, unit, image, quantity);
         save(product);
     }
 

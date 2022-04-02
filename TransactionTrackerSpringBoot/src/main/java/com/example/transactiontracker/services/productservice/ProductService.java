@@ -24,7 +24,7 @@ public interface ProductService {
 
     void creatInitialProducts();
 
-    void createProduct(String code, String name, ProductCategory category, int price, String unit, String image);
+    void createProduct(String code, String name, ProductCategory category, int price, String unit, String image, int quantity);
 
     ProductCategory getCategoryFromId(String id);
 
