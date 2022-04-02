@@ -46,7 +46,9 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
 
     @Override
     public TransactionDetail generateImageUrl(TransactionDetail transactionDetail) {
-        transactionDetail.getProduct().setImage(imageBaseURL + transactionDetail.getProduct().getImage());
+        if(!transactionDetail.getProduct().getImage().startsWith(imageBaseURL)){
+            transactionDetail.getProduct().setImage(imageBaseURL + transactionDetail.getProduct().getImage());
+        }
         return transactionDetail;
     }
 }

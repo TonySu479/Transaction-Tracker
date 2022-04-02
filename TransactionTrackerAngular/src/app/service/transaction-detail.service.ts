@@ -14,7 +14,6 @@ export class TransactionDetailService {
     }
 
     create(transactionDetails: TransactionDetail){
-        console.log("test");
         return this.http.post<TransactionDetail>(this.baseUrl, transactionDetails);
     }
 

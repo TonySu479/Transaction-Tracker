@@ -30,6 +30,8 @@ export class TransactionDetailsComponent implements OnInit {
 
     transactionDetail: TransactionDetail;
 
+    disableTypeDropdown: boolean;
+
     constructor(private formBuilder: FormBuilder,
                 private transactionService: TransactionService,
                 private messageService: MessageService,
@@ -47,8 +49,8 @@ export class TransactionDetailsComponent implements OnInit {
     ngOnInit(): void {
         this.transaction = this.route.snapshot.data.transaction;
         this.transactionForm = this.formBuilder.group({
-            createdAt: new FormControl(this.transaction ? this.transaction.createdAt : new Date()),
-            transactionType: new FormControl("", [Validators.required])
+            createdAt: new FormControl({value: this.transaction ? this.transaction.createdAt : new Date(), disabled: !!this.transaction}),
+            transactionType: new FormControl({value: this.transaction ? this.transaction.transactionType : "", disabled: !!this.transaction}, [Validators.required])
         });
         if (!!this.transaction) {
             this.transactionDetailsService.getTransactionDetailsByTransactionId(this.transaction.id).subscribe(
@@ -92,9 +94,7 @@ export class TransactionDetailsComponent implements OnInit {
                 this.transaction = data;
                 value.transactionId = this.transaction.id;
                 value.productId = value.product.id;
-
                 this.createTransactionDetail(value);
-
             });
         });
     }
