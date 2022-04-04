@@ -66,6 +66,7 @@ export class TransactionDetailsComponent implements OnInit {
             this.transactionDetailsService.getTransactionDetailsByTransactionId(this.transaction.id).subscribe(
                 data => {
                     this.transactionDetails = data;
+                    console.log(data);
                 }
             );
         }
@@ -153,6 +154,7 @@ export class TransactionDetailsComponent implements OnInit {
             if (!value) {
                 return;
             }
+            console.log(transactionDetail.id);
             this.transactionDetailsService.update({
                 ...value,
                 id: transactionDetail.id,

@@ -10,6 +10,10 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 public class TransactionDetailResponse {
+
+    @NotBlank
+    private Long id;
+
     @NotBlank
     private Transaction transaction;
 

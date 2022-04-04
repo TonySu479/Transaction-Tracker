@@ -35,7 +35,7 @@ public class TransactionDetailsController {
             TransactionDetail transactionDetailEntity = transactionDetailsService
                     .save(new TransactionDetail(transactionService.findById(transactionDetails.getTransactionId()).orElse(null), productService.findById(transactionDetails.getProductId()).orElse(null),
                             transactionDetails.getQuantity(), transactionDetails.getPrice()));
-            TransactionDetailResponse response = new TransactionDetailResponse(transactionDetailEntity.getTransaction(),
+            TransactionDetailResponse response = new TransactionDetailResponse(transactionDetailEntity.getId(), transactionDetailEntity.getTransaction(),
                     transactionDetailEntity.getProduct(), transactionDetailEntity.getQuantity(),
                     transactionDetailEntity.getPrice());
             transactionDetailsService.updateProductInventory(transactionDetails);
@@ -77,7 +77,7 @@ public class TransactionDetailsController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             for (TransactionDetail transactionDetail : transactionDetails) {
-                TransactionDetailResponse response = new TransactionDetailResponse(transactionDetail.getTransaction(),
+                TransactionDetailResponse response = new TransactionDetailResponse(transactionDetail.getId(), transactionDetail.getTransaction(),
                         transactionDetail.getProduct(), transactionDetail.getQuantity(),
                         transactionDetail.getPrice());
                 transactionDetailsService.generateImageUrl(response);

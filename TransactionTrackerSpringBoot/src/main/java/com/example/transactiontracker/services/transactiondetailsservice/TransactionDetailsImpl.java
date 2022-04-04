@@ -70,7 +70,7 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     public TransactionDetailResponse update(TransactionDetail transactionDetailsData, TransactionDetailsDTO transactionDetailsDTO) {
         TransactionDetail transactionDetailEntity = setTransactionDetailsAttributesAndReturnNewEntity(transactionDetailsDTO, transactionDetailsData);
         save(transactionDetailEntity);
-        TransactionDetailResponse response = new TransactionDetailResponse(transactionDetailEntity.getTransaction(),
+        TransactionDetailResponse response = new TransactionDetailResponse(transactionDetailEntity.getId(), transactionDetailEntity.getTransaction(),
                 transactionDetailEntity.getProduct(), transactionDetailEntity.getQuantity(),
                 transactionDetailEntity.getPrice());
         updateProductInventory(transactionDetailsDTO);
