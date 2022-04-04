@@ -71,7 +71,6 @@ public class ProductServiceImpl implements ProductService {
         } else {
             productEntity.setImage(storeImage(productDTO.getImage()));
         }
-        
         productEntity.setCode(productDTO.getCode());
         productEntity.setName(productDTO.getName());
         productEntity.setCategory(productDTO.getCategory());

@@ -9,6 +9,7 @@ import com.example.transactiontracker.models.payload.response.TransactionDetailR
 import com.example.transactiontracker.repositories.ProductRepository;
 import com.example.transactiontracker.repositories.TransactionDetailsRepository;
 import com.example.transactiontracker.repositories.TransactionRepository;
+import liquibase.util.file.FilenameUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +50,12 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
 
     @Override
     public TransactionDetailResponse generateImageUrl(TransactionDetailResponse transactionDetailResponse) {
-        transactionDetailResponse.getProduct().setImage(imageBaseURL + transactionDetailResponse.getProduct().getImage());
+        if (transactionDetailResponse.getProduct().getImage().startsWith("//")) {
+            String url = transactionDetailResponse.getProduct().getImage();
+            transactionDetailResponse.getProduct().setImage(FilenameUtils.getName(url.substring(url.lastIndexOf('/') + 1)));
+        } else {
+            transactionDetailResponse.getProduct().setImage(imageBaseURL + transactionDetailResponse.getProduct().getImage());
+        }
         return transactionDetailResponse;
     }
 
