@@ -1,4 +1,4 @@
-package com.example.transactiontracker.payload.dto;
+package com.example.transactiontracker.models.payload.dto;
 
 import com.example.transactiontracker.models.transaction.Transaction;
 import lombok.AllArgsConstructor;

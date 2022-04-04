@@ -2,7 +2,7 @@ package com.example.transactiontracker.services.productservice;
 
 import com.example.transactiontracker.models.product.Product;
 import com.example.transactiontracker.models.product.ProductCategory;
-import com.example.transactiontracker.payload.dto.ProductDTO;
+import com.example.transactiontracker.models.payload.dto.ProductDTO;
 
 import java.util.List;
 import java.util.Optional;

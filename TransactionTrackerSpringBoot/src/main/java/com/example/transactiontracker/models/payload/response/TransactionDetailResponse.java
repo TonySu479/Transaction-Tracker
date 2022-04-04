@@ -1,4 +1,4 @@
-package com.example.transactiontracker.payload.response;
+package com.example.transactiontracker.models.payload.response;
 
 import com.example.transactiontracker.models.product.Product;
 import com.example.transactiontracker.models.transaction.Transaction;

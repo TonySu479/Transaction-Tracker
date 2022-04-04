@@ -1,7 +1,7 @@
 package com.example.transactiontracker.controllers;
 
-import com.example.transactiontracker.payload.dto.LoginRequest;
-import com.example.transactiontracker.payload.dto.SignupRequest;
+import com.example.transactiontracker.models.payload.dto.LoginRequest;
+import com.example.transactiontracker.models.payload.dto.SignupRequest;
 import com.example.transactiontracker.services.authservice.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

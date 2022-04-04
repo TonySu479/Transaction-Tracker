@@ -1,4 +1,4 @@
-package com.example.transactiontracker.payload.dto;
+package com.example.transactiontracker.models.payload.dto;
 
 import lombok.Data;
 

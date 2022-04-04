@@ -1,4 +1,4 @@
-package com.example.transactiontracker.payload.response;
+package com.example.transactiontracker.models.payload.response;
 
 import lombok.Data;
 

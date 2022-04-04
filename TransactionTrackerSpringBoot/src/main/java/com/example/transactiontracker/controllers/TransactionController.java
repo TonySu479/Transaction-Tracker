@@ -1,7 +1,7 @@
 package com.example.transactiontracker.controllers;
 
 import com.example.transactiontracker.models.transaction.Transaction;
-import com.example.transactiontracker.payload.dto.TransactionDTO;
+import com.example.transactiontracker.models.payload.dto.TransactionDTO;
 import com.example.transactiontracker.services.transactionservice.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
