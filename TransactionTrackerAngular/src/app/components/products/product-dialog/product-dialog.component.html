@@ -55,8 +55,6 @@
         <div>
             <small class="ng-dirty ng-invalid" *ngIf="quantity?.errors?.required && (quantity.dirty || quantity.touched)">Quantity is
                 required.</small>
-            <small class="ng-dirty ng-invalid" *ngIf="quantity?.errors?.min && (quantity.dirty || quantity.touched)">Quantity has to be
-                >= {{quantity?.errors?.min.min}}.</small>
         </div>
     </div>
 

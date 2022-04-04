@@ -66,7 +66,7 @@ export class ProductDialogComponent implements OnInit {
             price: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.price,
                 [Validators.min(0), Validators.required]),
             quantity: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.quantity,
-                [Validators.min(0), Validators.required]),
+                [Validators.required]),
             unit: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.unit,
                 [Validators.maxLength(10), Validators.required]),
             image: new FormControl(this.config.data.type === "new" ? "" : this.config.data.product.image)

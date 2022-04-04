@@ -93,6 +93,7 @@ export class ProductsComponent implements OnInit {
                 .subscribe((data: Product) => {
                     let index = this.products.findIndex(product => product.id === data.id);
                     this.products[index] = data;
+                    console.log(data.quantity);
                     this.messageService.add({severity:"success", summary:"product edited", detail:`${data.name} edited`});
                 })
         })
