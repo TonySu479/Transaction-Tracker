@@ -46,15 +46,27 @@ export class TransactionDetailsComponent implements OnInit {
         return this.transactionForm.controls.transactionType;
     }
 
+    get createdAt() {
+        return this.transactionForm.controls.createdAt;
+    }
+
     ngOnInit(): void {
         this.transaction = this.route.snapshot.data.transaction;
         this.transactionForm = this.formBuilder.group({
-            createdAt: new FormControl({value: this.transaction ? this.transaction.createdAt : new Date(), disabled: !!this.transaction}),
-            transactionType: new FormControl({value: this.transaction ? this.transaction.transactionType : "", disabled: !!this.transaction}, [Validators.required])
+            createdAt: new FormControl({
+                value: this.transaction ? this.transaction.createdAt : new Date(),
+                disabled: !!this.transaction
+            }),
+            transactionType: new FormControl({
+                value: this.transaction ? this.transaction.transactionType : "",
+                disabled: !!this.transaction
+            }, [Validators.required])
         });
         if (!!this.transaction) {
             this.transactionDetailsService.getTransactionDetailsByTransactionId(this.transaction.id).subscribe(
-                data => this.transactionDetails = data
+                data => {
+                    this.transactionDetails = data;
+                }
             );
         }
     }
@@ -91,6 +103,8 @@ export class TransactionDetailsComponent implements OnInit {
             }
             this.transactionService.create(this.transactionForm.value).subscribe(data => {
                 this.transaction = data;
+                this.transactionType.disable();
+                this.createdAt.disable();
                 value.transactionId = this.transaction.id;
                 value.productId = value.product.id;
                 this.createTransactionDetail(value);
@@ -106,6 +120,11 @@ export class TransactionDetailsComponent implements OnInit {
             quantity: value.quantity
         }).subscribe(data => {
             this.transactionDetails.push(data);
+            this.messageService.add({
+                severity: "success",
+                summary: "product created",
+                detail: `${data.product.name} created`
+            });
         });
     }
 
@@ -128,12 +147,12 @@ export class TransactionDetailsComponent implements OnInit {
             },
             width: "600px"
         });
+        console.log(transactionDetail);
 
         ref.onClose.subscribe(value => {
             if (!value) {
                 return;
             }
-
             this.transactionDetailsService.update({
                 ...value,
                 id: transactionDetail.id,

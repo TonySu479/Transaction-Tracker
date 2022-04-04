@@ -1,6 +1,7 @@
 package com.example.transactiontracker.controllers;
 
 import com.example.transactiontracker.models.transaction.Transaction;
+import com.example.transactiontracker.payload.dto.TransactionDTO;
 import com.example.transactiontracker.services.transactionservice.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -84,4 +85,14 @@ public class TransactionController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/transaction-total")
+    public ResponseEntity<List<TransactionDTO>> getTransactionTotals() {
+        List<TransactionDTO> transactionDTOS = new ArrayList<>();
+        for(Transaction transaction : transactionService.findAll()) {
+            transactionDTOS.add(new TransactionDTO(transaction, transactionService.getTransactionTotalFromTransaction(transaction)));
+        }
+        return new ResponseEntity<>(transactionDTOS, HttpStatus.OK);
+    }
+
 }

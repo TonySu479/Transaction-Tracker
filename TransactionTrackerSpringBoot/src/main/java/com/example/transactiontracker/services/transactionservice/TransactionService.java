@@ -20,4 +20,6 @@ public interface TransactionService {
     Transaction setTransactionAttributesAndReturnNewEntity(Transaction transaction, Optional<Transaction> transactionData);
 
     List<TransactionDetail> findAllByTransaction_Id(long id);
+
+    int getTransactionTotalFromTransaction(Transaction transaction);
 }
