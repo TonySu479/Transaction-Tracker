@@ -77,7 +77,8 @@ public class TransactionDetailsController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             for (TransactionDetail transactionDetail : transactionDetails) {
-                TransactionDetailResponse response = new TransactionDetailResponse(transactionDetail.getId(), transactionDetail.getTransaction(),
+                TransactionDetailResponse response = new TransactionDetailResponse(
+                        transactionDetail.getId(), transactionDetail.getTransaction(),
                         transactionDetail.getProduct(), transactionDetail.getQuantity(),
                         transactionDetail.getPrice());
                 transactionDetailsService.generateImageUrl(response);

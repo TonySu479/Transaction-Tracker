@@ -28,7 +28,6 @@ public class ProductServiceImpl implements ProductService {
     private final String imagePath = "./TransactionTrackerSpringBoot/assets/images/";
     private final String imageBaseURL = "//localhost:8080/images/";
 
-
     Date date = new Date();
     Random rand = new Random();
 

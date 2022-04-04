@@ -50,10 +50,7 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
 
     @Override
     public TransactionDetailResponse generateImageUrl(TransactionDetailResponse transactionDetailResponse) {
-        if (transactionDetailResponse.getProduct().getImage().startsWith("//")) {
-            String url = transactionDetailResponse.getProduct().getImage();
-            transactionDetailResponse.getProduct().setImage(FilenameUtils.getName(url.substring(url.lastIndexOf('/') + 1)));
-        } else {
+        if (!transactionDetailResponse.getProduct().getImage().startsWith("//")) {
             transactionDetailResponse.getProduct().setImage(imageBaseURL + transactionDetailResponse.getProduct().getImage());
         }
         return transactionDetailResponse;
@@ -63,26 +60,38 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     public void updateProductInventory(TransactionDetailsDTO transactionDetailsDTO) {
         Transaction transaction = transactionRepository.getById(transactionDetailsDTO.getTransactionId());
         Product product = productRepository.getById(transactionDetailsDTO.getProductId());
+        int difference = transactionDetailsDTO.getQuantity();
 
-        if (transaction.getTransactionType() == TransactionType.SALE) {
-            product.setQuantity(product.getQuantity() - transactionDetailsDTO.getQuantity());
-        } else if (transaction.getTransactionType() == TransactionType.RECEIVE) {
-            product.setQuantity(product.getQuantity() + transactionDetailsDTO.getQuantity());
+        if(transactionDetailsDTO.getId() != null){
+            TransactionDetail prev = transactionDetailsRepository.getById(transactionDetailsDTO.getId());
+            int prevQuantity = prev.getQuantity();
+            difference = transactionDetailsDTO.getQuantity() - prevQuantity;
         }
+
+        setProductQuantityDifference(transaction, product, difference);
         productRepository.save(product);
     }
 
     @Override
     public TransactionDetailResponse update(TransactionDetail transactionDetailsData, TransactionDetailsDTO transactionDetailsDTO) {
+        updateProductInventory(transactionDetailsDTO);
         TransactionDetail transactionDetailEntity = setTransactionDetailsAttributesAndReturnNewEntity(transactionDetailsDTO, transactionDetailsData);
         save(transactionDetailEntity);
         TransactionDetailResponse response = new TransactionDetailResponse(transactionDetailEntity.getId(), transactionDetailEntity.getTransaction(),
                 transactionDetailEntity.getProduct(), transactionDetailEntity.getQuantity(),
                 transactionDetailEntity.getPrice());
-        updateProductInventory(transactionDetailsDTO);
         generateImageUrl(response);
         return response;
     }
+
+    private void setProductQuantityDifference(Transaction transaction, Product product, int difference) {
+        if (transaction.getTransactionType() == TransactionType.SALE) {
+            product.setQuantity(product.getQuantity() - difference);
+        } else if (transaction.getTransactionType() == TransactionType.RECEIVE) {
+            product.setQuantity(product.getQuantity() + difference);
+        }
+    }
+
 }
 
 
