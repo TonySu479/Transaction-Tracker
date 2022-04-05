@@ -4,4 +4,5 @@ export interface Transaction {
     id?: string;
     createdAt?: string;
     transactionType?: TransactionType;
+    total?: number;
 }

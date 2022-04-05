@@ -5,7 +5,9 @@ import { ProductService } from '../../service/productservice';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../service/app.config.service';
 import { AppConfig } from '../../api/appconfig';
- 
+import {Transaction} from "../../api/transaction";
+import {TransactionService} from "../../service/transactionservice";
+
 @Component({
     templateUrl: './dashboard.component.html',
 })
@@ -13,7 +15,7 @@ export class DashboardComponent implements OnInit {
 
     items: MenuItem[];
 
-    products: Product[];
+    transactions: Transaction[];
 
     chartData: any;
 
@@ -23,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
     config: AppConfig;
 
-    constructor(private productService: ProductService, public configService: ConfigService) {}
+    constructor(private transactionService: TransactionService, private productService: ProductService, public configService: ConfigService) {}
 
     ngOnInit() {
         this.config = this.configService.config;
@@ -31,8 +33,12 @@ export class DashboardComponent implements OnInit {
             this.config = config;
             this.updateChartOptions();
         });
-        this.productService.getProductsSmall().then(data => this.products = data);
-          
+
+        this.transactionService.getTransactionTotals().subscribe(data => {
+            this.transactions = data
+        });
+        // this.productService.getProductsSmall().then(data => this.products = data);
+
         this.items = [
             {label: 'Add New', icon: 'pi pi-fw pi-plus'},
             {label: 'Remove', icon: 'pi pi-fw pi-minus'}

@@ -1,14 +1,17 @@
 package com.example.transactiontracker.models.payload.dto;
 
-import com.example.transactiontracker.models.transaction.Transaction;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.util.Calendar;
 
 @Data
 @AllArgsConstructor
 public class TransactionDTO {
 
-    private Transaction transaction;
+    private Calendar createdAt;
+
+    private Long id;
 
     private int total;
 }

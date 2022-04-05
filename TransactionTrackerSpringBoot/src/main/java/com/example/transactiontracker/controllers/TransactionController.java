@@ -86,11 +86,11 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/transaction-total")
+    @GetMapping("/transactions/totals")
     public ResponseEntity<List<TransactionDTO>> getTransactionTotals() {
         List<TransactionDTO> transactionDTOS = new ArrayList<>();
         for(Transaction transaction : transactionService.findAll()) {
-            transactionDTOS.add(new TransactionDTO(transaction, transactionService.getTransactionTotalFromTransaction(transaction)));
+            transactionDTOS.add(new TransactionDTO(transaction.getCreatedAt(), transaction.getId(), transactionService.getTransactionTotalFromTransaction(transaction)));
         }
         return new ResponseEntity<>(transactionDTOS, HttpStatus.OK);
     }

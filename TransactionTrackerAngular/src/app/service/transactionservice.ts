@@ -8,13 +8,14 @@ import {map} from "rxjs/operators";
 export class TransactionService {
     baseUrl = "http://localhost:8080/api/transactions";
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+    }
 
     getTransactions() {
         return this.http.get<any>(this.baseUrl);
     }
 
-    getById(id){
+    getById(id) {
         return this.http.get<any>(`${this.baseUrl}/${id}`).pipe(map(transaction => {
             return {
                 ...transaction,
@@ -23,19 +24,40 @@ export class TransactionService {
         }));
     }
 
-    create(transaction: Transaction){
+    getTransactionTotals() {
+        return this.http.get<any>(`${this.baseUrl}/totals`).pipe(
+            map(transactions => {
+                let newTransactions: any[] = [];
+                transactions.forEach(transaction => {
+
+                        newTransactions.push(
+                            {
+                                ...transaction,
+                                createdAt: new Date(transaction.createdAt).toLocaleString()
+                            }
+                        )
+                    }
+                )
+                console.log("transaction:");
+                console.log(newTransactions);
+                return newTransactions;
+            })
+        );
+    }
+
+    create(transaction: Transaction) {
         return this.http.post<Transaction>(this.baseUrl, transaction);
     }
 
-    delete(transaction: Transaction){
+    delete(transaction: Transaction) {
         return this.http.delete<Transaction>(`${this.baseUrl}/${transaction.id}`);
     }
 
-    update(transaction: Transaction){
+    update(transaction: Transaction) {
         return this.http.put<Transaction>(`${this.baseUrl}/${transaction.id}`, transaction);
     }
 
-    deleteTransactions(listOfIds : String[]) {
+    deleteTransactions(listOfIds: String[]) {
         return this.http.post<Transaction>(`${this.baseUrl}/delete-transactions`, listOfIds);
     }
 
