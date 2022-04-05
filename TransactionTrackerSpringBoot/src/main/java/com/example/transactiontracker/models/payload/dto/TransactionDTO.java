@@ -3,13 +3,13 @@ package com.example.transactiontracker.models.payload.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.Calendar;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 public class TransactionDTO {
 
-    private Calendar createdAt;
+    private Date createdAt;
 
     private Long id;
 

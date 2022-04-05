@@ -1,4 +1,4 @@
-package com.example.transactiontracker.repositories;
+package com.example.transactiontracker.services.repositories;
 
 import com.example.transactiontracker.models.user.role.RoleType;
 import com.example.transactiontracker.models.user.role.Role;

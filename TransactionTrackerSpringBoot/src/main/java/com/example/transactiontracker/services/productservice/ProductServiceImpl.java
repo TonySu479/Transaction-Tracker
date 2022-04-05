@@ -3,7 +3,7 @@ package com.example.transactiontracker.services.productservice;
 import com.example.transactiontracker.models.product.Product;
 import com.example.transactiontracker.models.product.ProductCategory;
 import com.example.transactiontracker.models.payload.dto.ProductDTO;
-import com.example.transactiontracker.repositories.ProductRepository;
+import com.example.transactiontracker.services.repositories.ProductRepository;
 import com.example.transactiontracker.services.productcategoryservice.ProductCategoryService;
 import liquibase.util.file.FilenameUtils;
 import lombok.RequiredArgsConstructor;

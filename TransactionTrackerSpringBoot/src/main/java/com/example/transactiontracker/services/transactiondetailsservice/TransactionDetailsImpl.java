@@ -6,10 +6,9 @@ import com.example.transactiontracker.models.transaction.TransactionDetail;
 import com.example.transactiontracker.models.transaction.TransactionType;
 import com.example.transactiontracker.models.payload.dto.TransactionDetailsDTO;
 import com.example.transactiontracker.models.payload.response.TransactionDetailResponse;
-import com.example.transactiontracker.repositories.ProductRepository;
-import com.example.transactiontracker.repositories.TransactionDetailsRepository;
-import com.example.transactiontracker.repositories.TransactionRepository;
-import liquibase.util.file.FilenameUtils;
+import com.example.transactiontracker.services.repositories.ProductRepository;
+import com.example.transactiontracker.services.repositories.TransactionDetailsRepository;
+import com.example.transactiontracker.services.repositories.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -91,7 +90,6 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
             product.setQuantity(product.getQuantity() + difference);
         }
     }
-
 }
 
 

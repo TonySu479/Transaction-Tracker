@@ -2,11 +2,12 @@ package com.example.transactiontracker.services.transactionservice;
 
 import com.example.transactiontracker.models.transaction.Transaction;
 import com.example.transactiontracker.models.transaction.TransactionDetail;
-import com.example.transactiontracker.repositories.TransactionDetailsRepository;
-import com.example.transactiontracker.repositories.TransactionRepository;
+import com.example.transactiontracker.services.repositories.TransactionDetailsRepository;
+import com.example.transactiontracker.services.repositories.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,4 +64,10 @@ public class TransactionServiceImpl implements TransactionService {
         }
         return total;
     }
+
+    private List<Transaction> getCurrentDayTransactions() {
+
+        return new ArrayList<>();
+    }
+
 }

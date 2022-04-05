@@ -17,7 +17,6 @@ import java.util.*;
 public class ProductController {
 
     private final ProductService productService;
-    private final String imageBaseURL = "//localhost:8080/images/";
 
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") long id) {

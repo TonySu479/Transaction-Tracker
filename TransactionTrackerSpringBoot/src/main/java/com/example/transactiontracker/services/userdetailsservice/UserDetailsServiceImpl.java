@@ -1,7 +1,7 @@
 package com.example.transactiontracker.services.userdetailsservice;
 
 import com.example.transactiontracker.models.user.User;
-import com.example.transactiontracker.repositories.UserRepository;
+import com.example.transactiontracker.services.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

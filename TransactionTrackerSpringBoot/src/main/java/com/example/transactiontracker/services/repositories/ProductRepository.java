@@ -1,4 +1,4 @@
-package com.example.transactiontracker.repositories;
+package com.example.transactiontracker.services.repositories;
 
 import com.example.transactiontracker.models.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

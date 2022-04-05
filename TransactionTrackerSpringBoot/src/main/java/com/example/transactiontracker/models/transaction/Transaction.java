@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Calendar;
+import java.util.Date;
 
 @Data
 @Entity
@@ -16,7 +16,8 @@ import java.util.Calendar;
 public class Transaction extends BaseEntity {
 
     @Column(name = "created_at")
-    private Calendar createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
