@@ -73,9 +73,6 @@ public class ProductController {
             else {
                 products.addAll(productService.findByNameContaining(name));
             }
-            if (products.isEmpty()) {
-                return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
-            }
             for (Product product : products) {
                 productService.generateImageUrl(product);
             }
