@@ -3,6 +3,7 @@ package com.example.transactiontracker.services.transactionservice;
 import com.example.transactiontracker.models.transaction.Transaction;
 import com.example.transactiontracker.models.transaction.TransactionDetail;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,4 +23,8 @@ public interface TransactionService {
     List<TransactionDetail> findAllByTransaction_Id(long id);
 
     int getTransactionTotalFromTransaction(Transaction transaction);
+
+    List<Transaction> findAllByCreatedAt(Date createdAt);
+
+    List<Transaction> findTransactionsByCurrentDay();
 }

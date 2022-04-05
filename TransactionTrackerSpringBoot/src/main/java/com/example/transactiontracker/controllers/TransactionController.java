@@ -3,6 +3,7 @@ package com.example.transactiontracker.controllers;
 import com.example.transactiontracker.models.transaction.Transaction;
 import com.example.transactiontracker.models.payload.dto.TransactionDTO;
 import com.example.transactiontracker.services.transactionservice.TransactionService;
+import liquibase.pro.packaged.T;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -89,10 +90,15 @@ public class TransactionController {
     @GetMapping("/transactions/totals")
     public ResponseEntity<List<TransactionDTO>> getTransactionTotals() {
         List<TransactionDTO> transactionDTOS = new ArrayList<>();
-        for(Transaction transaction : transactionService.findAll()) {
+        for (Transaction transaction : transactionService.findAll()) {
             transactionDTOS.add(new TransactionDTO(transaction.getCreatedAt(), transaction.getId(), transactionService.getTransactionTotalFromTransaction(transaction)));
         }
         return new ResponseEntity<>(transactionDTOS, HttpStatus.OK);
+    }
+
+    @GetMapping("/transactions/current-day")
+    public ResponseEntity<List<Transaction>> getCurrentDayTransactions() {
+        return new ResponseEntity<>(transactionService.findTransactionsByCurrentDay(), HttpStatus.OK);
     }
 
 }
