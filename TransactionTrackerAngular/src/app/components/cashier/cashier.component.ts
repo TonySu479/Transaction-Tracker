@@ -39,6 +39,10 @@ export class CashierComponent implements OnInit {
         return this.cashierForm.controls.quantity;
     }
 
+    get total() {
+        return this.transactionDetails.reduce((prev, curr) => prev + curr.product.price * curr.quantity, 0);
+    }
+
     addProduct() {
         if (!this.cashierForm.valid) {
             this.cashierForm.markAllAsTouched();
