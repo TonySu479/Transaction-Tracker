@@ -43,8 +43,11 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="createAt">CreatedAt
+                        <th pSortableColumn="createAt">Created at
                             <p-sortIcon field="createAt"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="transactionType">Transaction type
+                            <p-sortIcon field="transactionType"></p-sortIcon>
                         </th>
                         <th></th>
                     </tr>
@@ -57,6 +60,10 @@
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">CreatedAt</span>
                             {{ transaction.createdAt | date:"MM/dd/yy HH:mm" }}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">TransactionType</span>
+                            {{ transaction.transactionType }}
                         </td>
                         <td>
                             <div class="flex">
