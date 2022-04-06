@@ -122,8 +122,8 @@ export class TransactionDetailsComponent implements OnInit {
             this.transactionDetails.push(data);
             this.messageService.add({
                 severity: "success",
-                summary: "product created",
-                detail: `${data.product.name} created`
+                summary: "product added",
+                detail: `${data.product.name} added`
             });
         });
     }
@@ -147,13 +147,11 @@ export class TransactionDetailsComponent implements OnInit {
             },
             width: "600px"
         });
-        console.log(transactionDetail);
 
         ref.onClose.subscribe(value => {
             if (!value) {
                 return;
             }
-            console.log(transactionDetail.id);
             this.transactionDetailsService.update({
                 ...value,
                 id: transactionDetail.id,

@@ -14,7 +14,7 @@ export class TransactionDetailsDialogComponent implements OnInit {
 
     transactionDetailsForm: FormGroup;
     selectedProduct: Product;
-    results: Product[];
+    productResults: Product[];
 
     constructor(private ref: DynamicDialogRef,
                 private transactionService: TransactionService,
@@ -44,9 +44,9 @@ export class TransactionDetailsDialogComponent implements OnInit {
         return this.transactionDetailsForm.controls.quantity;
     }
 
-    search(event) {
+    searchProducts(event) {
         this.productService.getProducts(event.query).subscribe(data => {
-            this.results = data;
+            this.productResults = data;
         });
     }
 

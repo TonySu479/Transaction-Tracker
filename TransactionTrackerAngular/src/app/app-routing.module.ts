@@ -13,6 +13,7 @@ import {ProductCategoryComponent} from "./components/product-category/product-ca
 import {TransactionsComponent} from "./components/transactions/transactions.component";
 import {TransactionDetailsComponent} from "./components/transactions/transaction-details/transaction-details.component";
 import {TransactionResolver} from "./components/transactions/transaction.resolver";
+import {CashierComponent} from "./components/cashier/cashier.component";
 
 @NgModule({
     imports: [
@@ -31,6 +32,7 @@ import {TransactionResolver} from "./components/transactions/transaction.resolve
             },
             {path: 'login', component: LoginComponent},
             {path: 'register', component: RegisterComponent},
+            {path: 'cashier', component: CashierComponent },
             {path: '**', redirectTo: 'pages/notfound'},
         ], {scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled'})
     ],

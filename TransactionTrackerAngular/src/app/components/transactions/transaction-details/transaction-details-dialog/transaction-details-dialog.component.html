@@ -4,7 +4,7 @@
         <h5>
             <label>Product </label>
         </h5>
-        <p-autoComplete formControlName="product" [suggestions]="results" (completeMethod)="search($event)" (onSelect)="setDefaultValues($event)" field="name" [forceSelection]="true"></p-autoComplete>
+        <p-autoComplete formControlName="product" [suggestions]="productResults" (completeMethod)="searchProducts($event)" (onSelect)="setDefaultValues($event)" field="name" [forceSelection]="true"></p-autoComplete>
         <div>
             <small class="ng-dirty ng-invalid" *ngIf="product?.errors?.required && (product.dirty || product.touched)">Product is
                 required.</small>
@@ -28,7 +28,7 @@
         <h5>
             <label for="quantity">Quantity </label>
         </h5>
-        <input type="number" id="quantity" name="price" formControlName="quantity" pInputText>
+        <input type="number" id="quantity" name="quantity" formControlName="quantity" pInputText>
         <div>
             <small class="ng-dirty ng-invalid" *ngIf="quantity?.errors?.required && (quantity.dirty || quantity.touched)">Quantity is
                 required.</small>

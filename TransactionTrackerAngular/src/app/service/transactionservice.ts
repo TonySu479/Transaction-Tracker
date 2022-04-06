@@ -38,8 +38,6 @@ export class TransactionService {
                         )
                     }
                 )
-                console.log("transaction:");
-                console.log(newTransactions);
                 return newTransactions;
             })
         );
