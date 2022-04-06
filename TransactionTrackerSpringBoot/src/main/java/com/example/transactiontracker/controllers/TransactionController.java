@@ -31,7 +31,7 @@ public class TransactionController {
     public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
         try {
             Transaction transactionEntity = transactionService
-                    .save(new Transaction(transaction.getCreatedAt(), transaction.getTransactionType()));
+                    .save(new Transaction(transaction.getCreatedAt(), transaction.getTransactionType(), 0));
             return new ResponseEntity<>(transactionEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -67,6 +67,9 @@ public class TransactionController {
             List<Transaction> transactions = new ArrayList<>(transactionService.findAll());
             if (transactions.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            for(Transaction transaction : transactions){
+                transaction.setTotal(transactionService.getTransactionTotalFromTransaction(transaction));
             }
             return new ResponseEntity<>(transactions, HttpStatus.OK);
         } catch (Exception e) {

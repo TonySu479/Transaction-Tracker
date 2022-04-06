@@ -22,4 +22,7 @@ public class Transaction extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
 
+    @Column(name = "total")
+    private int total;
+
 }

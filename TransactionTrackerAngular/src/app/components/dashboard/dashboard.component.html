@@ -69,16 +69,12 @@
 
                             <th pSortableColumn="createdAt">Created At <p-sortIcon field="createdAt"></p-sortIcon></th>
                             <th pSortableColumn="total">Total <p-sortIcon field="total"></p-sortIcon></th>
-                            <th>View</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-transaction>
                         <tr>
                             <td style="width: 35%; min-width: 7rem;">{{transaction.createdAt}}</td>
                             <td style="width: 35%; min-width: 8rem;">{{transaction.total}}</td>
-                            <td style="width: 15%;">
-                                <button pButton pRipple type="button" icon="pi pi-search" class="p-button p-component p-button-text p-button-icon-only"></button>
-                            </td>
                         </tr>
                     </ng-template>
                 </p-table>

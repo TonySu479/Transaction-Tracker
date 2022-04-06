@@ -11,11 +11,6 @@
                                 [disabled]="!selectedTransactions || !selectedTransactions.length"></button>
                     </div>
                 </ng-template>
-
-                <!--                <ng-template pTemplate="right">-->
-                <!--                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>-->
-                <!--                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>-->
-                <!--                </ng-template>-->
             </p-toolbar>
 
             <p-table #dt
@@ -49,6 +44,9 @@
                         <th pSortableColumn="transactionType">Transaction type
                             <p-sortIcon field="transactionType"></p-sortIcon>
                         </th>
+                        <th pSortableColumn="total">Total
+                            <p-sortIcon field="total"></p-sortIcon>
+                        </th>
                         <th></th>
                     </tr>
                 </ng-template>
@@ -64,6 +62,10 @@
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">TransactionType</span>
                             {{ transaction.transactionType }}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Total</span>
+                            {{ transaction.total }}
                         </td>
                         <td>
                             <div class="flex">
