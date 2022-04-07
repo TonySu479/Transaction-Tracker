@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Product} from 'src/app/api/product';
 import {ProductService} from 'src/app/service/productservice';
@@ -12,6 +12,7 @@ import {ProductDialogComponent} from "./product-dialog/product-dialog.component"
     providers: [MessageService, ConfirmationService, DialogService]
 })
 export class ProductsComponent implements OnInit {
+    @ViewChild('dt') dataTable : any;
 
     deleteProductDialog: boolean = false;
 
@@ -52,10 +53,11 @@ export class ProductsComponent implements OnInit {
             }
             this.productService.create(value)
                 .subscribe(data => {
-                    this.products.push(data);
+                    this.products = [...this.products, data];
                     this.messageService.add({severity:"success", summary:"product created", detail:`${data.name} created`});
                 })
         });
+
     }
 
     deleteSelectedProducts() {

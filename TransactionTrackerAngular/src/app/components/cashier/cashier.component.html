@@ -1,8 +1,8 @@
 <div class="card">
     <p-toast></p-toast>
-    <h5>Cashier</h5>
+    <h3 class="mb-5">Cashier</h3>
     <form [formGroup]="cashierForm">
-        <div class="grid" style="min-height:120px" >
+        <div  style="min-height:120px; display: flex">
             <div class="field mr-2">
                 <h5>
                     <label>Product</label>
@@ -30,15 +30,19 @@
                         >= {{quantity?.errors?.min.min}}.</small>
                 </div>
             </div>
-            <button pButton (click)="addProduct()" type="button" label="Click" ></button>
+            <div class="ml-2">
+                <h5>
+                    <label style="color: transparent; user-select: none">Button</label>
+                </h5>
+                <button pButton (click)="addProduct()" type="button" label="Click"></button>
+            </div>
         </div>
     </form>
     <p-table #dt
              [value]="transactionDetails"
              responsiveLayout="scroll"
-             [rows]="10"
+             [rows]="200"
              [paginator]="true"
-             [rowsPerPageOptions]="[10,20,30]"
              [showCurrentPageReport]="true"
              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
              [rowHover]="true" dataKey="id">
@@ -97,6 +101,9 @@
                     </div>
                 </td>
             </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft" let-state>
+            total records: {{state.totalRecords}}
         </ng-template>
     </p-table>
     <p-confirmDialog></p-confirmDialog>

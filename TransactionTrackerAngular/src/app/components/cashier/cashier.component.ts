@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -18,6 +18,7 @@ import {TransactionType} from "../../api/transaction-type.enum";
 })
 export class CashierComponent implements OnInit {
 
+    @ViewChild("dt") dataTable : any;
     cashierForm: FormGroup;
     productResults: Product[];
     transactionDetails: TransactionDetail[] = [];
@@ -49,10 +50,11 @@ export class CashierComponent implements OnInit {
             return;
         }
         const {quantity, product} = this.cashierForm.value;
-        this.transactionDetails.push({
+        this.transactionDetails = [...this.transactionDetails, {
             quantity,
             product
-        })
+        }];
+
     }
 
     deleteTransactionDetail(index) {

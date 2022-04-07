@@ -1,0 +1,10 @@
+::ng-deep {
+    .p-paginator-bottom * {
+        display: none !important;
+    }
+
+    .p-paginator-left-content {
+        display: block !important;
+        padding: 15px 0;
+    }
+}
