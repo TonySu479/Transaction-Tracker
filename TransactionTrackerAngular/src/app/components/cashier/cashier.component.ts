@@ -8,7 +8,6 @@ import {ProductService} from "../../service/productservice";
 import {TransactionDetail} from "../../api/transaction-detail";
 import {TransactionDetailService} from "../../service/transaction-detail.service";
 import {Transaction} from "../../api/transaction";
-import {TransactionType} from "../../api/transaction-type.enum";
 
 @Component({
     selector: 'app-cashier',
@@ -57,7 +56,19 @@ export class CashierComponent implements OnInit {
     }
 
     deleteTransactionDetail(index) {
-        this.transactionDetails.splice(index, 1);
+        this.confirmationService.confirm({
+            message: "Are you sure you want to delete this product?",
+            header: 'Confirmation',
+            icon: 'fa fa-question-circle',
+            accept: () => {
+                this.transactionDetails.splice(index, 1);
+                this.messageService.add({
+                    severity: "success",
+                    summary: "product deleted",
+                    detail: "product has been deleted"
+                })
+            }
+        });
     }
 
     searchProducts(event) {
@@ -66,22 +77,35 @@ export class CashierComponent implements OnInit {
         });
     }
 
-
     saveTransactionDetails() {
-        if(this.transactionDetails.length === 0){
-           return
+        if (this.transactionDetails.length === 0) {
+            return
         }
+        this.confirmationService.confirm({
+            message: "Are you sure you want to create this transaction?",
+            header: 'Confirmation',
+            icon: 'fa fa-question-circle',
+            accept: () => {
+                this.transactionDetailsService.createTransactionDetails(this.transactionDetails.map(transactionDetail => {
+                    return {
+                        ...transactionDetail,
+                        productId: transactionDetail.product.id,
+                        quantity: transactionDetail.quantity,
+                        price: transactionDetail.product.price
+                    }
+                })).subscribe(() => {
+                    this.messageService.add({
+                        severity: "success",
+                        summary: "transaction created",
+                        detail: `transaction created`
+                    });
 
-        this.transactionDetailsService.createTransactionDetails(this.transactionDetails.map(transactionDetail => {
-            return {
-                ...transactionDetail,
-                productId: transactionDetail.product.id,
-                quantity: transactionDetail.quantity,
-                price: transactionDetail.product.price
+                });
+                this.transactionDetails = [];
             }
-        })).subscribe();
-        this.transactionDetails = [];
-        
+        });
+
+
     }
 
     ngOnInit(): void {
