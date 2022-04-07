@@ -17,6 +17,11 @@ export class TransactionDetailService {
         return this.http.post<TransactionDetail>(this.baseUrl, transactionDetails);
     }
 
+    createTransactionDetails(transactionDetails: TransactionDetail[]){
+        return this.http.post<any>(`${this.baseUrl}/cashier`, transactionDetails);
+    }
+
+
     delete(transactionDetails: TransactionDetail){
         return this.http.delete<TransactionDetail>(`${this.baseUrl}/${transactionDetails.id}`);
     }

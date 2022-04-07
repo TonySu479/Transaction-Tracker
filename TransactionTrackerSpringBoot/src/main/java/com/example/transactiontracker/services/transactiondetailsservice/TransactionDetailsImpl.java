@@ -12,6 +12,9 @@ import com.example.transactiontracker.services.repositories.TransactionRepositor
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,7 +64,7 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
         Product product = productRepository.getById(transactionDetailsDTO.getProductId());
         int difference = transactionDetailsDTO.getQuantity();
 
-        if(transactionDetailsDTO.getId() != null){
+        if (transactionDetailsDTO.getId() != null) {
             TransactionDetail prev = transactionDetailsRepository.getById(transactionDetailsDTO.getId());
             int prevQuantity = prev.getQuantity();
             difference = transactionDetailsDTO.getQuantity() - prevQuantity;
@@ -81,6 +84,18 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
                 transactionDetailEntity.getPrice());
         generateImageUrl(response);
         return response;
+    }
+
+    @Override
+    public void saveAll(List<TransactionDetailsDTO> transactionDetailsDTOS) {
+        List<TransactionDetail> transactionDetails = new ArrayList<>();
+        Transaction transaction = transactionRepository.save(new Transaction(new Date(), TransactionType.SALE, 0));
+        for (TransactionDetailsDTO transactionDetailsDTO : transactionDetailsDTOS) {
+            transactionDetails.add(new TransactionDetail(transaction,
+                    productRepository.getById(transactionDetailsDTO.getProductId()),
+                    transactionDetailsDTO.getQuantity(), transactionDetailsDTO.getPrice()));
+        }
+        transactionDetailsRepository.saveAll(transactionDetails);
     }
 
     private void setProductQuantityDifference(Transaction transaction, Product product, int difference) {

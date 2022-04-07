@@ -4,6 +4,7 @@ import com.example.transactiontracker.models.transaction.TransactionDetail;
 import com.example.transactiontracker.models.payload.dto.TransactionDetailsDTO;
 import com.example.transactiontracker.models.payload.response.TransactionDetailResponse;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface TransactionDetailsService {
@@ -20,4 +21,6 @@ public interface TransactionDetailsService {
     void updateProductInventory(TransactionDetailsDTO transactionDetailsDTO);
 
     TransactionDetailResponse update(TransactionDetail transactionDetail, TransactionDetailsDTO transactionDetailsDTO);
+
+    void saveAll(List<TransactionDetailsDTO> transactionDetailsDTOS);
 }

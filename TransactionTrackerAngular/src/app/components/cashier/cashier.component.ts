@@ -18,7 +18,7 @@ import {TransactionType} from "../../api/transaction-type.enum";
 })
 export class CashierComponent implements OnInit {
 
-    @ViewChild("dt") dataTable : any;
+    @ViewChild("dt") dataTable: any;
     cashierForm: FormGroup;
     productResults: Product[];
     transactionDetails: TransactionDetail[] = [];
@@ -54,7 +54,6 @@ export class CashierComponent implements OnInit {
             quantity,
             product
         }];
-
     }
 
     deleteTransactionDetail(index) {
@@ -65,6 +64,24 @@ export class CashierComponent implements OnInit {
         this.productService.getProducts(event.query).subscribe(data => {
             this.productResults = data;
         });
+    }
+
+
+    saveTransactionDetails() {
+        if(this.transactionDetails.length === 0){
+           return
+        }
+
+        this.transactionDetailsService.createTransactionDetails(this.transactionDetails.map(transactionDetail => {
+            return {
+                ...transactionDetail,
+                productId: transactionDetail.product.id,
+                quantity: transactionDetail.quantity,
+                price: transactionDetail.product.price
+            }
+        })).subscribe();
+        this.transactionDetails = [];
+        
     }
 
     ngOnInit(): void {

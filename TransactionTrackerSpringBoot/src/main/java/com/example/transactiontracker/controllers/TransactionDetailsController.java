@@ -1,5 +1,6 @@
 package com.example.transactiontracker.controllers;
 
+import com.example.transactiontracker.models.payload.dto.TransactionDTO;
 import com.example.transactiontracker.models.transaction.TransactionDetail;
 import com.example.transactiontracker.models.payload.dto.TransactionDetailsDTO;
 import com.example.transactiontracker.models.payload.response.TransactionDetailResponse;
@@ -43,6 +44,17 @@ public class TransactionDetailsController {
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/transaction-details/cashier")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<HttpStatus> createTransactionDetails(@RequestBody List<TransactionDetailsDTO> transactionDetailsDTOs) {
+        try {
+            transactionDetailsService.saveAll(transactionDetailsDTOs);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
