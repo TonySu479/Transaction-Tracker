@@ -131,7 +131,7 @@ export class CashierComponent implements OnInit {
         }, 100);
     }
 
-    endDay() {
+    endShift() {
 
     }
 
