@@ -59,7 +59,7 @@ public class TransactionDetailsController {
     }
 
     @PutMapping("/transaction-details/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<TransactionDetailResponse> updateTransactionDetail(@PathVariable("id") long id, @RequestBody TransactionDetailsDTO transactionDetailsDTO) {
         Optional<TransactionDetail> TransactionDetailsData = transactionDetailsService.findById(id);
         if (TransactionDetailsData.isPresent()) {
@@ -70,7 +70,7 @@ public class TransactionDetailsController {
     }
 
     @DeleteMapping("/transaction-details/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteTransactionDetail(@PathVariable("id") long id) {
         try {
             transactionDetailsService.deleteById(id);
@@ -81,6 +81,7 @@ public class TransactionDetailsController {
     }
 
     @GetMapping("/transaction-details")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<TransactionDetailResponse>> getTransactionDetailsByTransactionId(@RequestParam long id) {
         try {
             List<TransactionDetail> transactionDetails = new ArrayList<>(transactionDetailsRepository.findAllByTransaction_Id(id));

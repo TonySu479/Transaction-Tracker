@@ -39,7 +39,7 @@ public class ProductController {
     }
 
     @PutMapping("/products/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody ProductDTO productDTO) {
         Optional<Product> productData = productService.findById(id);
         if (productData.isPresent()) {
@@ -53,7 +53,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/products/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteProduct(@PathVariable("id") long id) {
         try {
             productService.deleteById(id);
@@ -64,6 +64,7 @@ public class ProductController {
     }
 
     @GetMapping("/products")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Product>> getAllProducts(@RequestParam(required = false) String name) {
         try {
             List<Product> products = new ArrayList<>();
@@ -82,6 +83,7 @@ public class ProductController {
     }
 
     @PostMapping("/products/delete-products")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteProducts(@RequestBody List<String> listOfIds) {
         try {
             for (String id : listOfIds) {

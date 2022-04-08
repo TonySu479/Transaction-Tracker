@@ -23,7 +23,7 @@ public class ProductCategoryController {
     }
 
     @PostMapping("/product-categories")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductCategory> createProductCategory(@RequestBody ProductCategory productCategory) {
         try {
             ProductCategory productCategoryEntity = productCategoryService
@@ -35,7 +35,7 @@ public class ProductCategoryController {
     }
 
     @PutMapping("/product-categories/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductCategory> updateProductCategory(@PathVariable("id") long id, @RequestBody ProductCategory productCategory) {
         Optional<ProductCategory> productCategoryData = productCategoryService.findById(id);
         if (productCategoryData.isPresent()) {
@@ -47,10 +47,23 @@ public class ProductCategoryController {
     }
 
     @DeleteMapping("/product-categories/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteProductCategory(@PathVariable("id") long id) {
         try {
             productCategoryService.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/product-categories/delete-product-categories")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<HttpStatus> deleteProductCategories(@RequestBody List<String> listOfIds) {
+        try {
+            for (String id : listOfIds) {
+                productCategoryService.deleteById(Long.parseLong(id));
+            }
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -72,18 +85,6 @@ public class ProductCategoryController {
             return new ResponseEntity<>(products, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PostMapping("/product-categories/delete-product-categories")
-    public ResponseEntity<HttpStatus> deleteProductCategories(@RequestBody List<String> listOfIds) {
-        try {
-            for (String id : listOfIds) {
-                productCategoryService.deleteById(Long.parseLong(id));
-            }
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

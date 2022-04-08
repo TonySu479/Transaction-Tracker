@@ -39,7 +39,7 @@ public class TransactionController {
     }
 
     @PutMapping("/transactions/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Transaction> updateTransaction(@PathVariable("id") long id, @RequestBody Transaction transaction) {
         Optional<Transaction> transactionData = transactionService.findById(id);
         if (transactionData.isPresent()) {
@@ -51,7 +51,7 @@ public class TransactionController {
     }
 
     @DeleteMapping("/transactions/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteTransaction(@PathVariable("id") long id) {
         try {
             transactionService.deleteById(id);
@@ -62,6 +62,7 @@ public class TransactionController {
     }
 
     @GetMapping("/transactions")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Transaction>> getAllTransactions() {
         try {
             List<Transaction> transactions = new ArrayList<>(transactionService.findAll());
@@ -78,6 +79,7 @@ public class TransactionController {
     }
 
     @PostMapping("/transactions/delete-transactions")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteTransactions(@RequestBody List<String> listOfIds) {
         try {
             for (String id : listOfIds) {
