@@ -8,6 +8,7 @@ import {ProductService} from "../../service/productservice";
 import {TransactionDetail} from "../../api/transaction-detail";
 import {TransactionDetailService} from "../../service/transaction-detail.service";
 import {Transaction} from "../../api/transaction";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-cashier',
@@ -28,7 +29,8 @@ export class CashierComponent implements OnInit {
                 private transactionService: TransactionService,
                 private transactionDetailsService: TransactionDetailService,
                 private productService: ProductService,
-                private messageService: MessageService) {
+                private messageService: MessageService,
+                private router: Router) {
     }
 
     get product() {
@@ -104,7 +106,32 @@ export class CashierComponent implements OnInit {
                 this.transactionDetails = [];
             }
         });
+    }
 
+    clearProducts() {
+        this.confirmationService.confirm({
+            message: "Are you sure you want to clear all products?",
+            header: 'Confirmation',
+            icon: 'fa fa-question-circle',
+            accept: () => {
+                this.transactionDetails = [];
+                this.messageService.add({
+                    severity: "success",
+                    summary: "products deleted",
+                    detail: "all products have been deleted"
+                })
+            }
+        });
+    }
+
+    logout() {
+        window.sessionStorage.clear();
+        setTimeout(() => {
+            this.router.navigate(['/login']);
+        }, 100);
+    }
+
+    endDay() {
 
     }
 

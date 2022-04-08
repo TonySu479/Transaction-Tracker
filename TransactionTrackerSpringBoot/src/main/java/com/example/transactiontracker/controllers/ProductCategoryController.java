@@ -71,7 +71,7 @@ public class ProductCategoryController {
     }
 
     @GetMapping("/product-categories")
-    public ResponseEntity<List<ProductCategory>> getAllProducts(@RequestParam(required = false) String name) {
+    public ResponseEntity<List<ProductCategory>> getAllProductsCategories(@RequestParam(required = false) String name) {
         try {
             List<ProductCategory> products = new ArrayList<>();
             if (name == null)

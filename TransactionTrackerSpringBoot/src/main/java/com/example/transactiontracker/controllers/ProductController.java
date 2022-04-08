@@ -64,7 +64,7 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<List<Product>> getAllProducts(@RequestParam(required = false) String name) {
         try {
             List<Product> products = new ArrayList<>();

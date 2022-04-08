@@ -7,7 +7,6 @@ import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import { MessageService} from "primeng/api";
-import {ToastModule} from 'primeng/toast';
 
 @Component({
     selector: 'app-login',
@@ -80,10 +79,16 @@ export class LoginComponent implements OnInit, OnDestroy {
             (data) => {
                 this.tokenStorage.saveToken(data.token);
                 this.tokenStorage.saveUser(data);
+                console.log(data);
                 this.isLoginFailed = false;
                 this.isLoggedIn = true;
                 this.roles = this.tokenStorage.getUser().roles;
-                this.router.navigate(["/"]);
+
+                if(this.roles.indexOf("ROLE_ADMIN") > - 1) {
+                    this.router.navigate(["/"]);
+                } else {
+                    this.router.navigate(["/cashier"]);
+                }
             },
             (err) => {
                 this.messageService.add({key: 'loginFailToast',severity:'error', summary:'Login error', detail:'invalid username or password'});
