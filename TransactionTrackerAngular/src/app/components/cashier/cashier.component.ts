@@ -52,7 +52,7 @@ export class CashierComponent implements OnInit {
             product: new FormControl("", [Validators.required]),
             quantity: new FormControl("", [Validators.min(0), Validators.required])
         });
-        this.shiftService.createShift();
+        this.shiftService.createShift().subscribe();
     }
 
     addProduct() {

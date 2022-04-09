@@ -14,4 +14,9 @@ public class ShiftServiceImpl implements ShiftService {
     public Shift save(Shift shift) {
         return shiftRepository.save(shift);
     }
+
+    @Override
+    public boolean checkUserInShift(Long id) {
+        return shiftRepository.findByUser_IdAndShiftEndIsNull(id) != null;
+    }
 }

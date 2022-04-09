@@ -10,6 +10,6 @@ export class ShiftService {
     }
 
     createShift() {
-        return this.http.get<any>(this.baseUrl);
+        return this.http.post<any>(this.baseUrl, "");
     }
 }

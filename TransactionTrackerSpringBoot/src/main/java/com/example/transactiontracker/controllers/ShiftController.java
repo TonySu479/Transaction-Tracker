@@ -25,7 +25,6 @@ public class ShiftController {
 
     private final ShiftService shiftService;
     private final UserService userService;
-    private final JwtUtils jwtUtils;
 
     @PostMapping("/shifts")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
@@ -33,11 +32,14 @@ public class ShiftController {
         try {
             UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
                     .getPrincipal();
-            String username = userDetails.getUsername();
-            System.out.println(username);
+            User user = userService.findByUsername(userDetails.getUsername()).orElseThrow(Exception::new);
+            if (shiftService.checkUserInShift(user.getId())) {
+                throw new Exception();
+            }
             Shift shiftEntity = shiftService
-                    .save(new Shift(new Date(), null, userService.findByUsername(username).orElseThrow(Exception::new), 0));
+                    .save(new Shift(new Date(), null, user, 0));
             return new ResponseEntity<>(shiftEntity, HttpStatus.CREATED);
+
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
