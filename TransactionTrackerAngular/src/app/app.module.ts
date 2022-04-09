@@ -125,6 +125,7 @@ import { TransactionDetailsDialogComponent } from './components/transactions/tra
 import {TransactionDetailService} from "./service/transaction-detail.service";
 import {TransactionResolver} from "./components/transactions/transaction.resolver";
 import { CashierComponent } from './components/cashier/cashier.component';
+import {ShiftService} from "./service/shiftservice";
 
 @NgModule({
     imports: [
@@ -245,7 +246,7 @@ import { CashierComponent } from './components/cashier/cashier.component';
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService, JwtHelperService, authInterceptorProviders, ProductCategoryService, TransactionService, TransactionDetailService, TransactionResolver
+        PhotoService, ProductService, MenuService, ConfigService, JwtHelperService, authInterceptorProviders, ProductCategoryService, TransactionService, TransactionDetailService, TransactionResolver, ShiftService
     ],
     bootstrap: [AppComponent]
 })

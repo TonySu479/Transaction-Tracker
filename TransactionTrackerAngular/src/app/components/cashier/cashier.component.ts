@@ -9,6 +9,7 @@ import {TransactionDetail} from "../../api/transaction-detail";
 import {TransactionDetailService} from "../../service/transaction-detail.service";
 import {Transaction} from "../../api/transaction";
 import {Router} from "@angular/router";
+import {ShiftService} from "../../service/shiftservice";
 
 @Component({
     selector: 'app-cashier',
@@ -30,7 +31,8 @@ export class CashierComponent implements OnInit {
                 private transactionDetailsService: TransactionDetailService,
                 private productService: ProductService,
                 private messageService: MessageService,
-                private router: Router) {
+                private router: Router,
+                private shiftService: ShiftService) {
     }
 
     get product() {
@@ -43,6 +45,14 @@ export class CashierComponent implements OnInit {
 
     get total() {
         return this.transactionDetails.reduce((prev, curr) => prev + curr.product.price * curr.quantity, 0);
+    }
+
+    ngOnInit(): void {
+        this.cashierForm = this.formBuilder.group({
+            product: new FormControl("", [Validators.required]),
+            quantity: new FormControl("", [Validators.min(0), Validators.required])
+        });
+        this.shiftService.createShift();
     }
 
     addProduct() {
@@ -124,22 +134,26 @@ export class CashierComponent implements OnInit {
         });
     }
 
+    endShift() {
+        this.confirmationService.confirm({
+            message: "Are you sure you want to clear all end your shift?",
+            header: 'Confirmation',
+            icon: 'fa fa-question-circle',
+            accept: () => {
+                this.messageService.add({
+                    severity: "success",
+                    summary: "shift ended",
+                    detail: "you have successfully ended your shift"
+                })
+            }
+        });
+    }
+
     logout() {
         window.sessionStorage.clear();
         setTimeout(() => {
             this.router.navigate(['/login']);
         }, 100);
-    }
-
-    endShift() {
-
-    }
-
-    ngOnInit(): void {
-        this.cashierForm = this.formBuilder.group({
-            product: new FormControl("", [Validators.required]),
-            quantity: new FormControl("", [Validators.min(0), Validators.required])
-        })
     }
 
 }
