@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
     List<Transaction> findAllByCreatedAt(Date createdAt);
+    List<Transaction> findAllByShift_Id(Long id);
 }

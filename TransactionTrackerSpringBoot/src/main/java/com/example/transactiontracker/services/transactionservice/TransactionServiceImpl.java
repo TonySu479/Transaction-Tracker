@@ -81,4 +81,8 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionRepository.findAllByCreatedAt(date);
     }
 
+    @Override
+    public List<Transaction> findTransactionsByShiftId(Long id) {
+        return transactionRepository.findAllByShift_Id(id);
+    }
 }

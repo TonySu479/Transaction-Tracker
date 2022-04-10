@@ -27,4 +27,6 @@ public interface TransactionService {
     List<Transaction> findAllByCreatedAt(Date createdAt);
 
     List<Transaction> findTransactionsByCurrentDay();
+
+    List<Transaction> findTransactionsByShiftId(Long id);
 }
