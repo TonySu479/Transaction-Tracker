@@ -126,6 +126,7 @@ import {TransactionDetailService} from "./service/transaction-detail.service";
 import {TransactionResolver} from "./components/transactions/transaction.resolver";
 import { CashierComponent } from './components/cashier/cashier.component';
 import {ShiftService} from "./service/shiftservice";
+import { CashierDialogComponent } from './components/cashier/cashier-dialog/cashier-dialog.component';
 
 @NgModule({
     imports: [
@@ -241,6 +242,7 @@ import {ShiftService} from "./service/shiftservice";
         TransactionDetailsComponent,
         TransactionDetailsDialogComponent,
         CashierComponent,
+        CashierDialogComponent,
     ],
     providers: [
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},

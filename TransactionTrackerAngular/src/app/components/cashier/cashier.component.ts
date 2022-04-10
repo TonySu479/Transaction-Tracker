@@ -11,6 +11,7 @@ import {Transaction} from "../../api/transaction";
 import {Router} from "@angular/router";
 import {ShiftService} from "../../service/shiftservice";
 import {Shift} from "../../api/shift";
+import {CashierDialogComponent} from "./cashier-dialog/cashier-dialog.component";
 
 @Component({
     selector: 'app-cashier',
@@ -34,7 +35,8 @@ export class CashierComponent implements OnInit {
                 private productService: ProductService,
                 private messageService: MessageService,
                 private router: Router,
-                private shiftService: ShiftService) {
+                private shiftService: ShiftService,
+                private dialogService: DialogService) {
     }
 
     get product() {
@@ -109,13 +111,13 @@ export class CashierComponent implements OnInit {
                         shiftId: this.shift.id,
                         transactionDetailsDTOS:
                             this.transactionDetails.map(transactionDetail => {
-                                    return {
-                                        ...transactionDetail,
-                                        productId: transactionDetail.product.id,
-                                        quantity: transactionDetail.quantity,
-                                        price: transactionDetail.product.price,
-                                    }
-                                }),
+                                return {
+                                    ...transactionDetail,
+                                    productId: transactionDetail.product.id,
+                                    quantity: transactionDetail.quantity,
+                                    price: transactionDetail.product.price,
+                                }
+                            }),
                     }).subscribe(() => {
                     this.messageService.add({
                         severity: "success",
@@ -151,8 +153,17 @@ export class CashierComponent implements OnInit {
             header: 'Confirmation',
             icon: 'fa fa-question-circle',
             accept: () => {
-                this.shiftService.endShift().subscribe();
-                this.logout()
+                this.shiftService.endShift().subscribe(data => {
+                    this.shift = data;
+                    let ref = this.dialogService.open(CashierDialogComponent, {
+                        header: 'Shift Details',
+                        data: {
+                            shift: this.shift
+                        },
+                        width: "600px"
+                    });
+                    ref.onClose.subscribe(() => this.logout())
+                });
                 this.messageService.add({
                     severity: "success",
                     summary: "shift ended",
@@ -161,6 +172,7 @@ export class CashierComponent implements OnInit {
             }
         });
     }
+
 
     logout() {
         window.sessionStorage.clear();
