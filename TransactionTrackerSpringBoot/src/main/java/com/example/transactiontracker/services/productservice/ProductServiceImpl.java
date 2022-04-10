@@ -13,10 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -114,5 +111,19 @@ public class ProductServiceImpl implements ProductService {
     public Product generateImageUrl(Product product) {
         product.setImage(imageBaseURL + product.getImage());
         return product;
+    }
+
+    @Override
+    public List<Product> getAllProducts(String name) {
+        List<Product> products = new ArrayList<>();
+        if (name == null)
+            products.addAll(findAll());
+        else {
+            products.addAll(findByNameContaining(name));
+        }
+        for (Product product : products) {
+            generateImageUrl(product);
+        }
+        return products;
     }
 }

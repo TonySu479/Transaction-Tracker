@@ -31,4 +31,6 @@ public interface ProductService {
     String storeImage(String image);
 
     Product generateImageUrl(Product product);
+
+    public List<Product> getAllProducts(String name);
 }

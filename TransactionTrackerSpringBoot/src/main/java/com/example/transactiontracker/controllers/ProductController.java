@@ -67,20 +67,14 @@ public class ProductController {
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<List<Product>> getAllProducts(@RequestParam(required = false) String name) {
         try {
-            List<Product> products = new ArrayList<>();
-            if (name == null)
-                products.addAll(productService.findAll());
-            else {
-                products.addAll(productService.findByNameContaining(name));
-            }
-            for (Product product : products) {
-                productService.generateImageUrl(product);
-            }
+            List<Product> products = productService.getAllProducts(name);
             return new ResponseEntity<>(products, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 
     @PostMapping("/products/delete-products")
     @PreAuthorize("hasRole('ADMIN')")

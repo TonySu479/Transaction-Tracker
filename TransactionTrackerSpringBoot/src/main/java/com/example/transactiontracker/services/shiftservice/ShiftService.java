@@ -6,4 +6,5 @@ import com.example.transactiontracker.models.shift.Shift;
 public interface ShiftService {
     public Shift save(Shift shift);
     public boolean checkUserInShift(Long id);
+    public Shift createShift() throws Exception;
 }
