@@ -141,6 +141,7 @@ export class CashierComponent implements OnInit {
             icon: 'fa fa-question-circle',
             accept: () => {
                 this.shiftService.endShift().subscribe();
+                this.logout()
                 this.messageService.add({
                     severity: "success",
                     summary: "shift ended",
