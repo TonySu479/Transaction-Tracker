@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
             this.updateChartOptions();
         });
 
-        this.transactionService.getTransactionTotals().subscribe(data => {
+        this.transactionService.getTransactions().subscribe(data => {
             this.transactions = data
         });
         // this.productService.getProductsSmall().then(data => this.products = data);

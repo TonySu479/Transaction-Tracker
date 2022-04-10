@@ -31,7 +31,7 @@ public class TransactionController {
     public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
         try {
             Transaction transactionEntity = transactionService
-                    .save(new Transaction(transaction.getCreatedAt(), transaction.getTransactionType(), 0));
+                    .save(new Transaction(transaction.getCreatedAt(), transaction.getTransactionType()));
             return new ResponseEntity<>(transactionEntity, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -63,16 +63,17 @@ public class TransactionController {
 
     @GetMapping("/transactions")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<Transaction>> getAllTransactions() {
+    public ResponseEntity<List<TransactionDTO>> getAllTransactions() {
         try {
-            List<Transaction> transactions = new ArrayList<>(transactionService.findAll());
+            List<Transaction> transactions = transactionService.findAll();
+            List<TransactionDTO> transactionDTOs = new ArrayList<>();
             if (transactions.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             for(Transaction transaction : transactions){
-                transaction.setTotal(transactionService.getTransactionTotalFromTransaction(transaction));
+                transactionDTOs.add(new TransactionDTO(transaction.getCreatedAt(), transaction.getId(), transactionService.getTransactionTotalFromTransaction(transaction), transaction.getTransactionType()));
             }
-            return new ResponseEntity<>(transactions, HttpStatus.OK);
+            return new ResponseEntity<>(transactionDTOs, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -95,7 +96,7 @@ public class TransactionController {
     public ResponseEntity<List<TransactionDTO>> getTransactionTotals() {
         List<TransactionDTO> transactionDTOS = new ArrayList<>();
         for (Transaction transaction : transactionService.findAll()) {
-            transactionDTOS.add(new TransactionDTO(transaction.getCreatedAt(), transaction.getId(), transactionService.getTransactionTotalFromTransaction(transaction)));
+            transactionDTOS.add(new TransactionDTO(transaction.getCreatedAt(), transaction.getId(), transactionService.getTransactionTotalFromTransaction(transaction), transaction.getTransactionType()));
         }
         return new ResponseEntity<>(transactionDTOS, HttpStatus.OK);
     }

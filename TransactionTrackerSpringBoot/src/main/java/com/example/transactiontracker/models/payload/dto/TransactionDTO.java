@@ -1,5 +1,6 @@
 package com.example.transactiontracker.models.payload.dto;
 
+import com.example.transactiontracker.models.transaction.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -14,4 +15,6 @@ public class TransactionDTO {
     private Long id;
 
     private int total;
+
+    private TransactionType transactionType;
 }

@@ -1,6 +1,4 @@
 package com.example.transactiontracker.controllers;
-
-import com.example.transactiontracker.models.payload.dto.TransactionDTO;
 import com.example.transactiontracker.models.transaction.TransactionDetail;
 import com.example.transactiontracker.models.payload.dto.TransactionDetailsDTO;
 import com.example.transactiontracker.models.payload.response.TransactionDetailResponse;

@@ -89,7 +89,7 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     @Override
     public void saveAll(List<TransactionDetailsDTO> transactionDetailsDTOS) {
         List<TransactionDetail> transactionDetails = new ArrayList<>();
-        Transaction transaction = transactionRepository.save(new Transaction(new Date(), TransactionType.SALE, 0));
+        Transaction transaction = transactionRepository.save(new Transaction(new Date(), TransactionType.SALE));
         for (TransactionDetailsDTO transactionDetailsDTO : transactionDetailsDTOS) {
             transactionDetails.add(new TransactionDetail(transaction,
                     productRepository.getById(transactionDetailsDTO.getProductId()),

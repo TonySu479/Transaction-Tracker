@@ -12,24 +12,10 @@ export class TransactionService {
     }
 
     getTransactions() {
-        return this.http.get<any>(this.baseUrl);
-    }
-
-    getById(id) {
-        return this.http.get<any>(`${this.baseUrl}/${id}`).pipe(map(transaction => {
-            return {
-                ...transaction,
-                createdAt: new Date(transaction.createdAt)
-            }
-        }));
-    }
-
-    getTransactionTotals() {
-        return this.http.get<any>(`${this.baseUrl}/totals`).pipe(
+        return this.http.get<any>(this.baseUrl).pipe(
             map(transactions => {
                 let newTransactions: any[] = [];
                 transactions.forEach(transaction => {
-
                         newTransactions.push(
                             {
                                 ...transaction,
@@ -41,6 +27,15 @@ export class TransactionService {
                 return newTransactions;
             })
         );
+    }
+
+    getById(id) {
+        return this.http.get<any>(`${this.baseUrl}/${id}`).pipe(map(transaction => {
+            return {
+                ...transaction,
+                createdAt: new Date(transaction.createdAt)
+            }
+        }));
     }
 
     create(transaction: Transaction) {

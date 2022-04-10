@@ -10,6 +10,10 @@ export class ShiftService {
     }
 
     createShift() {
-        return this.http.post<any>(this.baseUrl, "");
+        return this.http.post<any>(`${this.baseUrl}/start-shift`, "");
+    }
+
+    endShift() {
+        return this.http.post<any>(`${this.baseUrl}/end-shift`, "");
     }
 }
