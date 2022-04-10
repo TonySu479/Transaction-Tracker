@@ -1,5 +1,6 @@
 package com.example.transactiontracker.services.transactiondetailsservice;
 
+import com.example.transactiontracker.models.payload.dto.TransactionDetailsListDTO;
 import com.example.transactiontracker.models.product.Product;
 import com.example.transactiontracker.models.transaction.Transaction;
 import com.example.transactiontracker.models.transaction.TransactionDetail;
@@ -7,6 +8,7 @@ import com.example.transactiontracker.models.transaction.TransactionType;
 import com.example.transactiontracker.models.payload.dto.TransactionDetailsDTO;
 import com.example.transactiontracker.models.payload.response.TransactionDetailResponse;
 import com.example.transactiontracker.services.repositories.ProductRepository;
+import com.example.transactiontracker.services.repositories.ShiftRepository;
 import com.example.transactiontracker.services.repositories.TransactionDetailsRepository;
 import com.example.transactiontracker.services.repositories.TransactionRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     private final TransactionDetailsRepository transactionDetailsRepository;
     private final TransactionRepository transactionRepository;
     private final ProductRepository productRepository;
+    private final ShiftRepository shiftRepository;
     private final String imageBaseURL = "//localhost:8080/images/";
 
     @Override
@@ -87,10 +90,10 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     }
 
     @Override
-    public void saveAll(List<TransactionDetailsDTO> transactionDetailsDTOS) {
+    public void saveAll(TransactionDetailsListDTO transactionDetailsListDTO) {
         List<TransactionDetail> transactionDetails = new ArrayList<>();
-        Transaction transaction = transactionRepository.save(new Transaction(new Date(), TransactionType.SALE));
-        for (TransactionDetailsDTO transactionDetailsDTO : transactionDetailsDTOS) {
+        Transaction transaction = transactionRepository.save(new Transaction(new Date(), TransactionType.SALE, shiftRepository.getById(transactionDetailsListDTO.getShiftId())));
+        for (TransactionDetailsDTO transactionDetailsDTO : transactionDetailsListDTO.getTransactionDetailsDTOS()) {
             transactionDetails.add(new TransactionDetail(transaction,
                     productRepository.getById(transactionDetailsDTO.getProductId()),
                     transactionDetailsDTO.getQuantity(), transactionDetailsDTO.getPrice()));

@@ -1,6 +1,7 @@
 package com.example.transactiontracker.models.transaction;
 
 import com.example.transactiontracker.models.base.BaseEntity;
+import com.example.transactiontracker.models.shift.Shift;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,13 @@ public class Transaction extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
+
+    @ManyToOne
+    private Shift shift;
+
+    public Transaction(Date createdAt, TransactionType transactionType){
+        this.createdAt = createdAt;
+        this.transactionType = transactionType;
+    }
 
 }

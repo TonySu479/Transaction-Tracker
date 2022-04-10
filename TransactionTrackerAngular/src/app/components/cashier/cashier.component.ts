@@ -10,6 +10,7 @@ import {TransactionDetailService} from "../../service/transaction-detail.service
 import {Transaction} from "../../api/transaction";
 import {Router} from "@angular/router";
 import {ShiftService} from "../../service/shiftservice";
+import {Shift} from "../../api/shift";
 
 @Component({
     selector: 'app-cashier',
@@ -24,6 +25,7 @@ export class CashierComponent implements OnInit {
     productResults: Product[];
     transactionDetails: TransactionDetail[] = [];
     transaction: Transaction;
+    shift: Shift;
 
     constructor(private confirmationService: ConfirmationService,
                 private formBuilder: FormBuilder,
@@ -52,7 +54,11 @@ export class CashierComponent implements OnInit {
             product: new FormControl("", [Validators.required]),
             quantity: new FormControl("", [Validators.min(0), Validators.required])
         });
-        this.shiftService.createShift().subscribe();
+
+        this.shiftService.createShift().subscribe(data => {
+            this.shift = data
+        });
+
     }
 
     addProduct() {
@@ -89,7 +95,7 @@ export class CashierComponent implements OnInit {
         });
     }
 
-    saveTransactionDetails() {
+    createTransactionDetails() {
         if (this.transactionDetails.length === 0) {
             return
         }
@@ -98,14 +104,19 @@ export class CashierComponent implements OnInit {
             header: 'Confirmation',
             icon: 'fa fa-question-circle',
             accept: () => {
-                this.transactionDetailsService.createTransactionDetails(this.transactionDetails.map(transactionDetail => {
-                    return {
-                        ...transactionDetail,
-                        productId: transactionDetail.product.id,
-                        quantity: transactionDetail.quantity,
-                        price: transactionDetail.product.price
-                    }
-                })).subscribe(() => {
+                this.transactionDetailsService.createTransactionDetails(
+                    {
+                        shiftId: this.shift.id,
+                        transactionDetailsDTOS:
+                            this.transactionDetails.map(transactionDetail => {
+                                    return {
+                                        ...transactionDetail,
+                                        productId: transactionDetail.product.id,
+                                        quantity: transactionDetail.quantity,
+                                        price: transactionDetail.product.price,
+                                    }
+                                }),
+                    }).subscribe(() => {
                     this.messageService.add({
                         severity: "success",
                         summary: "transaction created",

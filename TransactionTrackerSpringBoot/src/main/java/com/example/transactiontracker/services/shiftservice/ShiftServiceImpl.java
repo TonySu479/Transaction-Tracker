@@ -25,7 +25,7 @@ public class ShiftServiceImpl implements ShiftService {
     public Shift createShift() throws Exception {
         User user = getCurrentUser();
         if (checkUserInShift(user.getId())) {
-            throw new Exception("User already in a shift");
+            return shiftRepository.findByUser_IdAndShiftEndIsNull(user.getId());
         }
         return save(new Shift(new Date(), null, user, 0));
     }

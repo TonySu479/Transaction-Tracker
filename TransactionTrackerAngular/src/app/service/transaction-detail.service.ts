@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {TransactionDetail} from "../api/transaction-detail";
+import {TransactionDetailsListDTO} from "../api/transactionDetailsListDTO";
 
 
 @Injectable()
@@ -17,8 +18,8 @@ export class TransactionDetailService {
         return this.http.post<TransactionDetail>(this.baseUrl, transactionDetails);
     }
 
-    createTransactionDetails(transactionDetails: TransactionDetail[]){
-        return this.http.post<any>(`${this.baseUrl}/cashier`, transactionDetails);
+    createTransactionDetails(transactionDetailsListDTO: TransactionDetailsListDTO){
+        return this.http.post<any>(`${this.baseUrl}/cashier`, transactionDetailsListDTO);
     }
 
 

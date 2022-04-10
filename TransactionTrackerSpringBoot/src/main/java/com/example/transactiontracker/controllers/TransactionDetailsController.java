@@ -1,4 +1,5 @@
 package com.example.transactiontracker.controllers;
+import com.example.transactiontracker.models.payload.dto.TransactionDetailsListDTO;
 import com.example.transactiontracker.models.transaction.TransactionDetail;
 import com.example.transactiontracker.models.payload.dto.TransactionDetailsDTO;
 import com.example.transactiontracker.models.payload.response.TransactionDetailResponse;
@@ -47,7 +48,7 @@ public class TransactionDetailsController {
 
     @PostMapping("/transaction-details/cashier")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<HttpStatus> createTransactionDetails(@RequestBody List<TransactionDetailsDTO> transactionDetailsDTOs) {
+    public ResponseEntity<HttpStatus> createTransactionDetails(@RequestBody TransactionDetailsListDTO transactionDetailsDTOs) {
         try {
             transactionDetailsService.saveAll(transactionDetailsDTOs);
             return new ResponseEntity<>(HttpStatus.CREATED);

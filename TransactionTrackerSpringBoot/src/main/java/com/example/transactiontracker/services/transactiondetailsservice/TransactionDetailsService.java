@@ -1,5 +1,6 @@
 package com.example.transactiontracker.services.transactiondetailsservice;
 
+import com.example.transactiontracker.models.payload.dto.TransactionDetailsListDTO;
 import com.example.transactiontracker.models.transaction.TransactionDetail;
 import com.example.transactiontracker.models.payload.dto.TransactionDetailsDTO;
 import com.example.transactiontracker.models.payload.response.TransactionDetailResponse;
@@ -22,5 +23,5 @@ public interface TransactionDetailsService {
 
     TransactionDetailResponse update(TransactionDetail transactionDetail, TransactionDetailsDTO transactionDetailsDTO);
 
-    void saveAll(List<TransactionDetailsDTO> transactionDetailsDTOS);
+    void saveAll(TransactionDetailsListDTO transactionDetailsListDTO);
 }
