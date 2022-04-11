@@ -38,7 +38,6 @@ export class TransactionsComponent implements OnInit {
 
     ngOnInit() {
         this.transactionService.getTransactions().subscribe(data => {
-            console.log(data);
             this.transactions = data
         });
 
