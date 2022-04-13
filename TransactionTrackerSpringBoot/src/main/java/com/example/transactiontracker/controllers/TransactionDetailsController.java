@@ -50,7 +50,12 @@ public class TransactionDetailsController {
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> createTransactionDetails(@RequestBody TransactionDetailsListDTO transactionDetailsDTOs) {
         try {
-            transactionDetailsService.saveAll(transactionDetailsDTOs);
+
+            Long transactionId = transactionDetailsService.saveAll(transactionDetailsDTOs);
+            for(var transactionDetailsDTO : transactionDetailsDTOs.getTransactionDetailsDTOS()){
+                transactionDetailsDTO.setTransactionId(transactionId);
+                transactionDetailsService.updateProductInventory(transactionDetailsDTO);
+            }
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

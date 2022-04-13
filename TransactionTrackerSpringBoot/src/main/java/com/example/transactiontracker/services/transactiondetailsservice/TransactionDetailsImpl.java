@@ -63,9 +63,13 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
 
     @Override
     public void updateProductInventory(TransactionDetailsDTO transactionDetailsDTO) {
+        System.out.println("in update product inv");
+        System.out.println(transactionDetailsDTO);
         Transaction transaction = transactionRepository.getById(transactionDetailsDTO.getTransactionId());
+        System.out.println(transaction);
         Product product = productRepository.getById(transactionDetailsDTO.getProductId());
         int difference = transactionDetailsDTO.getQuantity();
+        System.out.println("difference" + difference);
 
         if (transactionDetailsDTO.getId() != null) {
             TransactionDetail prev = transactionDetailsRepository.getById(transactionDetailsDTO.getId());
@@ -90,7 +94,7 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     }
 
     @Override
-    public void saveAll(TransactionDetailsListDTO transactionDetailsListDTO) {
+    public Long saveAll(TransactionDetailsListDTO transactionDetailsListDTO) {
         List<TransactionDetail> transactionDetails = new ArrayList<>();
         Transaction transaction = transactionRepository.save(new Transaction(new Date(), TransactionType.SALE, shiftRepository.getById(transactionDetailsListDTO.getShiftId())));
         for (TransactionDetailsDTO transactionDetailsDTO : transactionDetailsListDTO.getTransactionDetailsDTOS()) {
@@ -99,6 +103,7 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
                     transactionDetailsDTO.getQuantity(), transactionDetailsDTO.getPrice()));
         }
         transactionDetailsRepository.saveAll(transactionDetails);
+        return transaction.getId();
     }
 
     private void setProductQuantityDifference(Transaction transaction, Product product, int difference) {

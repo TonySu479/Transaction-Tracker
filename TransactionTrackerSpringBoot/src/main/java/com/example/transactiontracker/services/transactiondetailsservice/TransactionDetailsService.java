@@ -23,5 +23,5 @@ public interface TransactionDetailsService {
 
     TransactionDetailResponse update(TransactionDetail transactionDetail, TransactionDetailsDTO transactionDetailsDTO);
 
-    void saveAll(TransactionDetailsListDTO transactionDetailsListDTO);
+    Long saveAll(TransactionDetailsListDTO transactionDetailsListDTO);
 }
