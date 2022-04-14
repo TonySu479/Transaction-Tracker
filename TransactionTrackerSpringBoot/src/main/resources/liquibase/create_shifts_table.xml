@@ -5,20 +5,20 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-
-    <changeSet id="create_transactions_table" author="Me">
-        <createTable tableName="transactions">
+    <changeSet id="create_shifts_table" author="Me">
+        <createTable tableName="shifts">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="created_at" type="TIMESTAMP"/>
-            <column name="transaction_type" type="VARCHAR(255)"/>
-            <column name="shift_id" type="BIGINT"/>
+            <column name="shift_end" type="TIMESTAMP"/>
+            <column name="shift_start" type="TIMESTAMP"/>
+            <column name="total" type="INT"/>
+            <column name="user_id" type="BIGINT"/>
         </createTable>
 
-        <addForeignKeyConstraint baseTableName="transactions" baseColumnNames="shift_id"
-                                 constraintName="FK_TRANSACTIONS_TO_SHIFTS"
-                                 referencedTableName="shifts"
+        <addForeignKeyConstraint baseTableName="shifts" baseColumnNames="user_id"
+                                 constraintName="FK_PRODUCTS_TO_USERS"
+                                 referencedTableName="users"
                                  referencedColumnNames="id"/>
     </changeSet>
 

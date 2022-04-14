@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="create_transaction_details_table" author="Me">
+        <createTable tableName="transaction_details">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="price" type="INT"/>
+            <column name="quantity" type="INT"/>
+            <column name="product_id" type="BIGINT"/>
+            <column name="transaction_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="transaction_details" baseColumnNames="product_id"
+                                 constraintName="FK_TRANSACTION_DETAILS_TO_PRODUCTS"
+                                 referencedTableName="products"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="transaction_details" baseColumnNames="transaction_id"
+                                 constraintName="FK_TRANSACTION_DETAILS_TO_TRANSACTION"
+                                 referencedTableName="transactions"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

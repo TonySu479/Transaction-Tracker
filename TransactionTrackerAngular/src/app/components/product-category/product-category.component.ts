@@ -64,7 +64,7 @@ export class ProductCategoryComponent implements OnInit {
 
     deleteSelectedCategories() {
         this.confirmationService.confirm({
-            message: `Are you sure you want to delete selected categorys?`,
+            message: `Are you sure you want to delete selected categories?`,
             header: 'Confirmation',
             icon: 'fa fa-question-circle',
             accept: () => {
@@ -85,7 +85,7 @@ export class ProductCategoryComponent implements OnInit {
 
     editProductCategory(productCategory: ProductCategory) {
         const ref = this.dialogService.open(ProductCategoryDialogComponent, {
-            header: 'Edit a category',
+            header: 'Edit category',
             data: {
                 type: "edit",
                 productCategory: productCategory
