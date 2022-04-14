@@ -79,7 +79,7 @@ export class ProductsComponent implements OnInit {
 
     editProduct(product: Product) {
         const ref = this.dialogService.open(ProductDialogComponent, {
-            header: 'Edit a product',
+            header: 'Edit product',
             data: {
                 type: "edit",
                 product: product
