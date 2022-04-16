@@ -89,18 +89,10 @@ public class TransactionDetailsController {
     public ResponseEntity<List<TransactionDetailResponse>> getTransactionDetailsByTransactionId(@RequestParam long id) {
         try {
             List<TransactionDetail> transactionDetails = new ArrayList<>(transactionDetailsRepository.findAllByTransaction_Id(id));
-            List<TransactionDetailResponse> transactionDetailResponses = new ArrayList<>();
             if (transactionDetails.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            for (TransactionDetail transactionDetail : transactionDetails) {
-                TransactionDetailResponse response = new TransactionDetailResponse(
-                        transactionDetail.getId(), transactionDetail.getTransaction(),
-                        transactionDetail.getProduct(), transactionDetail.getQuantity(),
-                        transactionDetail.getPrice());
-                transactionDetailsService.generateImageUrl(response);
-                transactionDetailResponses.add(response);
-            }
+            List<TransactionDetailResponse> transactionDetailResponses = transactionDetailsService.createTransactionDetailsResponses(transactionDetails);
             return new ResponseEntity<>(transactionDetailResponses, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

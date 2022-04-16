@@ -106,6 +106,20 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
         return transaction.getId();
     }
 
+    @Override
+    public List<TransactionDetailResponse> createTransactionDetailsResponses(List<TransactionDetail> transactionDetails) {
+        List<TransactionDetailResponse> transactionDetailResponses = new ArrayList<>();
+        for (TransactionDetail transactionDetail : transactionDetails) {
+            TransactionDetailResponse response = new TransactionDetailResponse(
+                    transactionDetail.getId(), transactionDetail.getTransaction(),
+                    transactionDetail.getProduct(), transactionDetail.getQuantity(),
+                    transactionDetail.getPrice());
+            generateImageUrl(response);
+            transactionDetailResponses.add(response);
+        }
+        return transactionDetailResponses;
+    }
+
     private void setProductQuantityDifference(Transaction transaction, Product product, int difference) {
         if (transaction.getTransactionType() == TransactionType.SALE) {
             product.setQuantity(product.getQuantity() - difference);
