@@ -96,9 +96,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public String storeImage(String image) {
+    public String storeImage(String imageBase64) {
         String uniqueImgName = "" + date.getTime() + rand.nextInt(10000) + ".jpg";
-        byte[] img = Base64.decodeBase64(image);
+        byte[] img = Base64.decodeBase64(imageBase64);
         try (OutputStream stream = new FileOutputStream(imagePath + uniqueImgName)) {
             stream.write(img);
         } catch (Exception e) {
