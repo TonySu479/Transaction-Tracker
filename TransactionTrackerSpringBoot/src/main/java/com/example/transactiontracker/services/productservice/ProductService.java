@@ -20,6 +20,8 @@ public interface ProductService {
 
     List<Product> findAll();
 
+    List<Product> getAllProducts(String name);
+
     Product setProductAttributesAndReturnNewEntity(ProductDTO productDTO, Optional<Product> productData);
 
     void creatInitialProducts();
@@ -31,6 +33,4 @@ public interface ProductService {
     String storeImage(String image);
 
     Product generateImageUrl(Product product);
-
-    public List<Product> getAllProducts(String name);
 }
