@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/transaction-details")
 @RequiredArgsConstructor
 public class TransactionDetailsController {
 
@@ -26,7 +26,7 @@ public class TransactionDetailsController {
     private final TransactionService transactionService;
     private final ProductService productService;
 
-    @PostMapping("/transaction-details")
+    @PostMapping()
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<TransactionDetailResponse> createTransactionDetail(@RequestBody TransactionDetailsDTO transactionDetails) {
         try {
@@ -44,7 +44,7 @@ public class TransactionDetailsController {
         }
     }
 
-    @PostMapping("/transaction-details/cashier")
+    @PostMapping("/cashier")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> createTransactionDetails(@RequestBody TransactionDetailsListDTO transactionDetailsDTOs) {
         try {
@@ -60,7 +60,7 @@ public class TransactionDetailsController {
         }
     }
 
-    @PutMapping("/transaction-details/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<TransactionDetailResponse> updateTransactionDetail(@PathVariable("id") long id, @RequestBody TransactionDetailsDTO transactionDetailsDTO) {
         Optional<TransactionDetail> TransactionDetailsData = transactionDetailsService.findById(id);
@@ -71,7 +71,7 @@ public class TransactionDetailsController {
         }
     }
 
-    @DeleteMapping("/transaction-details/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteTransactionDetail(@PathVariable("id") long id) {
         try {
@@ -82,7 +82,7 @@ public class TransactionDetailsController {
         }
     }
 
-    @GetMapping("/transaction-details")
+    @GetMapping()
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<TransactionDetailResponse>> getTransactionDetailsByTransactionId(@RequestParam long id) {
         try {

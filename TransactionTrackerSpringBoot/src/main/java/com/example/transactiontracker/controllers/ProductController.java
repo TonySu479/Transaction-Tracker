@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/products")
 @RequiredArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") long id) {
         Optional<Product> productData = productService.findById(id);
         return productData.map(product -> new ResponseEntity<>(product, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/products")
+    @PostMapping()
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) {
         try {
@@ -38,7 +38,7 @@ public class ProductController {
         }
     }
 
-    @PutMapping("/products/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody ProductDTO productDTO) {
         Optional<Product> productData = productService.findById(id);
@@ -52,7 +52,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/products/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteProduct(@PathVariable("id") long id) {
         try {
@@ -63,7 +63,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/products")
+    @GetMapping()
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<List<Product>> getAllProducts(@RequestParam(required = false) String name) {
         try {
@@ -76,7 +76,7 @@ public class ProductController {
 
 
 
-    @PostMapping("/products/delete-products")
+    @PostMapping("/delete-products")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteProducts(@RequestBody List<String> listOfIds) {
         try {

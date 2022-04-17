@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/product-categories")
 @RequiredArgsConstructor
 public class ProductCategoryController {
     private final ProductCategoryService productCategoryService;
 
-    @GetMapping("/product-categories/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ProductCategory> getProductCategoryById(@PathVariable("id") long id) {
         Optional<ProductCategory> productData = productCategoryService.findById(id);
         return productData.map(productCategory -> new ResponseEntity<>(productCategory, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/product-categories")
+    @PostMapping()
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductCategory> createProductCategory(@RequestBody ProductCategory productCategory) {
         try {
@@ -34,7 +34,7 @@ public class ProductCategoryController {
         }
     }
 
-    @PutMapping("/product-categories/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductCategory> updateProductCategory(@PathVariable("id") long id, @RequestBody ProductCategory productCategory) {
         Optional<ProductCategory> productCategoryData = productCategoryService.findById(id);
@@ -46,7 +46,7 @@ public class ProductCategoryController {
         }
     }
 
-    @DeleteMapping("/product-categories/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteProductCategory(@PathVariable("id") long id) {
         try {
@@ -57,7 +57,7 @@ public class ProductCategoryController {
         }
     }
 
-    @PostMapping("/product-categories/delete-product-categories")
+    @PostMapping("/delete-product-categories")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteProductCategories(@RequestBody List<String> listOfIds) {
         try {
@@ -70,7 +70,7 @@ public class ProductCategoryController {
         }
     }
 
-    @GetMapping("/product-categories")
+    @GetMapping()
     public ResponseEntity<List<ProductCategory>> getAllProductsCategories(@RequestParam(required = false) String name) {
         try {
             List<ProductCategory> products = new ArrayList<>();

@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/shifts")
 @RequiredArgsConstructor
 public class ShiftController {
 
     private final ShiftService shiftService;
 
-    @PostMapping("/shifts/start-shift")
+    @PostMapping("/start-shift")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Shift> createShift() {
         try {
@@ -29,7 +29,7 @@ public class ShiftController {
         }
     }
 
-    @PostMapping("/shifts/end-shift")
+    @PostMapping("/end-shift")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Shift> endShift() {
         try {

@@ -14,19 +14,19 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/transactions")
 @RequiredArgsConstructor
 public class TransactionController {
 
     private final TransactionService transactionService;
 
-    @GetMapping("/transactions/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Transaction> getTransactionById(@PathVariable("id") long id) {
         Optional<Transaction> transactionData = transactionService.findById(id);
         return transactionData.map(transaction -> new ResponseEntity<>(transaction, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/transactions")
+    @PostMapping()
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
         try {
@@ -38,7 +38,7 @@ public class TransactionController {
         }
     }
 
-    @PutMapping("/transactions/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Transaction> updateTransaction(@PathVariable("id") long id, @RequestBody Transaction transaction) {
         Optional<Transaction> transactionData = transactionService.findById(id);
@@ -50,7 +50,7 @@ public class TransactionController {
         }
     }
 
-    @DeleteMapping("/transactions/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteTransaction(@PathVariable("id") long id) {
         try {
@@ -61,7 +61,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/transactions")
+    @GetMapping()
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<TransactionDTO>> getAllTransactions() {
         try {
@@ -79,7 +79,7 @@ public class TransactionController {
         }
     }
 
-    @PostMapping("/transactions/delete-transactions")
+    @PostMapping("/delete-transactions")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteTransactions(@RequestBody List<String> listOfIds) {
         try {
