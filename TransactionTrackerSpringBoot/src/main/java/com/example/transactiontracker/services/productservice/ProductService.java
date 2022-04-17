@@ -24,7 +24,7 @@ public interface ProductService {
 
     Product createProductFromProductDTO(ProductDTO productDTO, Optional<Product> productData);
 
-    void creatInitialProducts();
+    void createInitialProducts();
 
     void createProduct(String code, String name, ProductCategory category, int price, String unit, String image, int quantity);
 

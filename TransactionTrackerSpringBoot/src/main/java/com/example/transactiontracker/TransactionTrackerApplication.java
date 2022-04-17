@@ -23,7 +23,7 @@ public class TransactionTrackerApplication {
     public static void main(String[] args) {
         SpringApplication.run(TransactionTrackerApplication.class, args);
         userServiceStatic.createInitialUsers();
-        productServiceStatic.creatInitialProducts();
+        productServiceStatic.createInitialProducts();
     }
 
 }
