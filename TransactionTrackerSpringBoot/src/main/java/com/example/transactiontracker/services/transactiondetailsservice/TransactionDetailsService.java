@@ -26,4 +26,6 @@ public interface TransactionDetailsService {
     Long saveAll(TransactionDetailsListDTO transactionDetailsListDTO);
 
     List<TransactionDetailResponse> createTransactionDetailsResponses(List<TransactionDetail> transactionDetails);
+
+    List<TransactionDetail> findAllByTransaction_Id(long id);
 }

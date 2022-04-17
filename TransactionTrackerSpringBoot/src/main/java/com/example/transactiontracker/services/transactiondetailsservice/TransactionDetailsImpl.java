@@ -120,6 +120,11 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
         return transactionDetailResponses;
     }
 
+    @Override
+    public List<TransactionDetail> findAllByTransaction_Id(long id) {
+        return transactionDetailsRepository.findAllByTransaction_Id(id);
+    }
+
     private void setProductQuantityDifference(Transaction transaction, Product product, int difference) {
         if (transaction.getTransactionType() == TransactionType.SALE) {
             product.setQuantity(product.getQuantity() - difference);

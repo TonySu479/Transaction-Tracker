@@ -25,8 +25,6 @@ public class TransactionDetailsController {
     private final TransactionDetailsService transactionDetailsService;
     private final TransactionService transactionService;
     private final ProductService productService;
-    private final TransactionDetailsRepository transactionDetailsRepository;
-
 
     @PostMapping("/transaction-details")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
@@ -88,7 +86,7 @@ public class TransactionDetailsController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<TransactionDetailResponse>> getTransactionDetailsByTransactionId(@RequestParam long id) {
         try {
-            List<TransactionDetail> transactionDetails = new ArrayList<>(transactionDetailsRepository.findAllByTransaction_Id(id));
+            List<TransactionDetail> transactionDetails = new ArrayList<>(transactionDetailsService.findAllByTransaction_Id(id));
             if (transactionDetails.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
