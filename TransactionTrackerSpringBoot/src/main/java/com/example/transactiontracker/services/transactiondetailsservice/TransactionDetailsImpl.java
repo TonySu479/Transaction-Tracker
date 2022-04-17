@@ -45,7 +45,7 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     }
 
     @Override
-    public TransactionDetail setTransactionDetailsAttributesAndReturnNewEntity(TransactionDetailsDTO transactionDetailsDTO, TransactionDetail transactionDetailsData) {
+    public TransactionDetail createTransactionDetailsFromTransactionDetailsDTO(TransactionDetailsDTO transactionDetailsDTO, TransactionDetail transactionDetailsData) {
         transactionDetailsData.setTransaction(transactionRepository.findById(transactionDetailsDTO.getTransactionId()).orElse(null));
         transactionDetailsData.setProduct(productRepository.findById(transactionDetailsDTO.getProductId()).orElse(null));
         transactionDetailsData.setPrice(transactionDetailsDTO.getPrice());
@@ -84,7 +84,7 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     @Override
     public TransactionDetailResponse update(TransactionDetail transactionDetailsData, TransactionDetailsDTO transactionDetailsDTO) {
         updateProductInventory(transactionDetailsDTO);
-        TransactionDetail transactionDetailEntity = setTransactionDetailsAttributesAndReturnNewEntity(transactionDetailsDTO, transactionDetailsData);
+        TransactionDetail transactionDetailEntity = createTransactionDetailsFromTransactionDetailsDTO(transactionDetailsDTO, transactionDetailsData);
         save(transactionDetailEntity);
         TransactionDetailResponse response = new TransactionDetailResponse(transactionDetailEntity.getId(), transactionDetailEntity.getTransaction(),
                 transactionDetailEntity.getProduct(), transactionDetailEntity.getQuantity(),

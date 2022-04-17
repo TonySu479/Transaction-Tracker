@@ -59,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product setProductAttributesAndReturnNewEntity(ProductDTO productDTO, Optional<Product> productData) {
+    public Product createProductFromProductDTO(ProductDTO productDTO, Optional<Product> productData) {
         Product productEntity = productData.get();
         if (productDTO.getImage().startsWith("//")) {
             String url = productDTO.getImage();

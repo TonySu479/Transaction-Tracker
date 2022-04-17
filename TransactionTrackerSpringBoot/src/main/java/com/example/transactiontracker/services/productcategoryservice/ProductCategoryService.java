@@ -18,5 +18,5 @@ public interface ProductCategoryService {
 
     List<ProductCategory> findByNameContainingIgnoreCase(String name);
 
-    ProductCategory setProductCategoryAttributesAndReturnNewEntity(ProductCategory productCategory, Optional<ProductCategory> productCategoryData);
+    ProductCategory createProductCategory(ProductCategory productCategory, Optional<ProductCategory> productCategoryData);
 }

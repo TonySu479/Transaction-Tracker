@@ -22,7 +22,7 @@ public interface ProductService {
 
     List<Product> getAllProducts(String name);
 
-    Product setProductAttributesAndReturnNewEntity(ProductDTO productDTO, Optional<Product> productData);
+    Product createProductFromProductDTO(ProductDTO productDTO, Optional<Product> productData);
 
     void creatInitialProducts();
 

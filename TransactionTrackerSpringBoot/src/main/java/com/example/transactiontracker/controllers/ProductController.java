@@ -43,7 +43,7 @@ public class ProductController {
     public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody ProductDTO productDTO) {
         Optional<Product> productData = productService.findById(id);
         if (productData.isPresent()) {
-            Product productEntity = productService.setProductAttributesAndReturnNewEntity(productDTO, productData);
+            Product productEntity = productService.createProductFromProductDTO(productDTO, productData);
             productService.save(productEntity);
             productService.generateImageUrl(productEntity);
             return new ResponseEntity<>(productEntity, HttpStatus.OK);

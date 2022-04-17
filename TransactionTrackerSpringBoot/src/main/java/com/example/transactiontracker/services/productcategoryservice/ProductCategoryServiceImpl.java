@@ -45,7 +45,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     }
 
     @Override
-    public ProductCategory setProductCategoryAttributesAndReturnNewEntity(ProductCategory productCategory, Optional<ProductCategory> productCategoryData) {
+    public ProductCategory createProductCategory(ProductCategory productCategory, Optional<ProductCategory> productCategoryData) {
         ProductCategory productCategoryEntity = productCategoryData.get();
         productCategoryEntity.setName(productCategory.getName());
         return productCategoryEntity;

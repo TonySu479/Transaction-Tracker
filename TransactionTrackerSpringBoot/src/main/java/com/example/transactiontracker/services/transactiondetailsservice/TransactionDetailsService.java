@@ -15,7 +15,7 @@ public interface TransactionDetailsService {
 
     Optional<TransactionDetail> findById(long id);
 
-    TransactionDetail setTransactionDetailsAttributesAndReturnNewEntity(TransactionDetailsDTO transactionDetailsDTO, TransactionDetail transactionDetailsData);
+    TransactionDetail createTransactionDetailsFromTransactionDetailsDTO(TransactionDetailsDTO transactionDetailsDTO, TransactionDetail transactionDetailsData);
 
     TransactionDetailResponse generateImageUrl(TransactionDetailResponse transactionDetailResponse);
 

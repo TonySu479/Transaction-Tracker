@@ -18,7 +18,7 @@ public interface TransactionService {
 
     List<Transaction> findAll();
 
-    Transaction setTransactionAttributesAndReturnNewEntity(Transaction transaction, Optional<Transaction> transactionData);
+    Transaction createTransaction(Transaction transaction, Optional<Transaction> transactionData);
 
     List<TransactionDetail> findAllByTransaction_Id(long id);
 

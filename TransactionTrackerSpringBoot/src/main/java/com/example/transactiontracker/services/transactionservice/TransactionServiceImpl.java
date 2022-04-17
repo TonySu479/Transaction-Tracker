@@ -49,7 +49,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Transaction setTransactionAttributesAndReturnNewEntity(Transaction transaction, Optional<Transaction> transactionData) {
+    public Transaction createTransaction(Transaction transaction, Optional<Transaction> transactionData) {
         Transaction transactionEntity = transactionData.get();
         transactionEntity.setCreatedAt(transaction.getCreatedAt());
         return transactionEntity;
