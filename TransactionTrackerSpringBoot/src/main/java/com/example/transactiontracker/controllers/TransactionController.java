@@ -30,9 +30,8 @@ public class TransactionController {
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
         try {
-            Transaction transactionEntity = transactionService
-                    .save(new Transaction(transaction.getCreatedAt(), transaction.getTransactionType()));
-            return new ResponseEntity<>(transactionEntity, HttpStatus.CREATED);
+            return new ResponseEntity<>(transactionService
+                    .save(new Transaction(transaction.getCreatedAt(), transaction.getTransactionType())), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -70,7 +69,7 @@ public class TransactionController {
             if (transactions.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            for(Transaction transaction : transactions){
+            for (Transaction transaction : transactions) {
                 transactionDTOs.add(new TransactionDTO(transaction.getCreatedAt(), transaction.getId(), transactionService.getTransactionTotalFromTransaction(transaction), transaction.getTransactionType()));
             }
             return new ResponseEntity<>(transactionDTOs, HttpStatus.OK);

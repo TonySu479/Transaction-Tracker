@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                 this.roles = this.tokenStorage.getUser().roles;
 
                 if(this.roles.indexOf("ROLE_ADMIN") > - 1) {
-                    this.router.navigate(["/"]);
+                    this.router.navigate(["/products"]);
                 } else {
                     this.router.navigate(["/cashier"]);
                 }
