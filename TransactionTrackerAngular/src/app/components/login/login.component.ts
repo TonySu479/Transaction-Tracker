@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ConfigService } from '../../service/app.config.service';
-import { AppConfig } from '../../api/appconfig';
+import { AppConfig } from '../../model/appconfig';
 import { Subscription } from 'rxjs';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
 import { AuthService } from 'src/app/service/auth.service';

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms'
 import {ProductCategoryService} from "../../../service/product-category.service";
-import {ProductCategory} from "../../../api/product-category";
+import {ProductCategory} from "../../../model/product-category";
 
 @Component({
     selector: 'app-product-dialog',

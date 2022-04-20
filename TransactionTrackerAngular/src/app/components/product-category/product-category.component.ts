@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
-import {ProductCategory} from "../../api/product-category";
+import {ProductCategory} from "../../model/product-category";
 import {ProductCategoryService} from "../../service/product-category.service";
 import {ProductCategoryDialogComponent} from "./product-category-dialog/product-category-dialog.component";
 

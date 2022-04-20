@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {TransactionDetail} from "../api/transaction-detail";
-import {TransactionDetailsListDTO} from "../api/transactionDetailsListDTO";
+import {TransactionDetail} from "../model/transaction-detail";
+import {TransactionDetailsListDTO} from "../model/transactionDetailsListDTO";
 
 
 @Injectable()

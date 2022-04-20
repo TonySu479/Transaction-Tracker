@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {Product} from 'src/app/api/product';
+import {Product} from 'src/app/model/product';
 import {ProductService} from 'src/app/service/productservice';
 import {DialogService} from "primeng/dynamicdialog";
 import {ProductDialogComponent} from "./product-dialog/product-dialog.component";

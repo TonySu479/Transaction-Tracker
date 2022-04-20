@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Transaction} from "../../api/transaction";
+import {Transaction} from "../../model/transaction";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
 import {TransactionService} from "../../service/transactionservice";

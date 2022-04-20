@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Transaction} from "../../../api/transaction";
+import {Transaction} from "../../../model/transaction";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TransactionService} from "../../../service/transactionservice";
 import {ConfirmationService, MessageService} from "primeng/api";
@@ -7,8 +7,8 @@ import {DialogService} from "primeng/dynamicdialog";
 import {TransactionDetailsDialogComponent} from "./transaction-details-dialog/transaction-details-dialog.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TransactionDetailService} from "../../../service/transaction-detail.service";
-import {TransactionDetail} from "../../../api/transaction-detail";
-import {TransactionType} from "../../../api/transaction-type.enum";
+import {TransactionDetail} from "../../../model/transaction-detail";
+import {TransactionType} from "../../../model/transaction-type.enum";
 
 @Component({
     selector: 'app-transaction-details',

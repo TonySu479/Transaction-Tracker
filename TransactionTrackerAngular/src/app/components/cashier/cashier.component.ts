@@ -2,15 +2,15 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Product} from "../../api/product";
+import {Product} from "../../model/product";
 import {TransactionService} from "../../service/transactionservice";
 import {ProductService} from "../../service/productservice";
-import {TransactionDetail} from "../../api/transaction-detail";
+import {TransactionDetail} from "../../model/transaction-detail";
 import {TransactionDetailService} from "../../service/transaction-detail.service";
-import {Transaction} from "../../api/transaction";
+import {Transaction} from "../../model/transaction";
 import {Router} from "@angular/router";
 import {ShiftService} from "../../service/shiftservice";
-import {Shift} from "../../api/shift";
+import {Shift} from "../../model/shift";
 import {CashierDialogComponent} from "./cashier-dialog/cashier-dialog.component";
 
 @Component({

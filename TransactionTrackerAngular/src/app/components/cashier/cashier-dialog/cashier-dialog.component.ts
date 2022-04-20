@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Shift} from "../../../api/shift";
+import {Shift} from "../../../model/shift";
 import {DynamicDialogConfig} from "primeng/dynamicdialog";
 
 @Component({

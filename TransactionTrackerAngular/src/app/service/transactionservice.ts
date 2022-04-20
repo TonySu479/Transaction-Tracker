@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Transaction} from "../api/transaction";
+import {Transaction} from "../model/transaction";
 import {map} from "rxjs/operators";
 
 

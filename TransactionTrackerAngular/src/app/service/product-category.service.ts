@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {ProductCategory} from "../api/product-category";
+import {ProductCategory} from "../model/product-category";
 
 @Injectable()
 export class ProductCategoryService {

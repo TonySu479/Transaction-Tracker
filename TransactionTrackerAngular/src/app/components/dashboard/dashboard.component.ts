@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { Product } from '../../api/product';
+import { Product } from '../../model/product';
 import { ProductService } from '../../service/productservice';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../service/app.config.service';
-import { AppConfig } from '../../api/appconfig';
-import {Transaction} from "../../api/transaction";
+import { AppConfig } from '../../model/appconfig';
+import {Transaction} from "../../model/transaction";
 import {TransactionService} from "../../service/transactionservice";
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {TransactionService} from "../../../../service/transactionservice";
-import {Product} from "../../../../api/product";
+import {Product} from "../../../../model/product";
 import {ProductService} from "../../../../service/productservice";
 
 @Component({

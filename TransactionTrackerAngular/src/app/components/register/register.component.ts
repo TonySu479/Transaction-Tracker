@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppConfig} from "../../api/appconfig";
+import {AppConfig} from "../../model/appconfig";
 import {Subscription} from "rxjs";
 import {ConfigService} from "../../service/app.config.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
