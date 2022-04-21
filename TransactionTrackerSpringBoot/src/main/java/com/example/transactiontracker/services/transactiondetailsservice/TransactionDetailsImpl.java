@@ -63,13 +63,9 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
 
     @Override
     public void updateProductInventory(TransactionDetailsDTO transactionDetailsDTO) {
-        System.out.println("in update product inv");
-        System.out.println(transactionDetailsDTO);
         Transaction transaction = transactionRepository.getById(transactionDetailsDTO.getTransactionId());
-        System.out.println(transaction);
         Product product = productRepository.getById(transactionDetailsDTO.getProductId());
         int difference = transactionDetailsDTO.getQuantity();
-        System.out.println("difference" + difference);
 
         if (transactionDetailsDTO.getId() != null) {
             TransactionDetail prev = transactionDetailsRepository.getById(transactionDetailsDTO.getId());
