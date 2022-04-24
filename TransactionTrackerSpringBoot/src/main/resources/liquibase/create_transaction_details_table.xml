@@ -21,10 +21,6 @@
                                  referencedTableName="products"
                                  referencedColumnNames="id"/>
 
-        <addForeignKeyConstraint baseTableName="transaction_details" baseColumnNames="transaction_id"
-                                 constraintName="FK_TRANSACTION_DETAILS_TO_TRANSACTION"
-                                 referencedTableName="transactions"
-                                 referencedColumnNames="id"/>
     </changeSet>
 
 </databaseChangeLog>
