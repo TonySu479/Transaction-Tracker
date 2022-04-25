@@ -91,7 +91,11 @@ public class ProductController {
     @PostMapping("/inventory-check")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<ProductInventoryCheckDTO>> inventoryCheck(@RequestBody List<ProductInventoryCheckDTO> productInventoryCheckDTOS) {
-        return null;
+        try {
+            return new ResponseEntity<>(productService.inventoryCheck(productInventoryCheckDTOS), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
