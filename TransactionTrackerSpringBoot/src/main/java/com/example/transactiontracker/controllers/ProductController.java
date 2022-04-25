@@ -74,8 +74,6 @@ public class ProductController {
         }
     }
 
-
-
     @PostMapping("/delete-products")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteProducts(@RequestBody List<String> listOfIds) {
@@ -88,5 +86,11 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+//
+//    @PostMapping("/inventory-check")
+//    @PreAuthorize("hasRole('ADMIN')")
+//    public ResponseEntity<List<Product>> inventoryCheck(@RequestBody List<>){
+//
+//    }
 
 }

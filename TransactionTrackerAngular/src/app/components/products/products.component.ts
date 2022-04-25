@@ -12,7 +12,7 @@ import {ProductDialogComponent} from "./product-dialog/product-dialog.component"
     providers: [MessageService, ConfirmationService, DialogService]
 })
 export class ProductsComponent implements OnInit {
-    @ViewChild('dt') dataTable : any;
+    @ViewChild('dt') dataTable: any;
 
     deleteProductDialog: boolean = false;
 
@@ -48,16 +48,25 @@ export class ProductsComponent implements OnInit {
         });
 
         ref.onClose.subscribe(value => {
-            if(!value){
+            if (!value) {
                 return;
             }
             this.productService.create(value)
                 .subscribe(data => {
                     this.products = [...this.products, data];
-                    this.messageService.add({severity:"success", summary:"product created", detail:`${data.name} created`});
+                    this.messageService.add({
+                        severity: "success",
+                        summary: "product created",
+                        detail: `${data.name} created`
+                    });
+                }, error => {
+                    this.messageService.add({
+                        severity: "error",
+                        summary: "product has not been created",
+                        detail: "error creating product field"
+                    })
                 })
         });
-
     }
 
     deleteSelectedProducts() {
@@ -67,11 +76,15 @@ export class ProductsComponent implements OnInit {
             icon: 'fa fa-question-circle',
             accept: () => {
                 this.productService.deleteProducts(this.selectedProducts.map(product => product.id)).subscribe(() => {
-                        this.products = this.products.filter(
-                            (val) => !this.selectedProducts.includes(val)
-                        );
-                        this.selectedProducts = null;
-                    this.messageService.add({severity:"success", summary:"product deleted", detail:`Selected products have been deleted`});
+                    this.products = this.products.filter(
+                        (val) => !this.selectedProducts.includes(val)
+                    );
+                    this.selectedProducts = null;
+                    this.messageService.add({
+                        severity: "success",
+                        summary: "product deleted",
+                        detail: `Selected products have been deleted`
+                    });
                 })
             }
         });
@@ -88,14 +101,18 @@ export class ProductsComponent implements OnInit {
         });
 
         ref.onClose.subscribe(value => {
-            if(!value){
+            if (!value) {
                 return;
             }
             this.productService.update({...value, id: product.id})
                 .subscribe((data: Product) => {
                     let index = this.products.findIndex(product => product.id === data.id);
                     this.products[index] = data;
-                    this.messageService.add({severity:"success", summary:"product edited", detail:`${data.name} edited`});
+                    this.messageService.add({
+                        severity: "success",
+                        summary: "product edited",
+                        detail: `${data.name} edited`
+                    });
                 })
         })
     }
@@ -108,7 +125,11 @@ export class ProductsComponent implements OnInit {
             accept: () => {
                 this.productService.delete(product).subscribe(() => {
                     this.products = this.products.filter(p => p.id != product.id);
-                    this.messageService.add({severity:"success", summary:"product deleted", detail:`${product.name} has been deleted`});
+                    this.messageService.add({
+                        severity: "success",
+                        summary: "product deleted",
+                        detail: `${product.name} has been deleted`
+                    });
                 })
             }
         });
