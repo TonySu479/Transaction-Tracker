@@ -114,8 +114,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductInventoryCheckDTO> inventoryCheck(ProductInventoryCheckDTO productInventoryCheckDTO) {
-        return null;
+    public List<ProductInventoryCheckDTO> inventoryCheck(List<ProductInventoryCheckDTO> productInventoryCheckDTOs) {
+        List<ProductInventoryCheckDTO> response = new ArrayList<>();
+        for (ProductInventoryCheckDTO productInvDTO : productInventoryCheckDTOs) {
+            String code = productInvDTO.getCode();
+            ProductInventoryCheckDTO pic = new ProductInventoryCheckDTO(code, productRepository.getByCode(code).getQuantity() - productInvDTO.getQuantity());
+            response.add(pic);
+        }
+        return response;
     }
 
     @Override

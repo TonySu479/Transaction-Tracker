@@ -35,5 +35,5 @@ public interface ProductService {
 
     Product generateImageUrl(Product product);
 
-    List<ProductInventoryCheckDTO> inventoryCheck(ProductInventoryCheckDTO productInventoryCheckDTO);
+    List<ProductInventoryCheckDTO> inventoryCheck(List<ProductInventoryCheckDTO> productInventoryCheckDTO);
 }
