@@ -1,5 +1,6 @@
 package com.example.transactiontracker.services.productservice;
 
+import com.example.transactiontracker.models.payload.dto.ProductInventoryCheckDTO;
 import com.example.transactiontracker.models.product.Product;
 import com.example.transactiontracker.models.product.ProductCategory;
 import com.example.transactiontracker.models.payload.dto.ProductDTO;
@@ -22,7 +23,7 @@ public interface ProductService {
 
     List<Product> getAllProducts(String name);
 
-    Product createProductFromProductDTO(ProductDTO productDTO, Optional<Product> productData);
+    Product createProductFromProductDTO(ProductDTO productDTO, Product productData);
 
     void createInitialProducts();
 
@@ -33,4 +34,6 @@ public interface ProductService {
     String storeImage(String image);
 
     Product generateImageUrl(Product product);
+
+    List<ProductInventoryCheckDTO> inventoryCheck(ProductInventoryCheckDTO productInventoryCheckDTO);
 }

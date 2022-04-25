@@ -1,5 +1,6 @@
 package com.example.transactiontracker.services.productservice;
 
+import com.example.transactiontracker.models.payload.dto.ProductInventoryCheckDTO;
 import com.example.transactiontracker.models.product.Product;
 import com.example.transactiontracker.models.product.ProductCategory;
 import com.example.transactiontracker.models.payload.dto.ProductDTO;
@@ -59,8 +60,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product createProductFromProductDTO(ProductDTO productDTO, Optional<Product> productData) {
-        Product productEntity = productData.get();
+    public Product createProductFromProductDTO(ProductDTO productDTO, Product productEntity) {
         if (productDTO.getImage().startsWith("//")) {
             String url = productDTO.getImage();
             productEntity.setImage(FilenameUtils.getName(url.substring(url.lastIndexOf('/') + 1)));
@@ -111,6 +111,11 @@ public class ProductServiceImpl implements ProductService {
     public Product generateImageUrl(Product product) {
         product.setImage(imageBaseURL + product.getImage());
         return product;
+    }
+
+    @Override
+    public List<ProductInventoryCheckDTO> inventoryCheck(ProductInventoryCheckDTO productInventoryCheckDTO) {
+        return null;
     }
 
     @Override

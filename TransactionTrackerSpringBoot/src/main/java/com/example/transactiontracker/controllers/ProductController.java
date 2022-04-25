@@ -1,5 +1,6 @@
 package com.example.transactiontracker.controllers;
 
+import com.example.transactiontracker.models.payload.dto.ProductInventoryCheckDTO;
 import com.example.transactiontracker.models.product.Product;
 import com.example.transactiontracker.models.payload.dto.ProductDTO;
 import com.example.transactiontracker.services.productservice.ProductService;
@@ -43,7 +44,7 @@ public class ProductController {
     public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody ProductDTO productDTO) {
         Optional<Product> productData = productService.findById(id);
         if (productData.isPresent()) {
-            Product productEntity = productService.createProductFromProductDTO(productDTO, productData);
+            Product productEntity = productService.createProductFromProductDTO(productDTO, productData.get());
             productService.save(productEntity);
             productService.generateImageUrl(productEntity);
             return new ResponseEntity<>(productEntity, HttpStatus.OK);
@@ -86,11 +87,11 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//
-//    @PostMapping("/inventory-check")
-//    @PreAuthorize("hasRole('ADMIN')")
-//    public ResponseEntity<List<Product>> inventoryCheck(@RequestBody List<>){
-//
-//    }
+
+    @PostMapping("/inventory-check")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<ProductInventoryCheckDTO>> inventoryCheck(@RequestBody List<ProductInventoryCheckDTO> productInventoryCheckDTOS) {
+        return null;
+    }
 
 }
