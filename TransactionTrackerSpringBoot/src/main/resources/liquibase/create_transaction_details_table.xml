@@ -20,7 +20,6 @@
                                  constraintName="FK_TRANSACTION_DETAILS_TO_PRODUCTS"
                                  referencedTableName="products"
                                  referencedColumnNames="id"/>
-
     </changeSet>
 
 </databaseChangeLog>

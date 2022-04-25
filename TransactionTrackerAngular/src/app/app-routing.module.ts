@@ -1,6 +1,5 @@
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {EmptyComponent} from './components/empty/empty.component';
 import {AppMainComponent} from './app.main.component';
 import {LoginComponent} from './components/login/login.component';
@@ -14,6 +13,7 @@ import {TransactionsComponent} from "./components/transactions/transactions.comp
 import {TransactionDetailsComponent} from "./components/transactions/transaction-details/transaction-details.component";
 import {TransactionResolver} from "./components/transactions/transaction.resolver";
 import {CashierComponent} from "./components/cashier/cashier.component";
+import {InventoryCheckComponent} from "./components/inventory-check/inventory-check.component";
 
 @NgModule({
     imports: [
@@ -21,13 +21,13 @@ import {CashierComponent} from "./components/cashier/cashier.component";
             {
                 path: '', component: AppMainComponent, canActivate: [AuthGuard],
                 children: [
-                    {path: '', component: DashboardComponent},
                     {path: 'pages/empty', component: EmptyComponent},
                     {path: 'products', component: ProductsComponent},
                     {path: 'product-categories', component: ProductCategoryComponent},
                     {path: 'transactions', component: TransactionsComponent},
                     {path: 'transaction-details', component: TransactionDetailsComponent},
-                    {path: 'transaction-details/:id', component: TransactionDetailsComponent, resolve: {transaction: TransactionResolver }}
+                    {path: 'transaction-details/:id', component: TransactionDetailsComponent, resolve: {transaction: TransactionResolver }},
+                    {path: 'inventory-check', component: InventoryCheckComponent },
                 ],
             },
             {path: 'login', component: LoginComponent},

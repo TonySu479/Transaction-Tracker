@@ -95,7 +95,6 @@ import {AppFooterComponent} from './app.footer.component';
 import {AppConfigComponent} from './app.config.component';
 import {AppMenuComponent} from './app.menu.component';
 import {AppMenuitemComponent} from './app.menuitem.component';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {EmptyComponent} from './components/empty/empty.component';
 import {CountryService} from './service/countryservice';
 import {CustomerService} from './service/customerservice';
@@ -126,6 +125,7 @@ import {TransactionResolver} from "./components/transactions/transaction.resolve
 import { CashierComponent } from './components/cashier/cashier.component';
 import {ShiftService} from "./service/shiftservice";
 import { CashierDialogComponent } from './components/cashier/cashier-dialog/cashier-dialog.component';
+import { InventoryCheckComponent } from './components/inventory-check/inventory-check.component';
 
 @NgModule({
     imports: [
@@ -227,7 +227,6 @@ import { CashierDialogComponent } from './components/cashier/cashier-dialog/cash
         AppConfigComponent,
         AppMenuComponent,
         AppMenuitemComponent,
-        DashboardComponent,
         EmptyComponent,
         BlockViewer,
         LoginComponent,
@@ -242,6 +241,7 @@ import { CashierDialogComponent } from './components/cashier/cashier-dialog/cash
         TransactionDetailsDialogComponent,
         CashierComponent,
         CashierDialogComponent,
+        InventoryCheckComponent,
     ],
     providers: [
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
