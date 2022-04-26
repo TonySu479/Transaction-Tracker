@@ -1,0 +1,56 @@
+<p-table #dt
+         [value]="productQuantityDifferences"
+         responsiveLayout="scroll"
+         [rows]="200"
+         [paginator]="true"
+         [showCurrentPageReport]="true"
+         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+         [rowHover]="true" dataKey="id">
+    <ng-template pTemplate="caption">
+        <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+
+            <div style="flex: 1">
+                <span>Inventory Check</span>
+            </div>
+
+            <div class="flex" style="align-items: center">
+                <div class="mr-3">
+                    <button pButton pRipple (click)="confirmInventory()" label="Confirm"></button>
+                </div>
+            </div>
+        </div>
+
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="name">Code
+                <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="price">Name
+                <p-sortIcon field="price"></p-sortIcon>
+            </th>
+            <th pSortableColumn="quantity">Quantity Difference
+                <p-sortIcon field="quantity"></p-sortIcon>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-index="rowIndex">
+        <tr>
+            <td style="width:14%; min-width:10rem;">
+                <span class="p-column-title">Code</span>
+                {{product.code}}
+            </td>
+            <td style="width:14%; min-width:10rem;">
+                <span class="p-column-title">Name</span>
+                {{product.name}}
+            </td>
+            <td style="width:14%; min-width:10rem;">
+                <span class="p-column-title">Quantity difference</span>
+                {{product.quantity}}
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft" let-state>
+        total records: {{state.totalRecords}}
+    </ng-template>
+</p-table>

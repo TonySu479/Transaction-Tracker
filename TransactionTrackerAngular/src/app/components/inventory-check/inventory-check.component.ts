@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
 import {ProductService} from "../../service/productservice";
+import {ProductDTO} from "../../model/productDTO";
+import {InventoryCheckDialogComponent} from "./inventory-check-dialog/inventory-check-dialog.component";
 
 class Products {
 }
@@ -15,10 +17,12 @@ class Products {
 export class InventoryCheckComponent implements OnInit {
 
     products: Products[] = [];
+    productQuantityDifferences: ProductDTO[] = [];
 
     constructor(
         private productService: ProductService,
-        private confirmationService: ConfirmationService
+        private confirmationService: ConfirmationService,
+        private dialogService: DialogService
     ) {
     }
 
@@ -38,7 +42,24 @@ export class InventoryCheckComponent implements OnInit {
             icon: 'fa fa-question-circle',
             accept: () => {
                 this.productService.inventoryCheck(this.products).subscribe(
-                    data => console.log(data)
+                    data => {
+                        this.productQuantityDifferences = data;
+                        const ref = this.dialogService.open(InventoryCheckDialogComponent, {
+                            header: 'Inventory Check',
+                            data: {
+                                productReport: this.productQuantityDifferences
+                            },
+                            width: "800px"
+                        });
+
+                        ref.onClose.subscribe(value => {
+                            if (value === true) {
+
+                            } else {
+
+                            }
+                        })
+                    }
                 );
             }
         });

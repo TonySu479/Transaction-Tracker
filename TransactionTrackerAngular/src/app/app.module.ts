@@ -126,6 +126,7 @@ import { CashierComponent } from './components/cashier/cashier.component';
 import {ShiftService} from "./service/shiftservice";
 import { CashierDialogComponent } from './components/cashier/cashier-dialog/cashier-dialog.component';
 import { InventoryCheckComponent } from './components/inventory-check/inventory-check.component';
+import { InventoryCheckDialogComponent } from './components/inventory-check/inventory-check-dialog/inventory-check-dialog.component';
 
 @NgModule({
     imports: [
@@ -242,6 +243,7 @@ import { InventoryCheckComponent } from './components/inventory-check/inventory-
         CashierComponent,
         CashierDialogComponent,
         InventoryCheckComponent,
+        InventoryCheckDialogComponent,
     ],
     providers: [
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},

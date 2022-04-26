@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../model/product';
+import {ProductDTO} from "../model/productDTO";
 
 @Injectable()
 export class ProductService {
@@ -41,6 +42,6 @@ export class ProductService {
     }
 
     inventoryCheck(products: Product[]) {
-        return this.http.post<Product>(`${this.baseUrl}/inventory-check`, products)
+        return this.http.post<ProductDTO[]>(`${this.baseUrl}/inventory-check`, products)
     }
 }
