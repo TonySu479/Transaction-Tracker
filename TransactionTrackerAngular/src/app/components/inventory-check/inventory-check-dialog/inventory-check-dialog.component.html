@@ -44,9 +44,12 @@
                 <span class="p-column-title">Name</span>
                 {{product.name}}
             </td>
-            <td style="width:14%; min-width:10rem;">
+            <td style="width:14%; min-width:10rem;" [ngClass]="{'text-green': product.quantity == 0, 'text-red': product.quantity < 0, 'text-yellow': product.quantity > 0}">
                 <span class="p-column-title">Quantity difference</span>
                 {{product.quantity}}
+                <i class="pi pi-check" *ngIf="product.quantity == 0"></i>
+                <i class="pi pi-exclamation-circle" *ngIf="product.quantity < 0"></i>
+                <i class="pi pi-exclamation-triangle" *ngIf="product.quantity > 0"></i>
             </td>
         </tr>
     </ng-template>
