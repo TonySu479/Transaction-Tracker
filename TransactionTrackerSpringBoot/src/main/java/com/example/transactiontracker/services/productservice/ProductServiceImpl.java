@@ -118,7 +118,7 @@ public class ProductServiceImpl implements ProductService {
         List<ProductInventoryCheckDTO> response = new ArrayList<>();
         for (ProductInventoryCheckDTO productInvDTO : productInventoryCheckDTOs) {
             String code = productInvDTO.getCode();
-            ProductInventoryCheckDTO pic = new ProductInventoryCheckDTO(code, productInvDTO.getQuantity() - productRepository.getByCode(code).getQuantity());
+            ProductInventoryCheckDTO pic = new ProductInventoryCheckDTO(code, productInvDTO.getName(), productInvDTO.getQuantity() - productRepository.getByCode(code).getQuantity());
             response.add(pic);
         }
         return response;

@@ -12,6 +12,8 @@ public class ProductInventoryCheckDTO {
     @NotBlank
     private String code;
 
+    @NotBlank String name;
+
     @NotBlank
     private int quantity;
 }

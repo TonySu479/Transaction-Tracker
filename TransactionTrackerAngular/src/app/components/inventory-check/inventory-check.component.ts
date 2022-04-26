@@ -17,7 +17,8 @@ export class InventoryCheckComponent implements OnInit {
     products: Products[] = [];
 
     constructor(
-        private productService: ProductService
+        private productService: ProductService,
+        private confirmationService: ConfirmationService
     ) {
     }
 
@@ -31,9 +32,17 @@ export class InventoryCheckComponent implements OnInit {
     }
 
     inventoryCheck() {
-        this.productService.inventoryCheck(this.products).subscribe(
-            data => console.log(data)
-        );
+        this.confirmationService.confirm({
+            message: `Are you sure these are the amounts for the inventory check?`,
+            header: 'Confirmation',
+            icon: 'fa fa-question-circle',
+            accept: () => {
+                this.productService.inventoryCheck(this.products).subscribe(
+                    data => console.log(data)
+                );
+            }
+        });
+
     }
 
 }
