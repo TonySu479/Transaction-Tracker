@@ -40,18 +40,7 @@ export class ProductService {
         return this.http.post<Product>(`${this.baseUrl}/delete-products`, listOfIds);
     }
 
-    getProductsMixed() {
-        return this.http.get<any>('assets/demo/data/products-mixed.json')
-        .toPromise()
-        .then(res => res.data as Product[])
-        .then(data => data);
+    inventoryCheck(products: Product[]) {
+        return this.http.post<Product>(`${this.baseUrl}/inventory-check`, products)
     }
-
-    getProductsWithOrdersSmall() {
-        return this.http.get<any>('assets/demo/data/products-orders-small.json')
-        .toPromise()
-        .then(res => res.data as Product[])
-        .then(data => data);
-    }
-
 }

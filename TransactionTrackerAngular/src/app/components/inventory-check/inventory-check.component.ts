@@ -30,4 +30,10 @@ export class InventoryCheckComponent implements OnInit {
         }));
     }
 
+    inventoryCheck() {
+        this.productService.inventoryCheck(this.products).subscribe(
+            data => console.log(data)
+        );
+    }
+
 }
