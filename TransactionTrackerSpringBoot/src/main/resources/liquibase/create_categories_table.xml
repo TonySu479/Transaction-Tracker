@@ -22,6 +22,9 @@
             <column name="name" value="DRINK"/>
         </insert>
         <insert tableName="categories">
+            <column name="name" value="SAUCE"/>
+        </insert>
+        <insert tableName="categories">
             <column name="name" value="MISC"/>
         </insert>
     </changeSet>
