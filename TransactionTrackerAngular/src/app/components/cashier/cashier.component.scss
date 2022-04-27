@@ -7,4 +7,19 @@
         display: block !important;
         padding: 15px 0;
     }
+
+    .p-dropdown {
+        width: 200px;
+        height: 50px;
+    }
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    img {
+        height: 25px;
+        display: inline;
+        margin-right: 10px;
+    }
 }

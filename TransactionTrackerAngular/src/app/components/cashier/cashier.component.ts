@@ -23,7 +23,7 @@ export class CashierComponent implements OnInit {
 
     @ViewChild("dt") dataTable: any;
     cashierForm: FormGroup;
-    productResults: Product[];
+    products: Product[];
     transactionDetails: TransactionDetail[] = [];
     transaction: Transaction;
     shift: Shift;
@@ -61,6 +61,10 @@ export class CashierComponent implements OnInit {
             this.shift = data
         });
 
+        this.productService.getProducts().subscribe(data => {
+            this.products = data;
+        });
+
     }
 
     addProduct() {
@@ -88,12 +92,6 @@ export class CashierComponent implements OnInit {
                     detail: "product has been deleted"
                 })
             }
-        });
-    }
-
-    searchProducts(event) {
-        this.productService.getProducts(event.query).subscribe(data => {
-            this.productResults = data;
         });
     }
 

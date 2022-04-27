@@ -15,36 +15,68 @@
                 <h5>
                     <label>Product</label>
                 </h5>
-                <p-autoComplete formControlName="product" [suggestions]="productResults"
-                                (completeMethod)="searchProducts($event)" field="name"
-                                [forceSelection]="true"></p-autoComplete>
                 <div>
+                    <p-dropdown [options]="products" formControlName="product" [showClear]="true" [filter]="true" filterBy="name"
+                                placeholder="Select a Product">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="product-item product-item-value" *ngIf="product">
+                                <img [src]="product.value.image"/>
+                                <div>{{product.value.name}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-item pTemplate="item">
+                            <div class="product-item">
+                                <img [src]="item.image"/>
+                                <div>{{item.name}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="mb-5">
                     <small class="ng-dirty ng-invalid"
                            *ngIf="product?.errors?.required && (product.dirty || product.touched)">Product is
                         required.</small>
                 </div>
             </div>
-            <div class="field">
+            <div class="mr-2">
+                <h5>
+                    <label>Price</label>
+                </h5>
+                <input type="text" pInputText
+                       [value]="!product.value?.unit ? '' : product.value.unit" [readonly]="true">
+            </div>
+            <div class="mr-2">
+                <h5>
+                    <label>Unit</label>
+                </h5>
+                <input type="text" pInputText
+                       [value]="!product.value?.unit ? '' : product.value.unit" [readonly]="true">
+            </div>
+
+            <div class="field mr-5">
                 <h5>
                     <label for="quantity">Quantity </label>
                 </h5>
                 <input type="number" id="quantity" name="quantity" formControlName="quantity" pInputText>
                 <div>
                     <small class="ng-dirty ng-invalid"
-                           *ngIf="quantity?.errors?.required && (quantity.dirty || quantity.touched)">Quantity is
+                           *ngIf="quantity?.errors?.required && (quantity.dirty || quantity.touched)">Quantity
+                        is
                         required.</small>
                     <small class="ng-dirty ng-invalid"
-                           *ngIf="quantity?.errors?.min && (quantity.dirty || quantity.touched)">Quantity has to be
+                           *ngIf="quantity?.errors?.min && (quantity.dirty || quantity.touched)">Quantity has to
+                        be
                         >= {{quantity?.errors?.min.min}}.</small>
                 </div>
             </div>
-            <div class="ml-2">
+            <div>
                 <h5>
                     <label style="color: transparent; user-select: none">Button</label>
                 </h5>
                 <button pButton (click)="addProduct()" type="button" label="Add"></button>
             </div>
         </div>
+
     </form>
     <p-table #dt
              [value]="transactionDetails"
