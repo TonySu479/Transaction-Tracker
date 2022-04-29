@@ -23,13 +23,13 @@ services:
     volumes:
       - db_volume:/var/lib/postgresql/data
 
-  transaction-tracker-angular:
-    container_name: transaction-tracker-angular
-    build:
-        context: TransactionTrackerAngular
-        dockerfile: Dockerfile
-    ports:
-      - "4201:80"
+#  transaction-tracker-angular:
+#    container_name: transaction-tracker-angular
+#    build:
+#        context: TransactionTrackerAngular
+#        dockerfile: Dockerfile
+#    ports:
+#      - "4201:80"
 
 
 volumes:
