@@ -23,8 +23,8 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProductCategoryService productCategoryService;
-//    private final String imagePath = "./TransactionTrackerSpringBoot/assets/images/";
-    private final String imagePath = "/usr/src/app/assets/images/";
+    private final String imagePath = "./TransactionTrackerSpringBoot/assets/images/";
+//    private final String imagePath = "/usr/src/app/assets/images/";
     private final String imageBaseURL = "//localhost:8080/images/";
 
     Date date = new Date();

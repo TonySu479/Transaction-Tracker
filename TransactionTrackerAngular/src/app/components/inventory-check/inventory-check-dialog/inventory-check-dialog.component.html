@@ -15,7 +15,10 @@
 
             <div class="flex" style="align-items: center">
                 <div class="mr-3">
-                    <button pButton pRipple (click)="confirmInventory()" label="Confirm"></button>
+                    <button pButton pRipple (click)="FixInventoryCheck()" label="Fix Inventory Check"></button>
+                </div>
+                <div class="mr-3">
+                    <button pButton pRipple (click)="confirmInventory()" label="Confirm"  class="p-button-success"></button>
                 </div>
             </div>
         </div>
@@ -57,3 +60,4 @@
         total records: {{state.totalRecords}}
     </ng-template>
 </p-table>
+<p-confirmDialog></p-confirmDialog>

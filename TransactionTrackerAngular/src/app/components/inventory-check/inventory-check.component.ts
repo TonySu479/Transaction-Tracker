@@ -54,7 +54,7 @@ export class InventoryCheckComponent implements OnInit {
 
                         ref.onClose.subscribe(value => {
                             if (value === true) {
-
+                                console.log("hello");
                             } else {
 
                             }
@@ -63,7 +63,6 @@ export class InventoryCheckComponent implements OnInit {
                 );
             }
         });
-
     }
 
 }
