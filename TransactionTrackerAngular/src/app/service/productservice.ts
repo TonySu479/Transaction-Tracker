@@ -22,7 +22,6 @@ export class ProductService {
             return this.http.get<any>(this.baseUrl + `?name=${name}`);
         }
         return this.http.get<any>(this.baseUrl);
-
     }
 
     create(product: Product){
@@ -43,5 +42,9 @@ export class ProductService {
 
     inventoryCheck(products: Product[]) {
         return this.http.post<ProductDTO[]>(`${this.baseUrl}/inventory-check`, products)
+    }
+
+    updateQuantities(products: Product[]) {
+        return this.http.post<any>(`${this.baseUrl}/inventory-check/update-quantities`, products)
     }
 }

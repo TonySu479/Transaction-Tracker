@@ -132,6 +132,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void updateQuantities(List<ProductInventoryCheckDTO> productInventoryCheckDTOs) {
+        for(ProductInventoryCheckDTO productInvDTO : productInventoryCheckDTOs) {
+            String productCode = productInvDTO.getCode();
+            Product product = productRepository.getByCode(productCode);
+            product.setQuantity(productInvDTO.getQuantity());
+            productRepository.save(product);
+        }
+    }
+
+    @Override
     public List<Product> getAllProducts(String name) {
         List<Product> products = new ArrayList<>();
         if (name == null)

@@ -29,7 +29,7 @@ export class InventoryCheckDialogComponent implements OnInit {
 
     confirmInventory() {
         this.confirmationService.confirm({
-            message: 'Please note that confirming updates all the product amounts with the new values submitted in the inventory check, It is only recommended to click yes if you are satisfied with the results of the inventory check ',
+            message: 'Please note that confirming updates all the product amounts with the new values submitted in the inventory check. It is only recommended to click yes if you are satisfied with the results of the inventory check ',
             header: 'Confirmation',
             icon: 'fa fa-question-circle',
             accept: () => {

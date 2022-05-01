@@ -97,4 +97,15 @@ public class ProductController {
         }
     }
 
+    @PostMapping("/inventory-check/update-quantities")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<HttpStatus> updateQuantities(@RequestBody List<ProductInventoryCheckDTO> productInventoryCheckDTOS) {
+        try {
+            productService.updateQuantities(productInventoryCheckDTOS);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
