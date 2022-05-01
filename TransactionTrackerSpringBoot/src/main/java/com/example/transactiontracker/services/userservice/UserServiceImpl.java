@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createInitialUsers() {
         createUser("admin", "password", RoleType.ROLE_ADMIN);
-        createUser("basic", "password", RoleType.ROLE_USER);
+        createUser("employee", "password", RoleType.ROLE_USER);
     }
 
     @Override
