@@ -74,6 +74,13 @@ export class TransactionDetailsComponent implements OnInit {
     addNewTransactionDetail() {
         if (!this.transaction && !this.transactionForm.valid) {
             this.transactionForm.markAllAsTouched();
+            if(!this.transactionForm.value.transactionType.valid) {
+                this.messageService.add({
+                    severity: "error",
+                    summary: "Please select a Transaction Type",
+                    detail: `Transaction type is required`
+                });
+            }
             return;
         }
 

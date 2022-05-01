@@ -77,6 +77,7 @@ export class CashierComponent implements OnInit {
             quantity,
             product
         }];
+        this.cashierForm.reset();
     }
 
     deleteTransactionDetail(index) {

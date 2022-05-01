@@ -16,12 +16,6 @@
                 </h5>
                 <p-dropdown class="transaction-type" [options]="transactionTypes" formControlName="transactionType"
                             placeholder="Select a transaction type"></p-dropdown>
-                <div>
-                    <small class="ng-dirty ng-invalid"
-                           *ngIf="transactionType?.errors?.required && (transactionType.dirty || transactionType.touched)">Transaction
-                        is
-                        required.</small>
-                </div>
             </div>
         </div>
         <p-table #dt
