@@ -127,6 +127,8 @@ import {ShiftService} from "./service/shiftservice";
 import { CashierDialogComponent } from './components/cashier/cashier-dialog/cashier-dialog.component';
 import { InventoryCheckComponent } from './components/inventory-check/inventory-check.component';
 import { InventoryCheckDialogComponent } from './components/inventory-check/inventory-check-dialog/inventory-check-dialog.component';
+import { InventoryCheckHistoryComponent } from './components/inventory-check/inventory-check-history/inventory-check-history.component';
+import {InventoryCheckService} from "./service/inventory-check.service";
 
 @NgModule({
     imports: [
@@ -244,12 +246,16 @@ import { InventoryCheckDialogComponent } from './components/inventory-check/inve
         CashierDialogComponent,
         InventoryCheckComponent,
         InventoryCheckDialogComponent,
+        InventoryCheckHistoryComponent,
     ],
     providers: [
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService, JwtHelperService, authInterceptorProviders, ProductCategoryService, TransactionService, TransactionDetailService, TransactionResolver, ShiftService
+        PhotoService, ProductService, MenuService, ConfigService, JwtHelperService, authInterceptorProviders,
+        ProductCategoryService, TransactionService, TransactionDetailService, TransactionResolver, ShiftService,
+        InventoryCheckService
+
     ],
     bootstrap: [AppComponent]
 })

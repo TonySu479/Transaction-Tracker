@@ -14,6 +14,9 @@ import {TransactionDetailsComponent} from "./components/transactions/transaction
 import {TransactionResolver} from "./components/transactions/transaction.resolver";
 import {CashierComponent} from "./components/cashier/cashier.component";
 import {InventoryCheckComponent} from "./components/inventory-check/inventory-check.component";
+import {
+    InventoryCheckHistoryComponent
+} from "./components/inventory-check/inventory-check-history/inventory-check-history.component";
 
 @NgModule({
     imports: [
@@ -28,6 +31,7 @@ import {InventoryCheckComponent} from "./components/inventory-check/inventory-ch
                     {path: 'transaction-details', component: TransactionDetailsComponent},
                     {path: 'transaction-details/:id', component: TransactionDetailsComponent, resolve: {transaction: TransactionResolver }},
                     {path: 'inventory-check', component: InventoryCheckComponent },
+                    {path: 'inventory-check-history', component: InventoryCheckHistoryComponent },
                 ],
             },
             {path: 'login', component: LoginComponent},

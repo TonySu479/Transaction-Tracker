@@ -3,7 +3,6 @@ import {Transaction} from "../../model/transaction";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
 import {TransactionService} from "../../service/transactionservice";
-import {TransactionDialogComponent} from "./transaction-dialog/transaction-dialog.component";
 import {Router} from "@angular/router";
 
 @Component({
