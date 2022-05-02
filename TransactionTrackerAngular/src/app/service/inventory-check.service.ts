@@ -37,16 +37,4 @@ export class InventoryCheckService {
         }));
     }
 
-    // delete(transaction: Transaction) {
-    //     return this.http.delete<Transaction>(`${this.baseUrl}/${transaction.id}`);
-    // }
-    //
-    // update(transaction: Transaction) {
-    //     return this.http.put<Transaction>(`${this.baseUrl}/${transaction.id}`, transaction);
-    // }
-    //
-    // deleteTransactions(listOfIds: String[]) {
-    //     return this.http.post<Transaction>(`${this.baseUrl}/delete-transactions`, listOfIds);
-    // }
-
 }

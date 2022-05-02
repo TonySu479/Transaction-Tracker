@@ -28,6 +28,8 @@ import {InventoryResolver} from "./components/inventory-check/inventory-check-hi
             {
                 path: '', component: AppMainComponent, canActivate: [AuthGuard],
                 children: [
+
+                    {path: '', redirectTo: 'products', pathMatch: 'full'},
                     {path: 'pages/empty', component: EmptyComponent},
                     {path: 'products', component: ProductsComponent},
                     {path: 'product-categories', component: ProductCategoryComponent},

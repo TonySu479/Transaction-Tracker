@@ -17,25 +17,4 @@ export class InventoryCheckDetailsService {
     getInventoryCheckDetailsByInventoryCheckId(inventoryCheckId) {
         return this.http.get<any>(this.baseUrl + `?id=${inventoryCheckId}`);
     }
-
-//     create(transactionDetails: TransactionDetail){
-//         return this.http.post<TransactionDetail>(this.baseUrl, transactionDetails);
-//     }
-//
-//     createTransactionDetails(transactionDetailsListDTO: TransactionDetailsListDTO){
-//         return this.http.post<any>(`${this.baseUrl}/cashier`, transactionDetailsListDTO);
-//     }
-//
-//
-//     delete(transactionDetails: TransactionDetail){
-//         return this.http.delete<TransactionDetail>(`${this.baseUrl}/${transactionDetails.id}`);
-//     }
-//
-//     update(transactionDetails: TransactionDetail){
-//         return this.http.put<TransactionDetail>(`${this.baseUrl}/${transactionDetails.id}`, transactionDetails);
-//     }
-//
-//     deleteTransactions(listOfIds : String[]) {
-//         return this.http.post<TransactionDetail>(`${this.baseUrl}/delete-transaction-details`, listOfIds);
-//     }
 }
