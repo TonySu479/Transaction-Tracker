@@ -17,6 +17,10 @@ import {InventoryCheckComponent} from "./components/inventory-check/inventory-ch
 import {
     InventoryCheckHistoryComponent
 } from "./components/inventory-check/inventory-check-history/inventory-check-history.component";
+import {
+    InventoryCheckDetailsComponent
+} from "./components/inventory-check/inventory-check-history/inventory-check-details/inventory-check-details.component";
+import {InventoryResolver} from "./components/inventory-check/inventory-check-history/inventory-check.resolver";
 
 @NgModule({
     imports: [
@@ -32,6 +36,8 @@ import {
                     {path: 'transaction-details/:id', component: TransactionDetailsComponent, resolve: {transaction: TransactionResolver }},
                     {path: 'inventory-check', component: InventoryCheckComponent },
                     {path: 'inventory-check-history', component: InventoryCheckHistoryComponent },
+                    {path: 'inventory-check-details/:id', component: InventoryCheckDetailsComponent, resolve: {inventoryCheck: InventoryResolver }}
+
                 ],
             },
             {path: 'login', component: LoginComponent},

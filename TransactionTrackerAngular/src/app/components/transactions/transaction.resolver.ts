@@ -15,5 +15,4 @@ export class TransactionResolver implements Resolve<boolean> {
         const transactionId = route.params['id'];
         return this.transactionService.getById(transactionId);
     }
-
 }

@@ -1,6 +1,6 @@
 package com.example.transactiontracker.services.productservice;
 
-import com.example.transactiontracker.models.payload.dto.ProductInventoryCheckDTO;
+import com.example.transactiontracker.models.payload.dto.InventoryCheckDTO;
 import com.example.transactiontracker.models.product.Product;
 import com.example.transactiontracker.models.product.ProductCategory;
 import com.example.transactiontracker.models.payload.dto.ProductDTO;
@@ -121,24 +121,29 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductInventoryCheckDTO> inventoryCheck(List<ProductInventoryCheckDTO> productInventoryCheckDTOs) {
-        List<ProductInventoryCheckDTO> response = new ArrayList<>();
-        for (ProductInventoryCheckDTO productInvDTO : productInventoryCheckDTOs) {
+    public List<InventoryCheckDTO> getInventoryCheckQuantityDifferences(List<InventoryCheckDTO> productInventoryCheckDTOs) {
+        List<InventoryCheckDTO> response = new ArrayList<>();
+        for (InventoryCheckDTO productInvDTO : productInventoryCheckDTOs) {
             String code = productInvDTO.getCode();
-            ProductInventoryCheckDTO pic = new ProductInventoryCheckDTO(code, productInvDTO.getName(), productInvDTO.getQuantity() - productRepository.getByCode(code).getQuantity());
+            InventoryCheckDTO pic = new InventoryCheckDTO(code, productInvDTO.getName(), productInvDTO.getQuantity() - productRepository.getByCode(code).getQuantity());
             response.add(pic);
         }
         return response;
     }
 
     @Override
-    public void updateQuantities(List<ProductInventoryCheckDTO> productInventoryCheckDTOs) {
-        for(ProductInventoryCheckDTO productInvDTO : productInventoryCheckDTOs) {
+    public void updateQuantities(List<InventoryCheckDTO> productInventoryCheckDTOs) {
+        for(InventoryCheckDTO productInvDTO : productInventoryCheckDTOs) {
             String productCode = productInvDTO.getCode();
             Product product = productRepository.getByCode(productCode);
             product.setQuantity(productInvDTO.getQuantity());
             productRepository.save(product);
         }
+    }
+
+    @Override
+    public Product getByCode(String code) {
+        return productRepository.getByCode(code);
     }
 
     @Override

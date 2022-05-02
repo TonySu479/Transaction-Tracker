@@ -39,7 +39,6 @@ export class TransactionsComponent implements OnInit {
         this.transactionService.getTransactions().subscribe(data => {
             this.transactions = data
         });
-
     }
 
     deleteSelectedTransactions() {

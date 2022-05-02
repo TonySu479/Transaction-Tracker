@@ -1,6 +1,6 @@
 package com.example.transactiontracker.services.productservice;
 
-import com.example.transactiontracker.models.payload.dto.ProductInventoryCheckDTO;
+import com.example.transactiontracker.models.payload.dto.InventoryCheckDTO;
 import com.example.transactiontracker.models.product.Product;
 import com.example.transactiontracker.models.product.ProductCategory;
 import com.example.transactiontracker.models.payload.dto.ProductDTO;
@@ -35,7 +35,9 @@ public interface ProductService {
 
     Product generateImageUrl(Product product);
 
-    List<ProductInventoryCheckDTO> inventoryCheck(List<ProductInventoryCheckDTO> productInventoryCheckDTO);
+    List<InventoryCheckDTO> getInventoryCheckQuantityDifferences(List<InventoryCheckDTO> inventoryCheckDTO);
 
-    void updateQuantities(List<ProductInventoryCheckDTO> productInventoryCheckDTOs);
+    void updateQuantities(List<InventoryCheckDTO> inventoryCheckDTOs);
+
+    Product getByCode(String code);
 }

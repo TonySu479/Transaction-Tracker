@@ -6,7 +6,7 @@ import {Product} from "../../model/product";
 import {TransactionService} from "../../service/transactionservice";
 import {ProductService} from "../../service/productservice";
 import {TransactionDetail} from "../../model/transaction-detail";
-import {TransactionDetailService} from "../../service/transaction-detail.service";
+import {TransactionDetailsService} from "../../service/transaction-details.service";
 import {Transaction} from "../../model/transaction";
 import {Router} from "@angular/router";
 import {ShiftService} from "../../service/shiftservice";
@@ -31,7 +31,7 @@ export class CashierComponent implements OnInit {
     constructor(private confirmationService: ConfirmationService,
                 private formBuilder: FormBuilder,
                 private transactionService: TransactionService,
-                private transactionDetailsService: TransactionDetailService,
+                private transactionDetailsService: TransactionDetailsService,
                 private productService: ProductService,
                 private messageService: MessageService,
                 private router: Router,

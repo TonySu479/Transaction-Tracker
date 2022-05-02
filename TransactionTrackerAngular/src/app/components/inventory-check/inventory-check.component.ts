@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
 import {ProductService} from "../../service/productservice";
 import {ProductDTO} from "../../model/productDTO";
+import {InventoryCheckService} from "../../service/inventory-check.service";
+import {InventoryCheckDetailsService} from "../../service/inventory-check-details.service";
+import {ConfirmationService, MessageService} from "primeng/api";
 import {InventoryCheckDialogComponent} from "./inventory-check-dialog/inventory-check-dialog.component";
 
 class Products {
@@ -22,7 +24,10 @@ export class InventoryCheckComponent implements OnInit {
     constructor(
         private productService: ProductService,
         private confirmationService: ConfirmationService,
-        private dialogService: DialogService
+        private dialogService: DialogService,
+        private inventoryCheckService: InventoryCheckService,
+        private inventoryCheckDetailsService: InventoryCheckDetailsService,
+        private messageService: MessageService
     ) {
     }
 
@@ -54,7 +59,15 @@ export class InventoryCheckComponent implements OnInit {
 
                         ref.onClose.subscribe(value => {
                             if (value === true) {
-                                this.productService.updateQuantities(this.products).subscribe();
+                                this.inventoryCheckDetailsService.inventoryCheck(this.products).subscribe(
+                                    () => {
+                                        this.messageService.add({
+                                            severity: "success",
+                                            summary: "inventory check created",
+                                            detail: "inventory check successfully created"
+                                        });
+                                    }
+                                );
                             }
                         })
                     }

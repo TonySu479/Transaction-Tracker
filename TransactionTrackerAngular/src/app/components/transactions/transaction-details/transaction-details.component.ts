@@ -6,7 +6,7 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
 import {TransactionDetailsDialogComponent} from "./transaction-details-dialog/transaction-details-dialog.component";
 import {ActivatedRoute, Router} from "@angular/router";
-import {TransactionDetailService} from "../../../service/transaction-detail.service";
+import {TransactionDetailsService} from "../../../service/transaction-details.service";
 import {TransactionDetail} from "../../../model/transaction-detail";
 import {TransactionType} from "../../../model/transaction-type.enum";
 
@@ -39,7 +39,7 @@ export class TransactionDetailsComponent implements OnInit {
                 private dialogService: DialogService,
                 private router: Router,
                 private route: ActivatedRoute,
-                private transactionDetailsService: TransactionDetailService) {
+                private transactionDetailsService: TransactionDetailsService) {
     }
 
     get transactionType() {

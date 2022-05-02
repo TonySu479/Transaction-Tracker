@@ -5,7 +5,7 @@ import {TransactionDetailsListDTO} from "../model/transactionDetailsListDTO";
 
 
 @Injectable()
-export class TransactionDetailService {
+export class TransactionDetailsService {
     baseUrl = "http://localhost:8080/api/transaction-details";
 
     constructor(private http: HttpClient) { }

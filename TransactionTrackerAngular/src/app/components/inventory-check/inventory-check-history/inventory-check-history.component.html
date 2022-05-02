@@ -2,7 +2,6 @@
     <div class="col-12">
         <div class="card">
             <p-toast></p-toast>
-
             <p-table #dt
                      [value]="inventoryChecks"
                      responsiveLayout="scroll"
@@ -18,41 +17,21 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
                         <th pSortableColumn="createAt">Created at
                             <p-sortIcon field="createAt"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="transactionType">Transaction type
-                            <p-sortIcon field="transactionType"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="total">Total
-                            <p-sortIcon field="total"></p-sortIcon>
                         </th>
                         <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-inventoryCheck>
                     <tr>
-                        <td>
-                            <p-tableCheckbox [value]="transaction"></p-tableCheckbox>
-                        </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">CreatedAt</span>
-                            {{ transaction.createdAt | date:"MM/dd/yy HH:mm" }}
-                        </td>
-                        <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">TransactionType</span>
-                            {{ transaction.transactionType }}
-                        </td>
-                        <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Total</span>
-                            {{ transaction.total | currency: 'HUF ': 'symbol':'1.0-0' }}
+                            {{ inventoryCheck.createdAt | date:"MM/dd/yy HH:mm" }}
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil"
+                                <button pButton pRipple icon="pi pi-search"
                                         class="p-button-rounded p-button-success mr-2"
                                         (click)="viewInventoryCheckDetail(inventoryCheck)"></button>
                             </div>

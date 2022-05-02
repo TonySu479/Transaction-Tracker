@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
-public class ProductInventoryCheckDTO {
+public class InventoryCheckDTO {
 
     @NotBlank
     private String code;

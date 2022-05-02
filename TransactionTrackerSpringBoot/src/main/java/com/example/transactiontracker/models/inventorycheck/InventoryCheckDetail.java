@@ -27,7 +27,9 @@ public class InventoryCheckDetail extends BaseEntity {
     @ManyToOne
     private Product product;
 
-    @Column(name = "difference")
-    private int difference;
+    @Column(name = "trackedQuantity")
+    private int trackedQuantity;
 
+    @Column(name = "inputtedQuantity")
+    private int inputtedQuantity;
 }

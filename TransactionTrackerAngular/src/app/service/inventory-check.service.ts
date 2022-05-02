@@ -27,20 +27,16 @@ export class InventoryCheckService {
         );
     }
 
-    //
-    // getById(id) {
-    //     return this.http.get<any>(`${this.baseUrl}/${id}`).pipe(map(transaction => {
-    //         return {
-    //             ...transaction,
-    //             createdAt: new Date(transaction.createdAt)
-    //         }
-    //     }));
-    // }
-    //
-    // create(transaction: Transaction) {
-    //     return this.http.post<Transaction>(this.baseUrl, transaction);
-    // }
-    //
+
+    getById(id) {
+        return this.http.get<any>(`${this.baseUrl}/${id}`).pipe(map(inventoryCheck => {
+            return {
+                ...inventoryCheck,
+                createdAt: new Date(inventoryCheck.createdAt)
+            }
+        }));
+    }
+
     // delete(transaction: Transaction) {
     //     return this.http.delete<Transaction>(`${this.baseUrl}/${transaction.id}`);
     // }

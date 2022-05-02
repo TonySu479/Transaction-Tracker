@@ -1,6 +1,6 @@
 package com.example.transactiontracker.controllers;
 
-import com.example.transactiontracker.models.payload.dto.ProductInventoryCheckDTO;
+import com.example.transactiontracker.models.payload.dto.InventoryCheckDTO;
 import com.example.transactiontracker.models.product.Product;
 import com.example.transactiontracker.models.payload.dto.ProductDTO;
 import com.example.transactiontracker.services.productservice.ProductService;
@@ -89,23 +89,11 @@ public class ProductController {
 
     @PostMapping("/inventory-check")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<ProductInventoryCheckDTO>> inventoryCheck(@RequestBody List<ProductInventoryCheckDTO> productInventoryCheckDTOS) {
+    public ResponseEntity<List<InventoryCheckDTO>> getInventoryCheckQuantityDifferences(@RequestBody List<InventoryCheckDTO> productInventoryCheckDTOS) {
         try {
-            return new ResponseEntity<>(productService.inventoryCheck(productInventoryCheckDTOS), HttpStatus.OK);
+            return new ResponseEntity<>(productService.getInventoryCheckQuantityDifferences(productInventoryCheckDTOS), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @PostMapping("/inventory-check/update-quantities")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<HttpStatus> updateQuantities(@RequestBody List<ProductInventoryCheckDTO> productInventoryCheckDTOS) {
-        try {
-            productService.updateQuantities(productInventoryCheckDTOS);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
 }

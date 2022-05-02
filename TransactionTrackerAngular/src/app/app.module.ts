@@ -120,7 +120,7 @@ import {TransactionService} from "./service/transactionservice";
 import { TransactionDialogComponent } from './components/transactions/transaction-dialog/transaction-dialog.component';
 import { TransactionDetailsComponent } from './components/transactions/transaction-details/transaction-details.component';
 import { TransactionDetailsDialogComponent } from './components/transactions/transaction-details/transaction-details-dialog/transaction-details-dialog.component';
-import {TransactionDetailService} from "./service/transaction-detail.service";
+import {TransactionDetailsService} from "./service/transaction-details.service";
 import {TransactionResolver} from "./components/transactions/transaction.resolver";
 import { CashierComponent } from './components/cashier/cashier.component';
 import {ShiftService} from "./service/shiftservice";
@@ -129,6 +129,9 @@ import { InventoryCheckComponent } from './components/inventory-check/inventory-
 import { InventoryCheckDialogComponent } from './components/inventory-check/inventory-check-dialog/inventory-check-dialog.component';
 import { InventoryCheckHistoryComponent } from './components/inventory-check/inventory-check-history/inventory-check-history.component';
 import {InventoryCheckService} from "./service/inventory-check.service";
+import {InventoryCheckDetailsService} from "./service/inventory-check-details.service";
+import { InventoryCheckDetailsComponent } from './components/inventory-check/inventory-check-history/inventory-check-details/inventory-check-details.component';
+import {InventoryResolver} from "./components/inventory-check/inventory-check-history/inventory-check.resolver";
 
 @NgModule({
     imports: [
@@ -247,14 +250,15 @@ import {InventoryCheckService} from "./service/inventory-check.service";
         InventoryCheckComponent,
         InventoryCheckDialogComponent,
         InventoryCheckHistoryComponent,
+        InventoryCheckDetailsComponent,
     ],
     providers: [
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, MenuService, ConfigService, JwtHelperService, authInterceptorProviders,
-        ProductCategoryService, TransactionService, TransactionDetailService, TransactionResolver, ShiftService,
-        InventoryCheckService
+        ProductCategoryService, TransactionService, TransactionDetailsService, TransactionResolver, ShiftService,
+        InventoryCheckService, InventoryCheckDetailsService, InventoryResolver
 
     ],
     bootstrap: [AppComponent]

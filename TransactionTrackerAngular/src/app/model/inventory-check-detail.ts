@@ -6,5 +6,6 @@ export interface InventoryCheckDetail {
     inventoryCheck?: InventoryCheck
     productId?: string;
     product?: Product;
-    difference?: number;
+    trackedQuantity?: number;
+    inputtedQuantity?: number;
 }
