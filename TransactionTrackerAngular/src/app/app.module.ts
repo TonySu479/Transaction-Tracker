@@ -92,7 +92,6 @@ import {AppComponent} from './app.component';
 import {AppMainComponent} from './app.main.component';
 import {AppTopBarComponent} from './app.topbar.component';
 import {AppFooterComponent} from './app.footer.component';
-import {AppConfigComponent} from './app.config.component';
 import {AppMenuComponent} from './app.menu.component';
 import {AppMenuitemComponent} from './app.menuitem.component';
 import {EmptyComponent} from './components/empty/empty.component';
@@ -230,7 +229,6 @@ import {InventoryResolver} from "./components/inventory-check/inventory-check-hi
         AppMainComponent,
         AppTopBarComponent,
         AppFooterComponent,
-        AppConfigComponent,
         AppMenuComponent,
         AppMenuitemComponent,
         EmptyComponent,
