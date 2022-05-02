@@ -1,6 +1,7 @@
 <div class="card">
     <p-toast></p-toast>
-    <h5>Inventory Check Details</h5>
+
+
     <p-table #dt
              [value]="inventoryCheckDetails"
              responsiveLayout="scroll"
@@ -9,6 +10,14 @@
              [showCurrentPageReport]="true"
              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
              [rowHover]="true" dataKey="id">
+        <ng-template pTemplate="caption">
+            <div class="flex" style="align-items: center">
+                <span style="font-size: 20px">Inventory Check Details</span>
+
+                <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()"
+                        class="p-button-info mb-2" pTooltip="PDF" tooltipPosition="bottom" label="Export as PDF"></button>
+            </div>
+        </ng-template>
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="code">Code
