@@ -15,6 +15,9 @@ export class TransactionService {
         return this.http.get<any>(this.baseUrl).pipe(
             map(transactions => {
                 let newTransactions: any[] = [];
+                if(!transactions) {
+                    return newTransactions;
+                }
                 transactions.forEach(transaction => {
                         newTransactions.push(
                             {

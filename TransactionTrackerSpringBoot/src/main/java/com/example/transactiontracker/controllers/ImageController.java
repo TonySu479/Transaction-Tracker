@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ImageController {
     @GetMapping(value = "/images/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<Resource> getImage(@PathVariable("imageName") String imageName) {
-        FileSystemResource inputStream = new FileSystemResource("./TransactionTrackerSpringBoot/assets/images/" + imageName);
-//        FileSystemResource inputStream = new FileSystemResource("/usr/src/app/assets/images/" + imageName);
+//        FileSystemResource inputStream = new FileSystemResource("./TransactionTrackerSpringBoot/assets/images/" + imageName);
+        FileSystemResource inputStream = new FileSystemResource("/usr/src/app/assets/images/" + imageName);
         return new ResponseEntity<>(inputStream, HttpStatus.OK);
     }
 }

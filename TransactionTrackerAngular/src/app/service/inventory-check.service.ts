@@ -13,6 +13,9 @@ export class InventoryCheckService {
         return this.http.get<any>(this.baseUrl).pipe(
             map(inventoryChecks => {
                 let newInventoryChecks: any[] = [];
+                if(!inventoryChecks) {
+                    return newInventoryChecks;
+                }
                 inventoryChecks.forEach(inventoryChecks => {
                     newInventoryChecks.push(
                             {
