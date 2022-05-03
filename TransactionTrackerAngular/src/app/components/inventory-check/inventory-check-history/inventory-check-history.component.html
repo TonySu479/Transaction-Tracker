@@ -6,7 +6,7 @@
                      [value]="inventoryChecks"
                      responsiveLayout="scroll"
                      [rows]="200"
-                     [paginator]="true"
+                     [paginator]="inventoryChecks.length"
                      [showCurrentPageReport]="true"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                      [rowHover]="true" dataKey="id">

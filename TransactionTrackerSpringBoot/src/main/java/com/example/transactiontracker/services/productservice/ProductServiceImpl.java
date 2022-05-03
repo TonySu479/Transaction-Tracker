@@ -88,7 +88,9 @@ public class ProductServiceImpl implements ProductService {
         createProduct("4336", "Nachos", getCategoryFromId("1"), 600, "box", "nachos.jpg", 100);
         createProduct("4337", "Popcorn", getCategoryFromId("1"), 600, "box", "popcorn.jpg", 60);
         createProduct("4342", "Sandwich", getCategoryFromId("1"), 400, "piece", "sandwich.jpg", 120);
+        createProduct("4488", "Candy", getCategoryFromId("1"), 450, "bag", "candy.jpg", 220);
         createProduct("6623", "3d Glasses", getCategoryFromId("4"), 500, "piece", "3dglasses.jpg", 100);
+        createProduct("6629", "Plastic Bag", getCategoryFromId("4"), 200, "piece", "plasticbag.jpg", 500);
     }
 
     @Override

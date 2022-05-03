@@ -17,7 +17,7 @@
                      [value]="transactions"
                      responsiveLayout="scroll"
                      [rows]="200"
-                     [paginator]="true"
+                     [paginator]="transactions.length"
                      [showCurrentPageReport]="true"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                      [(selection)]="selectedTransactions" selectionMode="multiple"
