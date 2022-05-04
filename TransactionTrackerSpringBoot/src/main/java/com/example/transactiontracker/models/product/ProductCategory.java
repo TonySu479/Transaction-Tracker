@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "categories")
+@Table(name = "categories", uniqueConstraints=@UniqueConstraint(columnNames="name"))
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 @NoArgsConstructor
 @AllArgsConstructor
