@@ -1,7 +1,7 @@
-FROM node:alpine AS my-app-build
+FROM node:alpine AS build
 WORKDIR /app
 COPY . .
 RUN npm ci && npm run build
 FROM nginx:alpine
-COPY --from=my-app-build /app/dist/sakai /usr/share/nginx/html
+COPY --from=build /app/dist/sakai /usr/share/nginx/html
 EXPOSE 80

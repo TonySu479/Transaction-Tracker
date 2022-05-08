@@ -9,3 +9,4 @@ COPY --from=build /usr/src/app/target/TransactionTracker-0.0.1-SNAPSHOT.jar /usr
 COPY assets/images /usr/src/app/assets/images
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/app/TransactionTracker-0.0.1-SNAPSHOT.jar"]
+

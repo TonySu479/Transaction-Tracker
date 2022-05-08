@@ -1,8 +1,7 @@
 version: '3.1'
 services:
-  app:
+  transaction-tracker-springboot:
     container_name: TransactionTracker
-    image: transaction-tracker
     build:
       context: TransactionTrackerSpringBoot
       dockerfile: Dockerfile
@@ -30,7 +29,6 @@ services:
         dockerfile: Dockerfile
     ports:
       - "4201:80"
-
 
 volumes:
   db_volume: { }
