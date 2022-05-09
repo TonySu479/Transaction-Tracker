@@ -19,7 +19,8 @@
         <addForeignKeyConstraint baseTableName="shifts" baseColumnNames="user_id"
                                  constraintName="FK_PRODUCTS_TO_USERS"
                                  referencedTableName="users"
-                                 referencedColumnNames="id"/>
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
     </changeSet>
 
 </databaseChangeLog>

@@ -16,12 +16,4 @@
         </createTable>
     </changeSet>
 
-<!--    <changeSet id="add_users" author="Me">-->
-<!--        <insert tableName="users">-->
-<!--            <column name="username" value="admin"/>-->
-<!--            <column name="email" value="admin@gmail.com"/>-->
-<!--            <column name="password" value="$2a$10$pAs/RyBEbRBH8aOg1XaDMuYXxP/nJxAk404wlKtbx86d.Wav5kt3u"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
-
 </databaseChangeLog>

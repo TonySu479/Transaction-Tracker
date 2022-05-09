@@ -25,7 +25,7 @@ public class ProductController {
     }
 
     @PostMapping()
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) {
         try {
             String uniqueImgName = productService.storeImage(productDTO.getImage());
@@ -70,7 +70,7 @@ public class ProductController {
             List<Product> products = productService.getAllProducts(name);
             return new ResponseEntity<>(products, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 

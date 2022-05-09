@@ -24,7 +24,8 @@
         <addForeignKeyConstraint baseTableName="products" baseColumnNames="category_id"
                                  constraintName="FK_PRODUCTS_TO_CATEGORIES"
                                  referencedTableName="categories"
-                                 referencedColumnNames="id"/>
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
     </changeSet>
 
 </databaseChangeLog>

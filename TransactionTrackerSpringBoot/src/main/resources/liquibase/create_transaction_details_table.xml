@@ -16,10 +16,11 @@
             <column name="transaction_id" type="BIGINT"/>
         </createTable>
 
-<!--        <addForeignKeyConstraint baseTableName="transaction_details" baseColumnNames="product_id"-->
-<!--                                 constraintName="FK_TRANSACTION_DETAILS_TO_PRODUCTS"-->
-<!--                                 referencedTableName="products"-->
-<!--                                 referencedColumnNames="id"/>-->
+        <addForeignKeyConstraint baseTableName="transaction_details" baseColumnNames="product_id"
+                                 constraintName="FK_TRANSACTION_DETAILS_TO_PRODUCTS"
+                                 referencedTableName="products"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
     </changeSet>
 
 </databaseChangeLog>

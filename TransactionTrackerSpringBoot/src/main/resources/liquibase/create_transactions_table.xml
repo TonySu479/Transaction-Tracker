@@ -15,7 +15,12 @@
             <column name="transaction_type" type="VARCHAR(255)"/>
             <column name="shift_id" type="BIGINT"/>
         </createTable>
-        
+
+        <addForeignKeyConstraint baseTableName="transactions" baseColumnNames="shift_id"
+                                 constraintName="FK_TRANSACTIONS_TO_SHIFTS"
+                                 referencedTableName="shifts"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
     </changeSet>
 
 </databaseChangeLog>
