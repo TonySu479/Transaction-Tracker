@@ -123,9 +123,9 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     }
 
     private void setProductQuantityDifference(Transaction transaction, Product product, int difference) {
-        if (transaction.getTransactionType() == TransactionType.SALE) {
+        if (transaction.getTransactionType().equals(TransactionType.SALE)) {
             product.setQuantity(product.getQuantity() - difference);
-        } else if (transaction.getTransactionType() == TransactionType.RECEIVE) {
+        } else if (transaction.getTransactionType().equals(TransactionType.RECEIVE)) {
             product.setQuantity(product.getQuantity() + difference);
         }
     }
