@@ -71,14 +71,13 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> findAllByCreatedAt(Date createdAt) {
+    public List<Transaction> findAllByCreatedAt(LocalDate createdAt) {
         return transactionRepository.findAllByCreatedAt(createdAt);
     }
 
     @Override
     public List<Transaction> findTransactionsByCurrentDay() {
-        Date date = new Date();
-        return transactionRepository.findAllByCreatedAt(date);
+        return transactionRepository.findAllByCreatedAt(LocalDate.now());
     }
 
     @Override

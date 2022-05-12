@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -15,9 +16,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class InventoryCheck extends BaseEntity {
 
-    @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    @Column(name = "created_at", columnDefinition = "DATE")
+    private LocalDate createdAt;
 
 }
 

@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class ShiftServiceImpl implements ShiftService {
         if (checkUserInShift(user.getId())) {
             return shiftRepository.findByUser_IdAndShiftEndIsNull(user.getId());
         }
-        return save(new Shift(new Date(), null, user, 0));
+        return save(new Shift(LocalDate.now(), null, user, 0));
     }
 
     @Override
@@ -56,7 +58,7 @@ public class ShiftServiceImpl implements ShiftService {
 
     private Shift getShift(User user) {
         Shift shift = shiftRepository.findByUser_IdAndShiftEndIsNull(user.getId());
-        shift.setShiftEnd(new Date());
+        shift.setShiftEnd(LocalDate.now());
         setShiftTotal(shift);
         shiftRepository.save(shift);
         return shift;

@@ -14,6 +14,7 @@ import com.example.transactiontracker.services.repositories.TransactionRepositor
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -92,7 +93,7 @@ public class TransactionDetailsImpl implements TransactionDetailsService {
     @Override
     public Long saveAll(TransactionDetailsListDTO transactionDetailsListDTO) {
         List<TransactionDetail> transactionDetails = new ArrayList<>();
-        Transaction transaction = transactionRepository.save(new Transaction(new Date(), TransactionType.SALE, shiftRepository.getById(transactionDetailsListDTO.getShiftId())));
+        Transaction transaction = transactionRepository.save(new Transaction(LocalDate.now(), TransactionType.SALE, shiftRepository.getById(transactionDetailsListDTO.getShiftId())));
         for (TransactionDetailsDTO transactionDetailsDTO : transactionDetailsListDTO.getTransactionDetailsDTOS()) {
             transactionDetails.add(new TransactionDetail(transaction,
                     productRepository.getById(transactionDetailsDTO.getProductId()),

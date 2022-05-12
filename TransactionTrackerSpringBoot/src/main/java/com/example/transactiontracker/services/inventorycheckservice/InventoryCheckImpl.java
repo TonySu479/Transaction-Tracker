@@ -7,6 +7,7 @@ import com.example.transactiontracker.services.repositories.InventoryCheckReposi
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +30,7 @@ public class InventoryCheckImpl implements InventoryCheckService {
 
     @Override
     public InventoryCheck create() {
-        return inventoryCheckRepository.save(new InventoryCheck(new Date()));
+        return inventoryCheckRepository.save(new InventoryCheck(LocalDate.now()));
     }
 
     @Override
