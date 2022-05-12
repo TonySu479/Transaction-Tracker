@@ -29,7 +29,7 @@ public class InventoryCheckImpl implements InventoryCheckService {
     }
 
     @Override
-    public InventoryCheck create() {
+    public InventoryCheck createInventoryCheck() {
         return inventoryCheckRepository.save(new InventoryCheck(LocalDate.now()));
     }
 
