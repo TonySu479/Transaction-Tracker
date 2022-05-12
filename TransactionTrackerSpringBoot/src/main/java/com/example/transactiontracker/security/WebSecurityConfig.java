@@ -2,8 +2,11 @@ package com.example.transactiontracker.security;
 
 import com.example.transactiontracker.security.jwt.AuthEntryPointJwt;
 import com.example.transactiontracker.security.jwt.AuthTokenFilter;
+import com.example.transactiontracker.security.jwt.JwtUtils;
 import com.example.transactiontracker.services.userdetailsservice.UserDetailsServiceImpl;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,10 +35,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsService;
     private final AuthEntryPointJwt unauthorizedHandler;
+    private final JwtUtils jwtUtils;
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
-        return new AuthTokenFilter();
+        return new AuthTokenFilter(jwtUtils, userDetailsService);
     }
 
     @Override
