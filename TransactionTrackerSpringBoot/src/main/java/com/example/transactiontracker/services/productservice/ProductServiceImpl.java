@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -23,12 +24,8 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProductCategoryService productCategoryService;
-//    private final String imagePath = "./TransactionTrackerSpringBoot/assets/images/";
-    private final String imagePath = "/usr/src/app/assets/images/";
-    private final String imageBaseURL = "//localhost:8080/images/";
-
-    Date date = new Date();
-    Random rand = new Random();
+    private static final String IMAGE_PATH = "/usr/src/app/assets/images/";
+    private static final String IMAGE_BASE_URL = "//localhost:8080/images/";
 
     @Override
     public List<Product> findByNameContaining(String name) {
@@ -106,9 +103,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public String storeImage(String imageBase64) {
-        String uniqueImgName = "" + date.getTime() + rand.nextInt(10000) + ".jpg";
+        String uniqueImgName = "" + LocalDate.now() + new Random().nextInt(10000) + ".jpg";
         byte[] img = Base64.decodeBase64(imageBase64);
-        try (OutputStream stream = new FileOutputStream(imagePath + uniqueImgName)) {
+        try (OutputStream stream = new FileOutputStream(IMAGE_PATH + uniqueImgName)) {
             stream.write(img);
         } catch (Exception e) {
             log.error(e.toString());
@@ -118,7 +115,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product generateImageUrl(Product product) {
-        product.setImage(imageBaseURL + product.getImage());
+        product.setImage(IMAGE_BASE_URL + product.getImage());
         return product;
     }
 
