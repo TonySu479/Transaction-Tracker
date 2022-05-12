@@ -63,11 +63,11 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public int getTransactionTotalFromTransaction(Transaction transaction){
         List<TransactionDetail> transactionDetailList = transactionDetailsRepository.findAllByTransaction_Id(transaction.getId());
-        int total = 0;
-        for(TransactionDetail transactionDetail : transactionDetailList) {
-            total += transactionDetail.getQuantity() * transactionDetail.getPrice();
-        }
-        return total;
+//        int total = 0;
+//        for(TransactionDetail transactionDetail : transactionDetailList) {
+//            total += transactionDetail.getQuantity() * transactionDetail.getPrice();
+//        }
+        return transactionDetailList.stream().reduce(0, (partial, transactionDetail) -> partial + transactionDetail.getQuantity() * transactionDetail.getPrice(), Integer::sum);
     }
 
     @Override
