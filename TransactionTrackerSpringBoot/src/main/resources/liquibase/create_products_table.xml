@@ -25,7 +25,7 @@
                                  constraintName="FK_PRODUCTS_TO_CATEGORIES"
                                  referencedTableName="categories"
                                  referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
+                                 />
     </changeSet>
 
 </databaseChangeLog>

@@ -106,6 +106,13 @@ export class ProductCategoryComponent implements OnInit {
                         summary: "category edited",
                         detail: `${data.name} edited`
                     });
+                }, (error) => {
+                    console.log(error);
+                    this.messageService.add({
+                        severity: "error",
+                        summary: "Unable to delete categories",
+                        detail: `${error.error.message || error.message}`
+                    });
                 })
         })
 
@@ -123,6 +130,13 @@ export class ProductCategoryComponent implements OnInit {
                         severity: "success",
                         summary: "category deleted",
                         detail: `${category.name} has been deleted`
+                    });
+                }, (error) => {
+                    console.log(error);
+                    this.messageService.add({
+                        severity: "error",
+                        summary: "Unable to delete category",
+                        detail: `${error.error.message || error.message}`
                     });
                 })
             }

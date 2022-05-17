@@ -1,13 +1,16 @@
 package com.example.transactiontracker.controllers;
 
+import com.example.transactiontracker.models.payload.response.MessageResponse;
 import com.example.transactiontracker.models.product.ProductCategory;
 import com.example.transactiontracker.services.productcategoryservice.ProductCategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
 import java.util.*;
 
 @RestController
@@ -48,10 +51,12 @@ public class ProductCategoryController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<HttpStatus> deleteProductCategory(@PathVariable("id") long id) {
+    public ResponseEntity<MessageResponse> deleteProductCategory(@PathVariable("id") long id) {
         try {
             productCategoryService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (DataIntegrityViolationException e) {
+            return new ResponseEntity<>(new MessageResponse("ForeignKey Constraint error, Category is not empty"), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -59,12 +64,14 @@ public class ProductCategoryController {
 
     @PostMapping("/delete-product-categories")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<HttpStatus> deleteProductCategories(@RequestBody List<String> listOfIds) {
+    public ResponseEntity<MessageResponse> deleteProductCategories(@RequestBody List<String> listOfIds) {
         try {
             for (String id : listOfIds) {
                 productCategoryService.deleteById(Long.parseLong(id));
             }
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (DataIntegrityViolationException e) {
+            return new ResponseEntity<>(new MessageResponse("ForeignKey Constraint error, the Categories are not empty"), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -10,13 +10,6 @@ export class ProductService {
 
     constructor(private http: HttpClient) { }
 
-    getProductsSmall() {
-        return this.http.get<any>('assets/demo/data/products-small.json')
-        .toPromise()
-        .then(res => res.data as Product[])
-        .then(data => data);
-    }
-
     getProducts(name= "") {
         if(name != ""){
             return this.http.get<any>(this.baseUrl + `?name=${name}`);
