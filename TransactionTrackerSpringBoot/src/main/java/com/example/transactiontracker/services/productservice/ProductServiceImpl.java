@@ -118,7 +118,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product generateImageUrl(Product product) {
-        if(product.getImage() != ""){
+        if(!product.getImage().equals("")){
             product.setImage(IMAGE_BASE_URL + product.getImage());
         } else {
             product.setImage(IMAGE_BASE_URL + "noimage.png");

@@ -143,6 +143,10 @@ export class ProductsComponent implements OnInit {
 
     }
 
+    customSort(event) {
+        console.log(event);
+    }
+
     findIndexById(id: string): number {
         let index = -1;
         for (let i = 0; i < this.products.length; i++) {
