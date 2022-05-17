@@ -31,7 +31,7 @@
         <h5>
             <label>Category </label>
         </h5>
-        <p-autoComplete formControlName="category" [suggestions]="results" (completeMethod)="search($event)" field="name"></p-autoComplete>
+        <p-autoComplete formControlName="category" [suggestions]="results" (completeMethod)="search($event)" field="name" forceSelection="true"></p-autoComplete>
     </div>
 
     <div class="field">
