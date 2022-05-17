@@ -103,19 +103,26 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public String storeImage(String imageBase64) {
-        String uniqueImgName = "" + LocalDate.now() + new Random().nextInt(10000) + ".jpg";
-        byte[] img = Base64.decodeBase64(imageBase64);
-        try (OutputStream stream = new FileOutputStream(IMAGE_PATH + uniqueImgName)) {
-            stream.write(img);
-        } catch (Exception e) {
-            log.error(e.toString());
+        String uniqueImgName = "";
+        if(imageBase64 != ""){
+            uniqueImgName = "" + LocalDate.now() + new Random().nextInt(10000) + ".jpg";
+            byte[] img = Base64.decodeBase64(imageBase64);
+            try (OutputStream stream = new FileOutputStream(IMAGE_PATH + uniqueImgName)) {
+                stream.write(img);
+            } catch (Exception e) {
+                log.error(e.toString());
+            }
         }
         return uniqueImgName;
     }
 
     @Override
     public Product generateImageUrl(Product product) {
-        product.setImage(IMAGE_BASE_URL + product.getImage());
+        if(product.getImage() != ""){
+            product.setImage(IMAGE_BASE_URL + product.getImage());
+        } else {
+            product.setImage(IMAGE_BASE_URL + "noimage.png");
+        }
         return product;
     }
 
