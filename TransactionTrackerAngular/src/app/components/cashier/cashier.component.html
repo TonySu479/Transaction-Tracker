@@ -57,7 +57,7 @@
                 <h5>
                     <label for="quantity">Quantity </label>
                 </h5>
-                <input type="number" id="quantity" name="quantity" formControlName="quantity" pInputText>
+                <p-inputNumber id="quantity" name="quantity" formControlName="quantity"></p-inputNumber>
                 <div>
                     <small class="ng-dirty ng-invalid"
                            *ngIf="quantity?.errors?.required && (quantity.dirty || quantity.touched)">Quantity

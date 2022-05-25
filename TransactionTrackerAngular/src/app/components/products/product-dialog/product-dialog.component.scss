@@ -13,11 +13,13 @@ input {
 
 ::ng-deep {
     .p-inputwrapper,
-    .p-autocomplete {
+    .p-autocomplete,
+    .p-inputnumber{
         width: 100%;
 
         input {
             width: 100%
         }
     }
+
 }
