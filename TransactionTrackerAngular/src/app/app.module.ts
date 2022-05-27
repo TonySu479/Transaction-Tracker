@@ -131,6 +131,7 @@ import {InventoryCheckService} from "./service/inventory-check.service";
 import {InventoryCheckDetailsService} from "./service/inventory-check-details.service";
 import { InventoryCheckDetailsComponent } from './components/inventory-check/inventory-check-history/inventory-check-details/inventory-check-details.component';
 import {InventoryResolver} from "./components/inventory-check/inventory-check-history/inventory-check.resolver";
+import { EditTransactiondetailDialogComponent } from './components/cashier/edit-transactiondetail-dialog/edit-transactiondetail-dialog.component';
 
 @NgModule({
     imports: [
@@ -249,6 +250,7 @@ import {InventoryResolver} from "./components/inventory-check/inventory-check-hi
         InventoryCheckDialogComponent,
         InventoryCheckHistoryComponent,
         InventoryCheckDetailsComponent,
+        EditTransactiondetailDialogComponent,
     ],
     providers: [
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},

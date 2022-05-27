@@ -12,6 +12,13 @@ import {Router} from "@angular/router";
 import {ShiftService} from "../../service/shiftservice";
 import {Shift} from "../../model/shift";
 import {CashierDialogComponent} from "./cashier-dialog/cashier-dialog.component";
+import {
+    ProductCategoryDialogComponent
+} from "../product-category/product-category-dialog/product-category-dialog.component";
+import {ProductCategory} from "../../model/product-category";
+import {
+    EditTransactiondetailDialogComponent
+} from "./edit-transactiondetail-dialog/edit-transactiondetail-dialog.component";
 
 @Component({
     selector: 'app-cashier',
@@ -64,7 +71,6 @@ export class CashierComponent implements OnInit {
         this.productService.getProducts().subscribe(data => {
             this.products = data;
         });
-
     }
 
     addProduct() {
@@ -78,6 +84,23 @@ export class CashierComponent implements OnInit {
             product
         }];
         this.cashierForm.reset();
+    }
+
+    editTransactionDetail(index) {
+        const ref = this.dialogService.open(EditTransactiondetailDialogComponent, {
+            header: 'Edit product',
+            data: {
+                transactionDetail: this.transactionDetails[index]
+            },
+            width: "600px"
+        });
+
+        ref.onClose.subscribe(value => {
+            if (!value) {
+                return;
+            }
+            this.transactionDetails[index].quantity = value.quantity;
+        })
     }
 
     deleteTransactionDetail(index) {

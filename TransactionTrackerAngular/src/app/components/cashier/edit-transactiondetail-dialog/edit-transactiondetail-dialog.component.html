@@ -1,0 +1,18 @@
+<form [formGroup]="transactionDetailForm" (submit)="submit()">
+
+    <div class="field">
+        <h5>
+            <label for="quantity">Quantity </label>
+        </h5>
+        <p-inputNumber id="quantity" name="quantity" formControlName="quantity"></p-inputNumber>
+        <div>
+            <small class="ng-dirty ng-invalid" *ngIf="quantity?.errors?.required && (quantity.dirty || quantity.touched)">Quantity is
+                required.</small>
+        </div>
+    </div>
+
+    <div class="field submit-button">
+        <button pButton type="submit">Submit</button>
+    </div>
+
+</form>
