@@ -92,7 +92,7 @@ export class CashierComponent implements OnInit {
             data: {
                 transactionDetail: this.transactionDetails[index]
             },
-            width: "600px"
+            width: "400px"
         });
 
         ref.onClose.subscribe(value => {

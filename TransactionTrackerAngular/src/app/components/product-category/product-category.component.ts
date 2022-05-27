@@ -107,7 +107,6 @@ export class ProductCategoryComponent implements OnInit {
                         detail: `${data.name} edited`
                     });
                 }, (error) => {
-                    console.log(error);
                     this.messageService.add({
                         severity: "error",
                         summary: "Unable to delete categories",

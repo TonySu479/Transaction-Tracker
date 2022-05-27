@@ -1,0 +1,19 @@
+input {
+    width: 100%;
+}
+
+.submit-button {
+    text-align: center;
+}
+
+::ng-deep {
+    .p-inputwrapper,
+    .p-autocomplete,
+    .p-inputnumber{
+        width: 100%;
+
+        input {
+            width: 100%
+        }
+    }
+}
