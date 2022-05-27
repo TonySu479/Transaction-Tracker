@@ -3,10 +3,9 @@ package com.example.transactiontracker.security;
 import com.example.transactiontracker.security.jwt.AuthEntryPointJwt;
 import com.example.transactiontracker.security.jwt.AuthTokenFilter;
 import com.example.transactiontracker.security.jwt.JwtUtils;
+import com.example.transactiontracker.services.userdetailsservice.UserDetailService;
 import com.example.transactiontracker.services.userdetailsservice.UserDetailsServiceImpl;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,10 +34,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsService;
     private final AuthEntryPointJwt unauthorizedHandler;
+    private final UserDetailService userDetailService;
+    private final JwtUtils jwtUtils;
 
     @Bean
-    public AuthTokenFilter authenticationJwtTokenFilter() {
-        return new AuthTokenFilter();
+    public AuthTokenFilter authenticationJwtTokenFilter(UserDetailService userdetailService, JwtUtils jwtUtils) {
+        return new AuthTokenFilter(jwtUtils, userdetailService);
     }
 
     @Override
@@ -67,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/test/**").permitAll()
                 .antMatchers("/images/**").permitAll()
                 .anyRequest().authenticated();
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authenticationJwtTokenFilter(userDetailService, jwtUtils), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
