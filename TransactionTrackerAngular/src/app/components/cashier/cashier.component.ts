@@ -13,10 +13,6 @@ import {ShiftService} from "../../service/shiftservice";
 import {Shift} from "../../model/shift";
 import {CashierDialogComponent} from "./cashier-dialog/cashier-dialog.component";
 import {
-    ProductCategoryDialogComponent
-} from "../product-category/product-category-dialog/product-category-dialog.component";
-import {ProductCategory} from "../../model/product-category";
-import {
     EditTransactiondetailDialogComponent
 } from "./edit-transactiondetail-dialog/edit-transactiondetail-dialog.component";
 
