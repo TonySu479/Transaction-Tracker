@@ -5,11 +5,9 @@ import com.example.transactiontracker.models.shift.Shift;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -19,7 +17,7 @@ import java.util.Date;
 public class Transaction extends BaseEntity {
 
     @Column(name = "created_at", columnDefinition = "DATE")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
@@ -27,7 +25,7 @@ public class Transaction extends BaseEntity {
     @ManyToOne
     private Shift shift;
 
-    public Transaction(LocalDate createdAt, TransactionType transactionType){
+    public Transaction(LocalDateTime createdAt, TransactionType transactionType){
         this.createdAt = createdAt;
         this.transactionType = transactionType;
     }

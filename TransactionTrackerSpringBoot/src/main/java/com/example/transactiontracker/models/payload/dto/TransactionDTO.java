@@ -4,14 +4,13 @@ import com.example.transactiontracker.models.transaction.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 public class TransactionDTO {
 
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     private Long id;
 

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class ShiftServiceImpl implements ShiftService {
         if (checkUserInShift(user.getId())) {
             return shiftRepository.findByUser_IdAndShiftEndIsNull(user.getId());
         }
-        return save(new Shift(LocalDate.now(), null, user, 0));
+        return save(new Shift(LocalDateTime.now(), null, user, 0));
     }
 
     @Override
@@ -58,7 +59,7 @@ public class ShiftServiceImpl implements ShiftService {
 
     private Shift getShift(User user) {
         Shift shift = shiftRepository.findByUser_IdAndShiftEndIsNull(user.getId());
-        shift.setShiftEnd(LocalDate.now());
+        shift.setShiftEnd(LocalDateTime.now());
         setShiftTotal(shift);
         shiftRepository.save(shift);
         return shift;

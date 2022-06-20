@@ -3,8 +3,7 @@ package com.example.transactiontracker.services.transactionservice;
 import com.example.transactiontracker.models.transaction.Transaction;
 import com.example.transactiontracker.models.transaction.TransactionDetail;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +24,7 @@ public interface TransactionService {
 
     int getTransactionTotalFromTransaction(Transaction transaction);
 
-    List<Transaction> findAllByCreatedAt(LocalDate createdAt);
+    List<Transaction> findAllByCreatedAt(LocalDateTime createdAt);
 
     List<Transaction> findTransactionsByCurrentDay();
 

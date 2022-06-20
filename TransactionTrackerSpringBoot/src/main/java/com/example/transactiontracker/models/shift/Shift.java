@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -19,10 +19,10 @@ import java.util.Date;
 public class Shift extends BaseEntity {
 
     @Column(name = "shift_start", columnDefinition = "DATE")
-    private LocalDate shiftStart;
+    private LocalDateTime shiftStart;
 
     @Column(name = "shift_end", columnDefinition = "DATE")
-    private LocalDate shiftEnd;
+    private LocalDateTime shiftEnd;
 
     @ManyToOne
     private User user;

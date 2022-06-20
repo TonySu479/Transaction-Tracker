@@ -7,12 +7,7 @@ import com.example.transactiontracker.services.repositories.TransactionRepositor
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,13 +66,13 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> findAllByCreatedAt(LocalDate createdAt) {
+    public List<Transaction> findAllByCreatedAt(LocalDateTime createdAt) {
         return transactionRepository.findAllByCreatedAt(createdAt);
     }
 
     @Override
     public List<Transaction> findTransactionsByCurrentDay() {
-        return transactionRepository.findAllByCreatedAt(LocalDate.now());
+        return transactionRepository.findAllByCreatedAt(LocalDateTime.now());
     }
 
     @Override

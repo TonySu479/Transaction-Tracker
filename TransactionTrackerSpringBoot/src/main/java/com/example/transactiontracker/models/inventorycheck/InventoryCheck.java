@@ -6,8 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -17,7 +16,7 @@ import java.util.Date;
 public class InventoryCheck extends BaseEntity {
 
     @Column(name = "created_at", columnDefinition = "DATE")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
 }
 
