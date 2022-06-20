@@ -61,7 +61,7 @@ export class CashierComponent implements OnInit {
     ngOnInit(): void {
         this.cashierForm = this.formBuilder.group({
             product: new FormControl("", [Validators.required]),
-            quantity: new FormControl("", [Validators.min(0), Validators.required])
+            quantity: new FormControl("", [Validators.min(1), Validators.required])
         });
 
         this.shiftService.createShift().subscribe(data => {
