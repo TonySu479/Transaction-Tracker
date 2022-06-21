@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class InventoryCheck extends BaseEntity {
 
-    @Column(name = "created_at", columnDefinition = "DATE")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
 }
