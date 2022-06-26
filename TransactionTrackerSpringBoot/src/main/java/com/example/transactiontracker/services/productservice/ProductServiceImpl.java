@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProductCategoryService productCategoryService;
-    private static final String IMAGE_PATH = "/usr/src/app/assets/images/";
+    private static final String IMAGE_PATH = "./TransactionTrackerSpringBoot/assets/images/";
     private static final String IMAGE_BASE_URL = "//localhost:8080/images/";
 
     @Override
@@ -105,7 +105,7 @@ public class ProductServiceImpl implements ProductService {
     public String storeImage(String imageBase64) {
         String uniqueImgName = "";
         if(imageBase64 != ""){
-            uniqueImgName = "" + LocalDate.now() + new Random().nextInt(10000) + ".jpg";
+            uniqueImgName = "" + System.currentTimeMillis() + new Random().nextInt(10000) + ".jpg";
             byte[] img = Base64.decodeBase64(imageBase64);
             try (OutputStream stream = new FileOutputStream(IMAGE_PATH + uniqueImgName)) {
                 stream.write(img);
