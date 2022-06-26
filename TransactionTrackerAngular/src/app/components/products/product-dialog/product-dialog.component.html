@@ -32,6 +32,10 @@
             <label>Category </label>
         </h5>
         <p-autoComplete formControlName="category" [suggestions]="results" (completeMethod)="search($event)" field="name" forceSelection="true"></p-autoComplete>
+        <div>
+            <small class="ng-dirty ng-invalid" *ngIf="category?.errors?.required && (price.dirty || price.touched)">Category is
+                required.</small>
+        </div>
     </div>
 
     <div class="field">
