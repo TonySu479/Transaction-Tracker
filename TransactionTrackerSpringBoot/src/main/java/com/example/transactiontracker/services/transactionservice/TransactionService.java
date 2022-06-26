@@ -29,4 +29,6 @@ public interface TransactionService {
     List<Transaction> findTransactionsByCurrentDay();
 
     List<Transaction> findTransactionsByShiftId(Long id);
+
+    void updateProductInventoryOnDelete(long transactionId);
 }
